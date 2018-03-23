@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace ITRW211_Project
 {
-    public partial class FormMain : Form
+    public partial class FormHackaday : Form
     {
-        public FormMain()
+        public FormHackaday()
         {
             InitializeComponent();
-        }
-
-        private void ArsTechnicaClick(object sender, EventArgs e)
-        {
-            MessageBox.Show("Hello Savannah");
         }
     }
 }

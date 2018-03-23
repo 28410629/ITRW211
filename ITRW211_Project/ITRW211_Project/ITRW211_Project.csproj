@@ -51,8 +51,29 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormArsTechnica.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormArsTechnica.Designer.cs">
+      <DependentUpon>FormArsTechnica.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormBoredPanda.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormBoredPanda.Designer.cs">
+      <DependentUpon>FormBoredPanda.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormHackaday.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormHackaday.Designer.cs">
+      <DependentUpon>FormHackaday.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
