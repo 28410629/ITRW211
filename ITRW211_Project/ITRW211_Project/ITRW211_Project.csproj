@@ -74,6 +74,15 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormArsTechnica.resx">
+      <DependentUpon>FormArsTechnica.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormBoredPanda.resx">
+      <DependentUpon>FormBoredPanda.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormHackaday.resx">
+      <DependentUpon>FormHackaday.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

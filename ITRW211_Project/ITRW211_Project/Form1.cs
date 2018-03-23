@@ -19,7 +19,24 @@ namespace ITRW211_Project
 
         private void ArsTechnicaClick(object sender, EventArgs e)
         {
-            MessageBox.Show("Hello Savannah");
+            FormArsTechnica newArs = new FormArsTechnica();
+            newArs.MdiParent = this;
+            newArs.Show();
+        }
+
+        private void buttonBoredPanda_Click(object sender, EventArgs e)
+        {
+            FormBoredPanda newBored = new FormBoredPanda();
+            newBored.MdiParent = this;
+            newBored.Show();
+        }
+
+        private void buttonHackaday_Click(object sender, EventArgs e)
+        {
+            
+            FormHackaday newHack = new FormHackaday();
+            newHack.MdiParent = this;
+            newHack.Show();
         }
     }
 }
