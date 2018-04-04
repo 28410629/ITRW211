@@ -35,9 +35,10 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.windowsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.windowsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -46,7 +47,7 @@
             this.buttonArsTechnica.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("buttonArsTechnica.BackgroundImage")));
             this.buttonArsTechnica.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonArsTechnica.ForeColor = System.Drawing.Color.OrangeRed;
-            this.buttonArsTechnica.Location = new System.Drawing.Point(12, 37);
+            this.buttonArsTechnica.Location = new System.Drawing.Point(12, 36);
             this.buttonArsTechnica.Name = "buttonArsTechnica";
             this.buttonArsTechnica.Size = new System.Drawing.Size(276, 114);
             this.buttonArsTechnica.TabIndex = 0;
@@ -57,7 +58,7 @@
             // 
             this.buttonBoredPanda.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("buttonBoredPanda.BackgroundImage")));
             this.buttonBoredPanda.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonBoredPanda.Location = new System.Drawing.Point(294, 37);
+            this.buttonBoredPanda.Location = new System.Drawing.Point(294, 36);
             this.buttonBoredPanda.Name = "buttonBoredPanda";
             this.buttonBoredPanda.Size = new System.Drawing.Size(276, 114);
             this.buttonBoredPanda.TabIndex = 1;
@@ -69,7 +70,7 @@
             this.buttonHackaday.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("buttonHackaday.BackgroundImage")));
             this.buttonHackaday.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonHackaday.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.buttonHackaday.Location = new System.Drawing.Point(576, 37);
+            this.buttonHackaday.Location = new System.Drawing.Point(579, 36);
             this.buttonHackaday.Name = "buttonHackaday";
             this.buttonHackaday.Size = new System.Drawing.Size(276, 114);
             this.buttonHackaday.TabIndex = 2;
@@ -100,8 +101,14 @@
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(92, 22);
             this.exitToolStripMenuItem.Text = "Exit";
+            // 
+            // windowsToolStripMenuItem
+            // 
+            this.windowsToolStripMenuItem.Name = "windowsToolStripMenuItem";
+            this.windowsToolStripMenuItem.Size = new System.Drawing.Size(68, 20);
+            this.windowsToolStripMenuItem.Text = "Windows";
             // 
             // helpToolStripMenuItem
             // 
@@ -114,14 +121,17 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.aboutToolStripMenuItem.Text = "About";
             // 
-            // windowsToolStripMenuItem
+            // toolStrip1
             // 
-            this.windowsToolStripMenuItem.Name = "windowsToolStripMenuItem";
-            this.windowsToolStripMenuItem.Size = new System.Drawing.Size(68, 20);
-            this.windowsToolStripMenuItem.Text = "Windows";
+            this.toolStrip1.AutoSize = false;
+            this.toolStrip1.Location = new System.Drawing.Point(0, 24);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(867, 139);
+            this.toolStrip1.TabIndex = 5;
+            this.toolStrip1.Text = "toolStrip1";
             // 
             // FormMain
             // 
@@ -131,11 +141,13 @@
             this.Controls.Add(this.buttonHackaday);
             this.Controls.Add(this.buttonBoredPanda);
             this.Controls.Add(this.buttonArsTechnica);
+            this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.menuStrip1);
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
+            this.MinimumSize = new System.Drawing.Size(883, 872);
             this.Name = "FormMain";
-            this.Text = "ITRW211_Project - Article Reader (28410629, 29158710 and 28633512)";
+            this.Text = "ITRW211_Project - Article Reader (by 28410629, 29158710 and 28633512)";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -154,6 +166,7 @@
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem windowsToolStripMenuItem;
+        private System.Windows.Forms.ToolStrip toolStrip1;
     }
 }
 
