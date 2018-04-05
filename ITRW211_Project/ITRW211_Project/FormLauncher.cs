@@ -22,7 +22,7 @@ namespace ITRW211_Project
 
         private void ArsTechnicaClick(object sender, EventArgs e)
         {
-            FormArsTechnica newArs = new FormArsTechnica();
+            FormArsTechnica newArs = new FormArsTechnica(newMain);
             newArs.MdiParent = newMain;
             newArs.Show();
             Close();
