@@ -37,7 +37,7 @@ namespace ITRW211_Project
                 {
                     client.Encoding = Encoding.UTF8;
                     string text_backup = client.DownloadString(link);
-                    using (FileStream str = new FileStream(path, FileMode.Create, FileAccess.Write))
+                    using (FileStream str = new FileStream(path + filename, FileMode.Create, FileAccess.Write))
                     {
                         using (StreamWriter writer = new StreamWriter(str))
                         {
@@ -50,10 +50,10 @@ namespace ITRW211_Project
             catch (Exception err)
             {
                 MessageBox.Show(err.Message + "\n\n" + err.StackTrace);
-                FileInfo fileInfo = new FileInfo(path);
+                FileInfo fileInfo = new FileInfo(path + filename);
                 if (fileInfo.Exists)
                 {
-                    using (FileStream str = new FileStream(path, FileMode.Open, FileAccess.Read))
+                    using (FileStream str = new FileStream(path + filename, FileMode.Open, FileAccess.Read))
                     {
                         using (StreamReader reader = new StreamReader(str))
                         {
@@ -91,7 +91,8 @@ namespace ITRW211_Project
                     while (editedHTML.Contains("h2>"))
                     {
                         getHeading = editedHTML.Substring(editedHTML.IndexOf("<h2>")); //remove everything before line
-                        getHeading = getHeading.Remove(getHeading.IndexOf("</h2>") + 5); //remove everything after line
+                        getHeading = getHeading.Remove(getHeading.IndexOf("</time>") + 7); //remove everything after line
+                        MessageBox.Show(getHeading);
                         editedHTML = editedHTML.Replace(getHeading, ""); //removes line from our copy of the html, this prevents infinite loop
                         //MessageBox.Show(getHeading);
                         linkArticle = getHeading;
@@ -127,14 +128,14 @@ namespace ITRW211_Project
 
         private void ArticleInformation()
         {
-            downloadHTMLstring(linksArticle[listBoxDisplay.SelectedIndex], Application.StartupPath + "\\ArsTechnica\\" + );
+            //downloadHTMLstring(linksArticle[listBoxDisplay.SelectedIndex], Application.StartupPath + "\\ArsTechnica\\" + );
         }
 
         private void listBoxDisplay_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             string Article = "";
 
-            FormReader newReader = new FormReader(newMain,"Ars Technica", (string)listBoxDisplay.SelectedItem, Article, linksArticle[listBoxDisplay.SelectedIndex], );
+            //FormReader newReader = new FormReader(newMain,"Ars Technica", (string)listBoxDisplay.SelectedItem, Article, linksArticle[listBoxDisplay.SelectedIndex], );
         }
     }
 }
