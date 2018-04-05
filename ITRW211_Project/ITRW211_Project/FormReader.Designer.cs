@@ -32,6 +32,7 @@
             this.textBoxArticle = new System.Windows.Forms.TextBox();
             this.pictureBoxImage = new System.Windows.Forms.PictureBox();
             this.buttonSiteLink = new System.Windows.Forms.Button();
+            this.labelAuthor = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,7 +66,7 @@
             // 
             // buttonSiteLink
             // 
-            this.buttonSiteLink.Location = new System.Drawing.Point(12, 599);
+            this.buttonSiteLink.Location = new System.Drawing.Point(12, 612);
             this.buttonSiteLink.Name = "buttonSiteLink";
             this.buttonSiteLink.Size = new System.Drawing.Size(155, 23);
             this.buttonSiteLink.TabIndex = 3;
@@ -73,18 +74,27 @@
             this.buttonSiteLink.UseVisualStyleBackColor = true;
             this.buttonSiteLink.Click += new System.EventHandler(this.buttonSiteLink_Click);
             // 
+            // labelAuthor
+            // 
+            this.labelAuthor.AutoSize = true;
+            this.labelAuthor.Location = new System.Drawing.Point(12, 596);
+            this.labelAuthor.Name = "labelAuthor";
+            this.labelAuthor.Size = new System.Drawing.Size(35, 13);
+            this.labelAuthor.TabIndex = 4;
+            this.labelAuthor.Text = "label1";
+            // 
             // FormReader
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(725, 630);
+            this.ClientSize = new System.Drawing.Size(725, 647);
+            this.Controls.Add(this.labelAuthor);
             this.Controls.Add(this.buttonSiteLink);
             this.Controls.Add(this.pictureBoxImage);
             this.Controls.Add(this.textBoxArticle);
             this.Controls.Add(this.labelSiteName);
             this.Name = "FormReader";
             this.Text = "FormReader";
-            this.Load += new System.EventHandler(this.FormReader_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -97,5 +107,6 @@
         private System.Windows.Forms.TextBox textBoxArticle;
         private System.Windows.Forms.PictureBox pictureBoxImage;
         private System.Windows.Forms.Button buttonSiteLink;
+        private System.Windows.Forms.Label labelAuthor;
     }
 }

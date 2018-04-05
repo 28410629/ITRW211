@@ -14,28 +14,17 @@ namespace ITRW211_Project
     public partial class FormReader : Form
     {
         private Form newMain;
-        private string Heading;
-        private string Article;
         private string SiteLink;
-        private Image Article_Image;
-        private string SiteName;
 
-        public FormReader(Form newMain, string SiteName, string Heading, string Article, string SiteLink, Image Article_Image)
+        public FormReader(Form newMain, string SiteName, string Heading, string Author, string Article, string SiteLink, Image Article_Image)
         {
             InitializeComponent();
-            this.SiteName = SiteName;
-            this.newMain = newMain;
-            this.Heading = Heading;
-            this.Article = Article;
-            this.SiteLink = SiteLink;
-            this.Article_Image = Article_Image;
-        }
-
-        private void FormReader_Load(object sender, EventArgs e)
-        {
             labelSiteName.Text = SiteName + " - " + Heading;
+            this.newMain = newMain;
             textBoxArticle.Text = Article;
+            this.SiteLink = SiteLink;
             pictureBoxImage.Image = Article_Image;
+            labelAuthor.Text = Author;
         }
 
         private void buttonSiteLink_Click(object sender, EventArgs e)

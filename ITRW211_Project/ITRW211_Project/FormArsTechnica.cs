@@ -23,6 +23,9 @@ namespace ITRW211_Project
         private List<string> list_ArticleID = new List<string>();
         private List<string> list_ArticleImageLink = new List<string>();
         private List<string> list_ArticleAuthor = new List<string>();
+        private List<string> list_ArticleAbstract = new List<string>();
+        private string Selected_Article;
+        private Image Selected_Image;
 
         public FormArsTechnica(Form newMain)
         {
@@ -81,17 +84,14 @@ namespace ITRW211_Project
 
         private void FormArsTechnica_Load(object sender, EventArgs e)
         {
-            htmlString = downloadHTMLstring("https://arstechnica.com/", Application.StartupPath + "\\ArsTechnica", "\\ArsTechnica-Headings.txt");
+            htmlString = downloadHTMLstring("https://arstechnica.com/", Application.StartupPath + "\\ArsTechnica", "\\ArsTechnica-HTML.txt");
             try
             {
                 if (!string.IsNullOrEmpty(htmlString))
                 {
                     
                     string editedHTML; //string that will be worked on and copy of html file
-                    string getHeading; //string that will give headlines
-                    string linkArticle;
-                    string fileName;
-                    string author;
+                    string getHeading; //string that will give headlines   
                     //Remove unnecessary info at beginning of document to where indicated
                     editedHTML = htmlString.Substring(htmlString.IndexOf("First article"));
                     editedHTML = editedHTML.Remove(editedHTML.LastIndexOf("<!-- Adjust order if mobile -->"));
@@ -103,9 +103,10 @@ namespace ITRW211_Project
                         editedHTML = editedHTML.Replace(getHeading, ""); //removes line from our copy of the html, this prevents infinite loop
                         getHeading = getHeading.Remove(getHeading.IndexOf("</time>"));
                         getHeading = getHeading.Substring(getHeading.LastIndexOf("<header>") + 8);
-                        linkArticle = getHeading;
-                        fileName = getHeading;
-                        author = getHeading;
+                        string linkArticle = getHeading;
+                        string fileName = getHeading;
+                        string author = getHeading;
+                        string aritcle_abstract = getHeading;
                         // Refine Article ID
                         fileName = fileName.Remove(fileName.LastIndexOf(">") - 6);
                         fileName = fileName.Substring(fileName.LastIndexOf("datetime=") + 10);
@@ -116,20 +117,25 @@ namespace ITRW211_Project
                         // Refine Article Author
                         author = author.Remove(author.LastIndexOf("</span>"));
                         author = author.Substring(author.LastIndexOf(">") + 1);
-                        MessageBox.Show(author);
+                        // Refine Article Abstract
+                        aritcle_abstract = aritcle_abstract.Remove(aritcle_abstract.LastIndexOf("</p>"));
+                        aritcle_abstract = aritcle_abstract.Substring(aritcle_abstract.LastIndexOf("excerpt") + 9);
                         //Refine Heading
+                        getHeading = getHeading.Remove(getHeading.LastIndexOf("</a></h2>"));
+                        getHeading = getHeading.Substring(getHeading.LastIndexOf(">") + 1);
 
                         //Refine link
                         linkArticle = linkArticle.Substring(linkArticle.IndexOf("ref=") + 5);
-                        linkArticle = linkArticle.Remove(linkArticle.IndexOf("</a>"));
+                        linkArticle = linkArticle.Remove(linkArticle.IndexOf("</a></h2>"));
                         linkArticle = linkArticle.Remove(linkArticle.IndexOf(">") - 1);
-                        //MessageBox.Show(linkArticle);
                         //Add link to list
                         if (!string.IsNullOrEmpty(getHeading))
                         {
                             listBoxDisplay.Items.Add(getHeading);
                             list_ArticleLink.Add(linkArticle);
                             list_ArticleID.Add(fileName);
+                            list_ArticleAbstract.Add(aritcle_abstract);
+                            list_ArticleAuthor.Add(author);
                         }
 
                     }
@@ -146,16 +152,33 @@ namespace ITRW211_Project
             }
         }
 
-        private void ArticleInformation()
+        private void ArticleInformation(string link, string article_id, int index)
         {
-            //downloadHTMLstring(linksArticle[listBoxDisplay.SelectedIndex], Application.StartupPath + "\\ArsTechnica\\" + );
+            string selected_article = downloadHTMLstring(link, Application.StartupPath + "\\ArsTechnica\\" + article_id, "\\" + article_id + "-HTML.txt");
+
+            selected_article = selected_article.Substring(selected_article.IndexOf("<h1"));
+            string image_link = selected_article.Substring(selected_article.IndexOf("<img src=") + 10);
+            image_link = selected_article.Remove(selected_article.IndexOf("/>") - 1);
+            MessageBox.Show(image_link);
+            list_ArticleImageLink.Add(image_link);
+
+        }
+
+        private void ImageDownloader(string link)
+        {
+
         }
 
         private void listBoxDisplay_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            string Article = "";
+            ArticleInformation(list_ArticleLink[listBoxDisplay.SelectedIndex], list_ArticleID[listBoxDisplay.SelectedIndex], listBoxDisplay.SelectedIndex);
+            //FormReader newReader = new FormReader(newMain,"Ars Technica", (string)listBoxDisplay.SelectedItem, list_ArticleAuthor[listBoxDisplay.SelectedIndex], Selected_Article, list_ArticleLink[listBoxDisplay.SelectedIndex], );
+        }
 
-            //FormReader newReader = new FormReader(newMain,"Ars Technica", (string)listBoxDisplay.SelectedItem, Article, linksArticle[listBoxDisplay.SelectedIndex], );
+        private void listBoxDisplay_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            labelArticleInfo.Text = "Author: " + list_ArticleAuthor[listBoxDisplay.SelectedIndex] +
+                                    "\nAbstract: " + list_ArticleAbstract[listBoxDisplay.SelectedIndex];
         }
     }
 }
