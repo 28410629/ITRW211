@@ -10,33 +10,38 @@ using System.Windows.Forms;
 
 namespace ITRW211_Project
 {
-    public partial class FormMain : Form
+    public partial class FormLauncher : Form
     {
-        public FormMain()
+        private Form newMain;
+
+        public FormLauncher(Form newMain)
         {
             InitializeComponent();
+            this.newMain = newMain;
         }
 
         private void ArsTechnicaClick(object sender, EventArgs e)
         {
             FormArsTechnica newArs = new FormArsTechnica();
-            newArs.MdiParent = this;
+            newArs.MdiParent = newMain;
             newArs.Show();
+            Close();
         }
 
         private void buttonBoredPanda_Click(object sender, EventArgs e)
         {
             FormBoredPanda newBored = new FormBoredPanda();
-            newBored.MdiParent = this;
+            newBored.MdiParent = newMain;
             newBored.Show();
+            Close();
         }
 
         private void buttonHackaday_Click(object sender, EventArgs e)
         {
-            
             FormHackaday newHack = new FormHackaday();
-            newHack.MdiParent = this;
+            newHack.MdiParent = newMain;
             newHack.Show();
+            Close();
         }
     }
 }
