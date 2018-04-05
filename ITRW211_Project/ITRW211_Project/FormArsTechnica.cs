@@ -11,13 +11,18 @@ using System.IO;
 using System.Net;
 using System.Diagnostics;
 
+// Coenraad Human 28410629
+
 namespace ITRW211_Project
 {
     public partial class FormArsTechnica : Form
     {
         Form newMain;
         private string htmlString = "";
-        private List<string> linksArticle = new List<string>();
+        private List<string> list_ArticleLink = new List<string>();
+        private List<string> list_ArticleID = new List<string>();
+        private List<string> list_ArticleImageLink = new List<string>();
+        private List<string> list_ArticleAuthor = new List<string>();
 
         public FormArsTechnica(Form newMain)
         {
@@ -81,25 +86,39 @@ namespace ITRW211_Project
             {
                 if (!string.IsNullOrEmpty(htmlString))
                 {
+                    
                     string editedHTML; //string that will be worked on and copy of html file
                     string getHeading; //string that will give headlines
                     string linkArticle;
-
+                    string fileName;
+                    string author;
                     //Remove unnecessary info at beginning of document to where indicated
                     editedHTML = htmlString.Substring(htmlString.IndexOf("First article"));
-                    editedHTML = editedHTML.Remove(editedHTML.LastIndexOf("Adjust order if mobile"));
-                    while (editedHTML.Contains("h2>"))
+                    editedHTML = editedHTML.Remove(editedHTML.LastIndexOf("<!-- Adjust order if mobile -->"));
+                    string piece1 = editedHTML.Substring(htmlString.IndexOf("<!-- Horizontal listing -->"));
+                    while (editedHTML.Contains("article>"))
                     {
-                        getHeading = editedHTML.Substring(editedHTML.IndexOf("<h2>")); //remove everything before line
-                        getHeading = getHeading.Remove(getHeading.IndexOf("</time>") + 7); //remove everything after line
-                        MessageBox.Show(getHeading);
+                        getHeading = editedHTML.Substring(editedHTML.IndexOf("<article class")); //remove everything before line
+                        getHeading = getHeading.Remove(getHeading.IndexOf("</article>") + 10); //remove everything after line
                         editedHTML = editedHTML.Replace(getHeading, ""); //removes line from our copy of the html, this prevents infinite loop
-                        //MessageBox.Show(getHeading);
+                        getHeading = getHeading.Remove(getHeading.IndexOf("</time>"));
+                        getHeading = getHeading.Substring(getHeading.LastIndexOf("<header>") + 8);
                         linkArticle = getHeading;
-                        //Refine getHeading
-                        getHeading = getHeading.Remove(getHeading.IndexOf("</a>"));
-                        getHeading = getHeading.Substring(getHeading.LastIndexOf(">") + 1);
-                        //MessageBox.Show(getHeading);
+                        fileName = getHeading;
+                        author = getHeading;
+                        // Refine Article ID
+                        fileName = fileName.Remove(fileName.LastIndexOf(">") - 6);
+                        fileName = fileName.Substring(fileName.LastIndexOf("datetime=") + 10);
+                        fileName = fileName.Replace(":", "");
+                        fileName = fileName.Replace("+", "");
+                        fileName = fileName.Replace("-", "");
+                        fileName = fileName.Replace("T", "");
+                        // Refine Article Author
+                        author = author.Remove(author.LastIndexOf("</span>"));
+                        author = author.Substring(author.LastIndexOf(">") + 1);
+                        MessageBox.Show(author);
+                        //Refine Heading
+
                         //Refine link
                         linkArticle = linkArticle.Substring(linkArticle.IndexOf("ref=") + 5);
                         linkArticle = linkArticle.Remove(linkArticle.IndexOf("</a>"));
@@ -109,7 +128,8 @@ namespace ITRW211_Project
                         if (!string.IsNullOrEmpty(getHeading))
                         {
                             listBoxDisplay.Items.Add(getHeading);
-                            linksArticle.Add(linkArticle);
+                            list_ArticleLink.Add(linkArticle);
+                            list_ArticleID.Add(fileName);
                         }
 
                     }
