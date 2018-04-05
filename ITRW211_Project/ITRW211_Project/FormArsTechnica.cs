@@ -157,11 +157,99 @@ namespace ITRW211_Project
             string selected_article = downloadHTMLstring(link, Application.StartupPath + "\\ArsTechnica\\" + article_id, "\\" + article_id + "-HTML.txt");
 
             selected_article = selected_article.Substring(selected_article.IndexOf("<h1"));
-            string image_link = selected_article.Substring(selected_article.IndexOf("<img src=") + 10);
-            image_link = selected_article.Remove(selected_article.IndexOf("/>") - 1);
-            MessageBox.Show(image_link);
+            // Refine image link
+            string image_link = selected_article;
+            if(image_link.Contains("<img src="))
+            {
+                image_link = image_link.Substring(image_link.IndexOf("<img src=") + 10);
+                if(image_link.Contains("png"))
+                {
+                    image_link = image_link.Remove(image_link.IndexOf(".png") +4);
+                    try
+                    {
+                        using (var client = new WebClient())
+                        {
+                            client.Encoding = Encoding.UTF8;
+                            string path = Application.StartupPath + "\\ArsTechnica\\" + article_id + "\\" + article_id;
+                            if (image_link.Contains("png"))
+                            {
+                                path += "-Image.png";
+                            }
+                            else
+                            {
+                                path += "-Image.jpg";
+                            }
+                            client.DownloadFile(image_link, path);
+                        }
+                    }
+                    catch (Exception err)
+                    {
+                        MessageBox.Show(err.Message + "\n\n" + err.StackTrace);
+                    }
+                }
+                else if (image_link.Contains("jpg"))
+                {
+                    image_link = image_link.Remove(image_link.IndexOf(".jpg") +4);
+                    try
+                    {
+                        using (var client = new WebClient())
+                        {
+                            client.Encoding = Encoding.UTF8;
+                            string path = Application.StartupPath + "\\ArsTechnica\\" + article_id + "\\" + article_id;
+                            if (image_link.Contains("png"))
+                            {
+                                path += "-Image.png";
+                            }
+                            else
+                            {
+                                path += "-Image.jpg";
+                            }
+                            client.DownloadFile(image_link, path);
+                        }
+                    }
+                    catch (Exception err)
+                    {
+                        MessageBox.Show(err.Message + "\n\n" + err.StackTrace);
+                    }
+                }
+                else
+                {
+                    image_link = null;
+                }
+            }
+            else
+            {
+                image_link = null;
+            }
             list_ArticleImageLink.Add(image_link);
-
+            selected_article = selected_article.Substring(selected_article.IndexOf("<!-- cache hit"));
+            selected_article = selected_article.Substring(selected_article.IndexOf("<!-- cache hit"));
+            selected_article = selected_article.Substring(selected_article.IndexOf("<!-- cache hit"));
+            if(selected_article.Contains("Listing image"))
+            {
+                selected_article = selected_article.Remove(selected_article.IndexOf("Listing image"));
+            }
+            else
+            {
+                selected_article = selected_article.Remove(selected_article.LastIndexOf("<!-- cache hit"));
+            }
+            string line;
+            string article = "";
+            while (selected_article.Contains("p>"))
+            {
+                line = selected_article.Substring(selected_article.IndexOf("<p>"));
+                line = selected_article.Remove(selected_article.IndexOf("</p>") + 4);
+                selected_article = selected_article.Replace(line, "");
+                line = line.Substring(line.IndexOf("<p>")+3);
+                line = line.Remove(line.IndexOf("</p>"));
+                article += line + "\n\n";
+            }
+            if (article.Contains("div>"))
+            {
+                article = article.Remove(article.IndexOf("div>"));
+            }
+           
+            MessageBox.Show(article);
         }
 
         private void ImageDownloader(string link)
