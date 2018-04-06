@@ -23,6 +23,7 @@ namespace ITRW211_Project
             this.newMain = newMain;
             textBoxArticle.Text = Article;
             this.SiteLink = SiteLink;
+            pictureBoxImage.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBoxImage.Image = Article_Image;
             labelAuthor.Text = Author;
         }
@@ -30,6 +31,11 @@ namespace ITRW211_Project
         private void buttonSiteLink_Click(object sender, EventArgs e)
         {
             Process.Start(SiteLink);
+        }
+
+        private void FormReader_Load(object sender, EventArgs e)
+        {
+            labelFocus.Focus();
         }
     }
 }

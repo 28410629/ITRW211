@@ -79,9 +79,11 @@
             this.Controls.Add(this.buttonBoredPanda);
             this.Controls.Add(this.buttonArsTechnica);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.MaximumSize = new System.Drawing.Size(880, 183);
+            this.MinimumSize = new System.Drawing.Size(880, 183);
             this.Name = "FormLauncher";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Article Reader";
+            this.Text = "Choose a site:";
             this.ResumeLayout(false);
 
         }
