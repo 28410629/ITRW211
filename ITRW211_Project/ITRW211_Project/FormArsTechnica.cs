@@ -158,30 +158,8 @@ namespace ITRW211_Project
         }
                         /*
                         string selected_article = downloadHTML(linkArticle, Application.StartupPath + "\\ArsTechnica\\" + fileName, "\\" + fileName + "-HTML.txt");
-                        selected_article = selected_article.Substring(selected_article.IndexOf("<h1"));
-                        // Refine image link
-                        string image_link = selected_article;
-                        if (image_link.Contains("<img src="))
-                        {
-                            image_link = image_link.Substring(image_link.IndexOf("<img src=") + 10);
-                            if (image_link.Contains("png"))
-                            {
-                                image_link = image_link.Remove(image_link.IndexOf(".png") + 4);
-                            }
-                            else if (image_link.Contains("jpg"))
-                            {
-                                image_link = image_link.Remove(image_link.IndexOf(".jpg") + 4);
-                            }
-                            else
-                            {
-                                image_link = null;
-                            }
-                        }
-                        else
-                        {
-                            image_link = null;
-                        }
-                        list_ArticleImageLink.Add(image_link);
+                        
+                        
                         // refine article
                         string article = "";
                         string line;
@@ -269,83 +247,7 @@ namespace ITRW211_Project
                          * 5 - Article Image
                          * 6 = Article Text
                          */
-                    string image_link = ThreadItem[5];
-                    string path = Application.StartupPath + "\\" + "ArsTechnica" + "\\" + ThreadItem[0] + "\\" + ThreadItem[0];
-                    try
-                    {
-                        if (image_link.Contains("png"))
-                        {
-                            using (var client = new WebClient())
-                            {
-                                client.Encoding = Encoding.UTF8;
-                                if (image_link.Contains("png"))
-                                {
-                                    path += "-Image.png";
-                                }
-                                else
-                                {
-                                    path += "-Image.jpg";
-                                }
-                                client.DownloadFile(image_link, path);
-                            }
-                        }
-                        else if (image_link.Contains("jpg"))
-                        {
-                            using (var client = new WebClient())
-                            {
-                                client.Encoding = Encoding.UTF8; ;
-                                if (image_link.Contains("png"))
-                                {
-                                    path += "-Image.png";
-                                }
-                                else
-                                {
-                                    path += "-Image.jpg";
-                                }
-                                client.DownloadFile(image_link, path);
-                            }
-                        }
-                        else
-                        {
-                            using (var client = new WebClient())
-                            {
-                                path += "-Image.png";
-                                client.Encoding = Encoding.UTF8;
-                                client.DownloadFile("", path);
-                            }
-                        }
-                    }
-                    catch (Exception err)
-                    {
-                        MessageBox.Show(err.Message + "\n\n" + err.StackTrace);
-                        image = null;
-                    }
-                    try
-                    {
-                        if (!Directory.Exists(path))
-                        {
-                            Directory.CreateDirectory(path);
-                        }
-                        using (var client = new WebClient())
-                        {
-                            client.Encoding = Encoding.UTF8;
-                            string text_backup = client.DownloadString(link);
-                            using (FileStream str = new FileStream(path + filename, FileMode.Create, FileAccess.Write))
-                            {
-                                using (StreamWriter writer = new StreamWriter(str))
-                                {
-                                    writer.WriteLine(text_backup);
-                                }
-                            }
-                        }
-                    }
-                    catch (Exception err)
-                    {
-                        Invoke(new MethodInvoker(delegate
-                        {
-                            MessageBox.Show("Article not downloaded" + "\n\n" + err.Message + "\n\n" + err.StackTrace);
-                        }));
-                    }
+                    
                 }
             }
             
@@ -375,7 +277,8 @@ namespace ITRW211_Project
         {
             string selected = "";
             string compare = "";
-            string[] ThreadItem = new string[5];
+            string image_link = "";
+            string[] ThreadItem = new string[7];
             Invoke(new MethodInvoker(delegate
             {
                 selected = (string)listBoxDisplay.SelectedItem;
@@ -422,6 +325,7 @@ namespace ITRW211_Project
                         {
                             client.Encoding = Encoding.UTF8;
                             string text_backup = client.DownloadString(link);
+                            ThreadItem[6] = text_backup;
                             using (FileStream str = new FileStream(path + filename, FileMode.Create, FileAccess.Write))
                             {
                                 using (StreamWriter writer = new StreamWriter(str))
@@ -442,17 +346,161 @@ namespace ITRW211_Project
                             MessageBox.Show("Article not downloaded" + "\n\n" + err.Message + "\n\n" + err.StackTrace);
                         }));
                     }
+                    try
+                    {
+                        string selected_article = ThreadItem[6].Substring(ThreadItem[6].IndexOf("<h1"));
+                        image_link = selected_article;
+                        if (image_link.Contains("<img src="))
+                        {
+                            image_link = image_link.Substring(image_link.IndexOf("<img src=") + 10);
+                            if (image_link.Contains("png"))
+                            {
+                                image_link = image_link.Remove(image_link.IndexOf("png") + 3);
+                            }
+                            else if (image_link.Contains("jpg"))
+                            {
+                                image_link = image_link.Remove(image_link.IndexOf("jpg") + 3);
+                            }
+                            else if (image_link.Contains("jpeg"))
+                            {
+                                image_link = image_link.Remove(image_link.IndexOf("jpeg") + 3);
+                            }
+                            else
+                            {
+                                image_link = null;
+                            }
+                           
+                            if (image_link.Length > 200)
+                            {
+                                List<int> small_list = new List<int>();
+                                if (image_link.Contains("jpeg") & image_link.Contains("jpeg") & image_link.Contains("jpg"))
+                                {
+                                    if (image_link.IndexOf("jpeg") > 0) { small_list.Add(image_link.IndexOf("jpeg")); }
+                                    if (image_link.IndexOf("jpg") > 0) { small_list.Add(image_link.IndexOf("jpg")); }
+                                    if (image_link.IndexOf("png") > 0) { small_list.Add(image_link.IndexOf("png")); }
+                                    image_link = image_link.Remove(small_list.Min() + 4);
+                                    if (!image_link.Contains("jpeg")) { image_link.Remove(image_link.Length - 1); }
+                                }
+                                else if (image_link.Contains("jpeg") && image_link.Contains("png"))
+                                {
+                                    if (image_link.IndexOf("jpeg") > 0) { small_list.Add(image_link.IndexOf("jpeg")); }
+                                    if (image_link.IndexOf("png") > 0) { small_list.Add(image_link.IndexOf("png")); }
+                                    image_link = image_link.Remove(small_list.Min() + 4);
+                                    if (!image_link.Contains("jpeg")) { image_link.Remove(image_link.Length - 1); }
+                                }
+                                else if (image_link.Contains("jpg") && image_link.Contains("png"))
+                                {
+                                    if (image_link.IndexOf("jpg") > 0) { small_list.Add(image_link.IndexOf("jpg")); }
+                                    if (image_link.IndexOf("png") > 0) { small_list.Add(image_link.IndexOf("png")); }
+                                    image_link = image_link.Remove(small_list.Min() + 4);
+                                }
+                                else if (image_link.Contains("jpg") && image_link.Contains("jpeg"))
+                                {
+                                    if (image_link.IndexOf("jpeg") > 0) { small_list.Add(image_link.IndexOf("jpeg")); }
+                                    if (image_link.IndexOf("jpg") > 0) { small_list.Add(image_link.IndexOf("jpg")); }
+                                    image_link = image_link.Remove(small_list.Min() + 4);
+                                    if (!image_link.Contains("jpeg")) { image_link.Remove(image_link.Length - 1); }
+                                }
+                                else
+                                {
+                                    image_link = null;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            image_link = null;
+                        }
+                    }
+                    catch (Exception err)
+                    {
+                        Invoke(new MethodInvoker(delegate
+                        {
+                            MessageBox.Show("Image link could not be resolved." + "\n\n" + err.Message + "\n\n" + err.StackTrace);
+                        }));
+                    }
+                    string path2 = Application.StartupPath + "\\" + "ArsTechnica" + "\\" + ThreadItem[0] + "\\" + ThreadItem[0];
+                    try
+                    {
+                        if(image_link == null)
+                        {
+                            using (var client = new WebClient())
+                            {
+                                path2 += "-Image.jpg";
+                                client.Encoding = Encoding.UTF8;
+                                client.DownloadFile("https://github.com/coenraadhuman/ITRW211_Project/blob/master/Resources/ars-sub-thumb.jpg", path2);
+                            }
+                        }
+                        else
+                        {
+                            
+                            if (image_link.Contains("png"))
+                            {
+                                path2 += "-Image.png";
+                            }
+                            else if (image_link.Contains("jpg"))
+                            {
+                                path2 += "-Image.jpg";
+                            }
+                            else if (image_link.Contains("jpeg"))
+                            {
+                                path2 += "-Image.jpeg";
+                            }
+                            else
+                            {
+                                image_link = "https://github.com/coenraadhuman/ITRW211_Project/blob/master/Resources/ars-sub-thumb.jpg";
+                                path2 += "-Image.jpg";
+                            }
+                            FileInfo fileInfo = new FileInfo(path2);
+                            if (!fileInfo.Exists)
+                            {
+                                using (var client = new WebClient())
+                                {
+                                    client.Encoding = Encoding.UTF8;
+                                    client.DownloadFile(image_link, path2);
+                                }
+                            }
+                            else
+                            {
+                                Invoke(new MethodInvoker(delegate
+                                {
+                                    labelStatus.Text = "Image loaded from previous downloaded copy.";
+                                }));
+                            }
+                        }
+                    }
+                    catch (Exception err)
+                    {
+                        Invoke(new MethodInvoker(delegate
+                        {
+                            MessageBox.Show(err.Message + "\n\n" + err.StackTrace);
+                        }));
+                    }
+                    Image image;
+                    try
+                    {
+                        image = Image.FromFile(path2);
+                    }
+                    catch (Exception err)
+                    {
+                        MessageBox.Show(err.Message + "\n\n" + err.StackTrace);
+                        image = null;
+                    }
+                    Invoke(new MethodInvoker(delegate
+                    {
+                        pictureBoxPreview.SizeMode = PictureBoxSizeMode.Zoom;
+                        pictureBoxPreview.Image = image;
+                    }));
+                   
                 }
             }
-
         }
 
         private void listBoxDisplay_SelectedIndexChanged(object sender, EventArgs e)
         {
+            labelStatus.Text = "";
             Thread threadData = new Thread(new ThreadStart(downloadData));
             threadData.Start();
-            Thread threadimage = new Thread(new ThreadStart(downloadImage));
-            threadimage.Start();
         }
     }
 }

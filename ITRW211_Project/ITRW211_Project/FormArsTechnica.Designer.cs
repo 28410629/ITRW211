@@ -32,6 +32,9 @@
             this.labelIntro = new System.Windows.Forms.Label();
             this.labelArticleInfo = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.pictureBoxPreview = new System.Windows.Forms.PictureBox();
+            this.labelStatus = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview)).BeginInit();
             this.SuspendLayout();
             // 
             // listBoxDisplay
@@ -68,12 +71,31 @@
             this.labelArticleInfo.TabIndex = 2;
             this.labelArticleInfo.Text = "...";
             // 
+            // pictureBoxPreview
+            // 
+            this.pictureBoxPreview.Location = new System.Drawing.Point(660, 27);
+            this.pictureBoxPreview.Name = "pictureBoxPreview";
+            this.pictureBoxPreview.Size = new System.Drawing.Size(637, 407);
+            this.pictureBoxPreview.TabIndex = 3;
+            this.pictureBoxPreview.TabStop = false;
+            // 
+            // labelStatus
+            // 
+            this.labelStatus.AutoSize = true;
+            this.labelStatus.ForeColor = System.Drawing.Color.OrangeRed;
+            this.labelStatus.Location = new System.Drawing.Point(660, 437);
+            this.labelStatus.Name = "labelStatus";
+            this.labelStatus.Size = new System.Drawing.Size(0, 13);
+            this.labelStatus.TabIndex = 4;
+            // 
             // FormArsTechnica
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(666, 471);
+            this.BackColor = System.Drawing.Color.DarkGray;
+            this.ClientSize = new System.Drawing.Size(1309, 477);
+            this.Controls.Add(this.labelStatus);
+            this.Controls.Add(this.pictureBoxPreview);
             this.Controls.Add(this.labelArticleInfo);
             this.Controls.Add(this.labelIntro);
             this.Controls.Add(this.listBoxDisplay);
@@ -82,6 +104,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ArsTechnica Article Browser";
             this.Load += new System.EventHandler(this.FormArsTechnica_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -93,5 +116,7 @@
         private System.Windows.Forms.Label labelIntro;
         private System.Windows.Forms.Label labelArticleInfo;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.PictureBox pictureBoxPreview;
+        private System.Windows.Forms.Label labelStatus;
     }
 }
