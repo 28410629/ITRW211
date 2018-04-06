@@ -20,7 +20,6 @@ namespace ITRW211_Project
         Form newMain;
         private string htmlString = "";
         private List<string[]> ArticlesDetails = new List<string[]>();
-        private Image Selected_Image;
 
         public FormArsTechnica(Form newMain)
         {
@@ -320,23 +319,67 @@ namespace ITRW211_Project
                         if (!Directory.Exists(path))
                         {
                             Directory.CreateDirectory(path);
-                        }
-                        using (var client = new WebClient())
-                        {
-                            client.Encoding = Encoding.UTF8;
-                            string text_backup = client.DownloadString(link);
-                            ThreadItem[6] = text_backup;
-                            using (FileStream str = new FileStream(path + filename, FileMode.Create, FileAccess.Write))
+                            using (var client = new WebClient())
                             {
-                                using (StreamWriter writer = new StreamWriter(str))
+                                client.Encoding = Encoding.UTF8;
+                                string text_backup = client.DownloadString(link);
+                                ThreadItem[6] = text_backup;
+                                using (FileStream str = new FileStream(path + filename, FileMode.Create, FileAccess.Write))
                                 {
-                                    writer.WriteLine(text_backup);
+                                    using (StreamWriter writer = new StreamWriter(str))
+                                    {
+                                        writer.WriteLine(text_backup);
+                                    }
+                                }
+                                Invoke(new MethodInvoker(delegate
+                                {
+                                    ArticlesDetails[i][6] = text_backup;
+                                }));
+                            }
+                        }
+                        else
+                        {
+                            FileInfo fileInfo = new FileInfo(path + filename);
+                            if (fileInfo.Exists)
+                            {
+                                string textbackup = "";
+                                using (FileStream str = new FileStream(path + filename, FileMode.Open, FileAccess.Read))
+                                {
+                                    using (StreamReader reader = new StreamReader(str))
+                                    {
+                                        while(!reader.EndOfStream)
+                                        {
+                                            textbackup += reader.ReadLine();
+                                        }
+                                    }
+                                }
+                                ThreadItem[6] = textbackup;
+                                Invoke(new MethodInvoker(delegate
+                                {
+                                    ArticlesDetails[i][6] = textbackup;
+                                    labelStatus_Article.Text = "Article loaded from previous downloaded file.";
+                                }));
+                            }
+                            else
+                            {
+                                using (var client = new WebClient())
+                                {
+                                    client.Encoding = Encoding.UTF8;
+                                    string text_backup = client.DownloadString(link);
+                                    ThreadItem[6] = text_backup;
+                                    using (FileStream str = new FileStream(path + filename, FileMode.Create, FileAccess.Write))
+                                    {
+                                        using (StreamWriter writer = new StreamWriter(str))
+                                        {
+                                            writer.WriteLine(text_backup);
+                                        }
+                                    }
+                                    Invoke(new MethodInvoker(delegate
+                                    {
+                                        ArticlesDetails[i][6] = text_backup;
+                                    }));
                                 }
                             }
-                            Invoke(new MethodInvoker(delegate
-                            {
-                                ArticlesDetails[i][6] = text_backup;
-                            }));
                         }
                     }
                     catch (Exception err)
@@ -426,9 +469,8 @@ namespace ITRW211_Project
                         {
                             using (var client = new WebClient())
                             {
-                                path2 += "-Image.jpg";
                                 client.Encoding = Encoding.UTF8;
-                                client.DownloadFile("https://github.com/coenraadhuman/ITRW211_Project/blob/master/Resources/ars-sub-thumb.jpg", path2);
+                                client.DownloadFile("https://raw.githubusercontent.com/coenraadhuman/ITRW211_Project/master/Resources/ars-sub-thumb.jpg", Application.StartupPath + "\\" + "ArsTechnica" + "\\" + ThreadItem[0] + "\\" + ThreadItem[0] + "-Image.jpg");
                             }
                         }
                         else
@@ -481,11 +523,21 @@ namespace ITRW211_Project
                     {
                         image = Image.FromFile(path2);
                     }
+                    catch(OutOfMemoryException err)
+                    {
+                        using (var client = new WebClient())
+                        {
+                            client.Encoding = Encoding.UTF8;
+                            client.DownloadFile("https://raw.githubusercontent.com/coenraadhuman/ITRW211_Project/master/Resources/ars-sub-thumb.jpg", Application.StartupPath + "\\" + "ArsTechnica" + "\\" + ThreadItem[0] + "\\" + ThreadItem[0] + "-Image.jpg");
+                        }
+                        image = Image.FromFile(Application.StartupPath + "\\" + "ArsTechnica" + "\\" + ThreadItem[0] + "\\" + ThreadItem[0] + "-Image.jpg");
+                    }
                     catch (Exception err)
                     {
                         MessageBox.Show(err.Message + "\n\n" + err.StackTrace);
                         image = null;
                     }
+
                     Invoke(new MethodInvoker(delegate
                     {
                         pictureBoxPreview.SizeMode = PictureBoxSizeMode.Zoom;

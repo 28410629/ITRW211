@@ -34,6 +34,7 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.pictureBoxPreview = new System.Windows.Forms.PictureBox();
             this.labelStatus = new System.Windows.Forms.Label();
+            this.labelStatus_Article = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview)).BeginInit();
             this.SuspendLayout();
             // 
@@ -83,10 +84,19 @@
             // 
             this.labelStatus.AutoSize = true;
             this.labelStatus.ForeColor = System.Drawing.Color.OrangeRed;
-            this.labelStatus.Location = new System.Drawing.Point(660, 437);
+            this.labelStatus.Location = new System.Drawing.Point(657, 437);
             this.labelStatus.Name = "labelStatus";
             this.labelStatus.Size = new System.Drawing.Size(0, 13);
             this.labelStatus.TabIndex = 4;
+            // 
+            // labelStatus_Article
+            // 
+            this.labelStatus_Article.AutoSize = true;
+            this.labelStatus_Article.ForeColor = System.Drawing.Color.OrangeRed;
+            this.labelStatus_Article.Location = new System.Drawing.Point(657, 455);
+            this.labelStatus_Article.Name = "labelStatus_Article";
+            this.labelStatus_Article.Size = new System.Drawing.Size(0, 13);
+            this.labelStatus_Article.TabIndex = 5;
             // 
             // FormArsTechnica
             // 
@@ -94,6 +104,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1309, 477);
+            this.Controls.Add(this.labelStatus_Article);
             this.Controls.Add(this.labelStatus);
             this.Controls.Add(this.pictureBoxPreview);
             this.Controls.Add(this.labelArticleInfo);
@@ -118,5 +129,6 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.PictureBox pictureBoxPreview;
         private System.Windows.Forms.Label labelStatus;
+        private System.Windows.Forms.Label labelStatus_Article;
     }
 }
