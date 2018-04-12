@@ -128,7 +128,21 @@ namespace ITRW211_Project
                         item[1] = item[1].Remove(item[1].IndexOf(">") - 1);
                         
                         item[2] = item[2].Remove(item[2].LastIndexOf("</a></h2>"));
-                        item[2] = item[2].Substring(item[2].LastIndexOf(">") + 1);
+                        if (item[2].Contains("&amp;"))
+                        {
+                            item[2] = item[2].Replace("&amp;", "&");
+                        }
+                        if (item[2].Contains("em>"))
+                        {
+                            string part2 = item[2].Substring(item[2].LastIndexOf(">") + 1);
+                            item[2] = item[2].Remove(item[2].LastIndexOf("em>") - 2);
+                            item[2] = item[2].Substring(item[2].LastIndexOf("em>") + 3);
+                            item[2] += part2;
+                        }
+                        else
+                        {
+                            item[2] = item[2].Substring(item[2].LastIndexOf(">") + 1);
+                        }
                         
                         item[3] = item[3].Remove(item[3].LastIndexOf("</span>"));
                         item[3] = item[3].Substring(item[3].LastIndexOf(">") + 1);
