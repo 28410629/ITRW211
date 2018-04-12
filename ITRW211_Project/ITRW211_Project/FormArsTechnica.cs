@@ -96,7 +96,7 @@ namespace ITRW211_Project
                     while (htmlString.Contains("article>"))
                     {
                         // Array that contains current article details
-                        string[] item = new string[7];
+                        string[] item = new string[8];
 
                         articleItem = htmlString.Substring(htmlString.IndexOf("<article class"));
                         articleItem = articleItem.Remove(articleItem.IndexOf("</article>") + 10);
@@ -115,8 +115,9 @@ namespace ITRW211_Project
                          * 2 - Article Heading
                          * 3 - Article Author
                          * 4 - Article Abstract
-                         * 5 - Article Image
+                         * 5 - Article Image Link
                          * 6 = Article Text
+                         * 7 - Article Image Path
                          */
                        
                         item[0] = item[0].Remove(item[0].LastIndexOf(">") - 6);
@@ -177,11 +178,12 @@ namespace ITRW211_Project
                          * 2 - Article Heading
                          * 3 - Article Author
                          * 4 - Article Abstract
-                         * 5 - Article Image
+                         * 5 - Article Image Link
                          * 6 = Article Text
+                         * 7 - Article Image Path
                          *  public FormReader(Form newMain, string SiteName, string Heading, string Author, string Article, string SiteLink, Image Article_Image)
                          */
-                    FormReader newReader = new FormReader(newMain, "Ars Technica", ArticlesDetails[i][2], ArticlesDetails[i][3], ArticlesDetails[i][6], ArticlesDetails[i][1], loadImage(ArticlesDetails[i][0]));
+                    FormReader newReader = new FormReader(newMain, "Ars Technica", ArticlesDetails[i][2], ArticlesDetails[i][3], ArticlesDetails[i][6], ArticlesDetails[i][1], loadImage(ArticlesDetails[i][7]));
                     newReader.MdiParent = newMain;
                     newReader.Show();
                 }
@@ -189,11 +191,9 @@ namespace ITRW211_Project
             
         }
         // Method to load download image, still to be completed
-        private Image loadImage(string articleID)
+        private Image loadImage(string imagePath)
         {
-            Image image = null;
-
-            return image;
+            return Image.FromFile(imagePath); ;
         }
         // Method that downloads image and article site html for processing
         private void downloadData()
@@ -201,7 +201,7 @@ namespace ITRW211_Project
             string selected = "";
             string compare = "";
             string image_link = "";
-            string[] ThreadItem = new string[7];
+            string[] ThreadItem = new string[8];
             Invoke(new MethodInvoker(delegate
             {
                 selected = (string)listBoxDisplay.SelectedItem;
@@ -225,16 +225,18 @@ namespace ITRW211_Project
                         ThreadItem[4] = ArticlesDetails[i][4];
                         ThreadItem[5] = ArticlesDetails[i][5];
                         ThreadItem[6] = ArticlesDetails[i][6];
+                        ThreadItem[7] = ArticlesDetails[i][7];
                     }));
                     /* item:
-                         * 0 - Article ID
-                         * 1 = Article Link
-                         * 2 - Article Heading
-                         * 3 - Article Author
-                         * 4 - Article Abstract
-                         * 5 - Article Image
-                         * 6 = Article Text
-                         */
+                          * 0 - Article ID
+                          * 1 = Article Link
+                          * 2 - Article Heading
+                          * 3 - Article Author
+                          * 4 - Article Abstract
+                          * 5 - Article Image Link
+                          * 6 = Article Text
+                          * 7 - Article Image Path
+                          */
                     string filename = "\\" + ThreadItem[0] + "-HTML.txt";
                     string link = ThreadItem[1];
                     string path = Application.StartupPath + "\\ArsTechnica\\" + ThreadItem[0];
@@ -472,6 +474,10 @@ namespace ITRW211_Project
                                 image_link = "https://github.com/coenraadhuman/ITRW211_Project/blob/master/Resources/ars-sub-thumb.jpg";
                                 path2 += "-Image.jpg";
                             }
+                            Invoke(new MethodInvoker(delegate
+                            {
+                                ArticlesDetails[i][7] = path2;
+                            }));
                             FileInfo fileInfo = new FileInfo(path2);
                             if (!fileInfo.Exists)
                             {
