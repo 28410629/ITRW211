@@ -11,14 +11,17 @@ using System.IO;
 using System.Net;
 using System.Threading;
 
-// Coenraad Human 28410629
+// This class was created by Coenraad Human 28410629
 
 namespace ITRW211_Project
 {
     public partial class FormArsTechnica : Form
     {
+        // Pass main form for MDI
         Form newMain;
+        // Main html string file - downloaded everytime site is opened
         private string htmlString = "";
+        // List of latest articles
         private List<string[]> ArticlesDetails = new List<string[]>();
 
         public FormArsTechnica(Form newMain)
@@ -27,6 +30,7 @@ namespace ITRW211_Project
             this.newMain = newMain;
         }
 
+        // Method that downloads main html for latest articles
         private string downloadHTML(string link, string path, string filename)
         {
             try
@@ -75,6 +79,7 @@ namespace ITRW211_Project
             }
         }
 
+        // Event for when form loads to process all new articles
         private void FormArsTechnica_Load(object sender, EventArgs e)
         {
             htmlString = downloadHTML("https://arstechnica.com/", Application.StartupPath + "\\ArsTechnica", "\\ArsTechnica-HTML.txt");
@@ -84,11 +89,13 @@ namespace ITRW211_Project
                 {
                     string articleItem;
 
-                    htmlString = htmlString.Substring(htmlString.IndexOf("First article"));
-                    htmlString = htmlString.Remove(htmlString.LastIndexOf("<!-- Adjust order if mobile -->"));
-
+                    //htmlString = htmlString.Substring(htmlString.IndexOf("First article"));
+                    //htmlString = htmlString.Remove(htmlString.LastIndexOf("<!-- Adjust order if mobile -->"));
+                    
+                    // Get information per article
                     while (htmlString.Contains("article>"))
                     {
+                        // Array that contains current article details
                         string[] item = new string[7];
 
                         articleItem = htmlString.Substring(htmlString.IndexOf("<article class"));
@@ -111,7 +118,7 @@ namespace ITRW211_Project
                          * 5 - Article Image
                          * 6 = Article Text
                          */
-
+                       
                         item[0] = item[0].Remove(item[0].LastIndexOf(">") - 6);
                         item[0] = item[0].Substring(item[0].LastIndexOf("datetime=") + 10);
                         item[0] = item[0].Replace(":", "");
@@ -134,9 +141,11 @@ namespace ITRW211_Project
                         
                         if (!string.IsNullOrWhiteSpace(item[2]))
                         {
+                            // Add current article to list
                             ArticlesDetails.Add(item);
                         }
                     }
+                    // After all articles are retrieved then add them to list box
                     for (int i = 0; i < ArticlesDetails.Count; i++)
                     {
                         listBoxDisplay.Items.Add(ArticlesDetails[i][2]);
@@ -154,89 +163,14 @@ namespace ITRW211_Project
                 MessageBox.Show(err.Message + "\n\n" + err.StackTrace);
                 Close();
             }
-        }
-                        /*
-                        string selected_article = downloadHTML(linkArticle, Application.StartupPath + "\\ArsTechnica\\" + fileName, "\\" + fileName + "-HTML.txt");
-                        
-                        
-                        // refine article
-                        string article = "";
-                        string line;
-                        try
-                        {
-                            selected_article = selected_article.Substring(selected_article.IndexOf("<!-- cache hit"));
-                            selected_article = selected_article.Substring(selected_article.IndexOf("<!-- cache hit"));
-                            selected_article = selected_article.Substring(selected_article.IndexOf("<!-- cache hit"));
-                            if (selected_article.Contains("Listing image"))
-                            {
-                                selected_article = selected_article.Remove(selected_article.IndexOf("Listing image"));
-                            }
-                            else
-                            {
-                                selected_article = selected_article.Remove(selected_article.LastIndexOf("<!-- cache hit"));
-                            }
-                            while (selected_article.Contains("p>"))
-                            {
-                                line = selected_article.Substring(selected_article.IndexOf("<p>"));
-                                line = selected_article.Remove(selected_article.IndexOf("</p>") + 4);
-                                selected_article = selected_article.Replace(line, "");
-                                line = line.Substring(line.IndexOf("<p>") + 3);
-                                line = line.Remove(line.IndexOf("</p>"));
-                                article += line + "\n\n";
-                            }
-                            if (article.Contains("div>"))
-                            {
-                                article = article.Remove(article.IndexOf("div>"));
-                            }
-                        }
-                        catch(Exception err)
-                        {
-                            MessageBox.Show("Error downloading article\n\n" + err.Message + "\n\n" + err.StackTrace);
-                            article = null;
-                        }
-                        list_ArticleRead.Add(article);
-                    }
-                    
-                }
-                else
-                {
-                    MessageBox.Show("Are you connected to the internet?");
-                }
-            }
-            catch (Exception err)
-            {
-                MessageBox.Show(err.Message + "\n\n" + err.StackTrace);
-            }*/
-
-        private void downloadImage()
+        }             
+        // Event to open article in reader
+        private void listBoxDisplay_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            string selected = "";
-            string compare = "";
-            string[] ThreadItem = new string[7];
-            Invoke(new MethodInvoker(delegate
-            {
-                selected = (string)listBoxDisplay.SelectedItem;
-            }));
             for (int i = 0; i < ArticlesDetails.Count; i++)
             {
-                Invoke(new MethodInvoker(delegate
+                if(ArticlesDetails[i][2] == (string)listBoxDisplay.SelectedItem)
                 {
-                    compare = ArticlesDetails[i][2];
-                }));
-                if (selected == compare)
-                {
-                    Invoke(new MethodInvoker(delegate
-                    {
-                        labelArticleInfo.Text = "Author: " + ArticlesDetails[i][3] +
-                                            "\nAbstract: " + ArticlesDetails[i][4];
-                        ThreadItem[0] = ArticlesDetails[i][0];
-                        ThreadItem[1] = ArticlesDetails[i][1];
-                        ThreadItem[2] = ArticlesDetails[i][2];
-                        ThreadItem[3] = ArticlesDetails[i][3];
-                        ThreadItem[4] = ArticlesDetails[i][4];
-                        ThreadItem[5] = ArticlesDetails[i][5];
-                        ThreadItem[6] = ArticlesDetails[i][6];
-                    }));
                     /* item:
                          * 0 - Article ID
                          * 1 = Article Link
@@ -245,33 +179,23 @@ namespace ITRW211_Project
                          * 4 - Article Abstract
                          * 5 - Article Image
                          * 6 = Article Text
+                         *  public FormReader(Form newMain, string SiteName, string Heading, string Author, string Article, string SiteLink, Image Article_Image)
                          */
-                    
+                    FormReader newReader = new FormReader(newMain, "Ars Technica", ArticlesDetails[i][2], ArticlesDetails[i][3], ArticlesDetails[i][6], ArticlesDetails[i][1], loadImage(ArticlesDetails[i][0]));
+                    newReader.MdiParent = newMain;
+                    newReader.Show();
                 }
             }
             
-           /*
-            try
-            {
-                image = Image.FromFile(path);
-            }
-            catch (Exception err)
-            {
-                MessageBox.Show(err.Message + "\n\n" + err.StackTrace);
-                image = null;
-            }
-            return image;
-            */
         }
-
-        private void listBoxDisplay_MouseDoubleClick(object sender, MouseEventArgs e)
+        // Method to load download image, still to be completed
+        private Image loadImage(string articleID)
         {
-            //Selected_Image = ImageDownloader(list_ArticleImageLink[listBoxDisplay.SelectedIndex], list_ArticleID[listBoxDisplay.SelectedIndex]);
-            //FormReader newReader = new FormReader(newMain,"Ars Technica", (string)listBoxDisplay.SelectedItem, list_ArticleAuthor[listBoxDisplay.SelectedIndex], list_ArticleRead[listBoxDisplay.SelectedIndex], list_ArticleLink[listBoxDisplay.SelectedIndex], Selected_Image);
-            //newReader.MdiParent = newMain;
-            //newReader.Show();
-        }
+            Image image = null;
 
+            return image;
+        }
+        // Method that downloads image and article site html for processing
         private void downloadData()
         {
             string selected = "";
@@ -389,8 +313,62 @@ namespace ITRW211_Project
                             MessageBox.Show("Article not downloaded" + "\n\n" + err.Message + "\n\n" + err.StackTrace);
                         }));
                     }
+                    // Process article paragraphs to be completed still
+                    /*
+                        string selected_article = downloadHTML(linkArticle, Application.StartupPath + "\\ArsTechnica\\" + fileName, "\\" + fileName + "-HTML.txt");
+                        
+                        
+                        // refine article
+                        string article = "";
+                        string line;
+                        try
+                        {
+                            selected_article = selected_article.Substring(selected_article.IndexOf("<!-- cache hit"));
+                            selected_article = selected_article.Substring(selected_article.IndexOf("<!-- cache hit"));
+                            selected_article = selected_article.Substring(selected_article.IndexOf("<!-- cache hit"));
+                            if (selected_article.Contains("Listing image"))
+                            {
+                                selected_article = selected_article.Remove(selected_article.IndexOf("Listing image"));
+                            }
+                            else
+                            {
+                                selected_article = selected_article.Remove(selected_article.LastIndexOf("<!-- cache hit"));
+                            }
+                            while (selected_article.Contains("p>"))
+                            {
+                                line = selected_article.Substring(selected_article.IndexOf("<p>"));
+                                line = selected_article.Remove(selected_article.IndexOf("</p>") + 4);
+                                selected_article = selected_article.Replace(line, "");
+                                line = line.Substring(line.IndexOf("<p>") + 3);
+                                line = line.Remove(line.IndexOf("</p>"));
+                                article += line + "\n\n";
+                            }
+                            if (article.Contains("div>"))
+                            {
+                                article = article.Remove(article.IndexOf("div>"));
+                            }
+                        }
+                        catch(Exception err)
+                        {
+                            MessageBox.Show("Error downloading article\n\n" + err.Message + "\n\n" + err.StackTrace);
+                            article = null;
+                        }
+                        list_ArticleRead.Add(article);
+                    }
+                    
+                }
+                else
+                {
+                    MessageBox.Show("Are you connected to the internet?");
+                }
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message + "\n\n" + err.StackTrace);
+            }*/
                     try
                     {
+                        // Get image link
                         string selected_article = ThreadItem[6].Substring(ThreadItem[6].IndexOf("<h1"));
                         image_link = selected_article;
                         if (image_link.Contains("<img src="))
@@ -416,7 +394,7 @@ namespace ITRW211_Project
                             if (image_link.Length > 200)
                             {
                                 List<int> small_list = new List<int>();
-                                if (image_link.Contains("jpeg") & image_link.Contains("jpeg") & image_link.Contains("jpg"))
+                                if (image_link.Contains("jpeg") & image_link.Contains("png") & image_link.Contains("jpg"))
                                 {
                                     if (image_link.IndexOf("jpeg") > 0) { small_list.Add(image_link.IndexOf("jpeg")); }
                                     if (image_link.IndexOf("jpg") > 0) { small_list.Add(image_link.IndexOf("jpg")); }
@@ -463,6 +441,7 @@ namespace ITRW211_Project
                         }));
                     }
                     string path2 = Application.StartupPath + "\\" + "ArsTechnica" + "\\" + ThreadItem[0] + "\\" + ThreadItem[0];
+                    // Download image
                     try
                     {
                         if(image_link == null)
@@ -518,6 +497,7 @@ namespace ITRW211_Project
                             MessageBox.Show(err.Message + "\n\n" + err.StackTrace);
                         }));
                     }
+                    // Load downloaded image
                     Image image;
                     try
                     {
@@ -547,7 +527,7 @@ namespace ITRW211_Project
                 }
             }
         }
-
+        // Event to display information when highlighted item is changed on listbox
         private void listBoxDisplay_SelectedIndexChanged(object sender, EventArgs e)
         {
             labelStatus.Text = "";
