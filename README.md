@@ -1,5 +1,7 @@
 # ITRW211_Project
 Simple Web Scraper to read articles from Ars Technica, Bored Panda and Hackaday
 
-System requirements
-1366x768
+System requirements:
+Screen Resolution 1366x768
+Windows 7 and up
+
