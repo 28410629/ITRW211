@@ -311,64 +311,42 @@ namespace ITRW211_Project
                             MessageBox.Show("Article not downloaded" + "\n\n" + err.Message + "\n\n" + err.StackTrace);
                         }));
                     }
-                    // Process article paragraphs to be completed still
-                    /*
-                        string selected_article = downloadHTML(linkArticle, Application.StartupPath + "\\ArsTechnica\\" + fileName, "\\" + fileName + "-HTML.txt");
-                        
-                        
-                        // refine article
-                        string article = "";
-                        string line;
-                        try
-                        {
-                            selected_article = selected_article.Substring(selected_article.IndexOf("<!-- cache hit"));
-                            selected_article = selected_article.Substring(selected_article.IndexOf("<!-- cache hit"));
-                            selected_article = selected_article.Substring(selected_article.IndexOf("<!-- cache hit"));
-                            if (selected_article.Contains("Listing image"))
-                            {
-                                selected_article = selected_article.Remove(selected_article.IndexOf("Listing image"));
-                            }
-                            else
-                            {
-                                selected_article = selected_article.Remove(selected_article.LastIndexOf("<!-- cache hit"));
-                            }
-                            while (selected_article.Contains("p>"))
-                            {
-                                line = selected_article.Substring(selected_article.IndexOf("<p>"));
-                                line = selected_article.Remove(selected_article.IndexOf("</p>") + 4);
-                                selected_article = selected_article.Replace(line, "");
-                                line = line.Substring(line.IndexOf("<p>") + 3);
-                                line = line.Remove(line.IndexOf("</p>"));
-                                article += line + "\n\n";
-                            }
-                            if (article.Contains("div>"))
-                            {
-                                article = article.Remove(article.IndexOf("div>"));
-                            }
-                        }
-                        catch(Exception err)
-                        {
-                            MessageBox.Show("Error downloading article\n\n" + err.Message + "\n\n" + err.StackTrace);
-                            article = null;
-                        }
-                        list_ArticleRead.Add(article);
+                    // refine article
+                    string article = "";
+                    string selected_article = ThreadItem[6].Substring(ThreadItem[6].IndexOf("<h1"));
+                    image_link = selected_article;
+                    /*string line;
+                    selected_article = selected_article.Substring(selected_article.IndexOf("<!-- cache hit"));
+                    selected_article = selected_article.Substring(selected_article.IndexOf("<!-- cache hit"));
+                    selected_article = selected_article.Substring(selected_article.IndexOf("<!-- cache hit"));
+                    if (selected_article.Contains("Listing image"))
+                    {
+                        selected_article = selected_article.Remove(selected_article.IndexOf("Listing image"));
                     }
-                    
-                }
-                else
-                {
-                    MessageBox.Show("Are you connected to the internet?");
-                }
-            }
-            catch (Exception err)
-            {
-                MessageBox.Show(err.Message + "\n\n" + err.StackTrace);
-            }*/
+                    else
+                    {
+                        selected_article = selected_article.Remove(selected_article.LastIndexOf("<!-- cache hit"));
+                    }
+                    while (selected_article.Contains("p>"))
+                    {
+                        line = selected_article.Substring(selected_article.IndexOf("<p>"));
+                        line = selected_article.Remove(selected_article.IndexOf("</p>") + 4);
+                        selected_article = selected_article.Replace(line, "");
+                        line = line.Substring(line.IndexOf("<p>") + 3);
+                        //line = line.Remove(line.IndexOf("</p>"));
+                        article += line + "\n\n";
+                    }
+                    if (article.Contains("div>"))
+                    {
+                        article = article.Remove(article.IndexOf("div>"));
+                    }
+                    Invoke(new MethodInvoker(delegate
+                    {
+                        ArticlesDetails[i][6] = article;
+                    }));*/
                     try
                     {
                         // Get image link
-                        string selected_article = ThreadItem[6].Substring(ThreadItem[6].IndexOf("<h1"));
-                        image_link = selected_article;
                         if (image_link.Contains("<img src="))
                         {
                             image_link = image_link.Substring(image_link.IndexOf("<img src=") + 10);

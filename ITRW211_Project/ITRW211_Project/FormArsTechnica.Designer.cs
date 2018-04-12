@@ -65,10 +65,11 @@
             // labelArticleInfo
             // 
             this.labelArticleInfo.AutoSize = true;
-            this.labelArticleInfo.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.labelArticleInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelArticleInfo.ForeColor = System.Drawing.SystemColors.Control;
             this.labelArticleInfo.Location = new System.Drawing.Point(12, 437);
             this.labelArticleInfo.Name = "labelArticleInfo";
-            this.labelArticleInfo.Size = new System.Drawing.Size(16, 13);
+            this.labelArticleInfo.Size = new System.Drawing.Size(19, 13);
             this.labelArticleInfo.TabIndex = 2;
             this.labelArticleInfo.Text = "...";
             // 
@@ -102,7 +103,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.DarkGray;
+            this.BackColor = System.Drawing.Color.DimGray;
             this.ClientSize = new System.Drawing.Size(1309, 477);
             this.Controls.Add(this.labelStatus_Article);
             this.Controls.Add(this.labelStatus);
