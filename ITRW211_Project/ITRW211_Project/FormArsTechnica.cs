@@ -88,10 +88,6 @@ namespace ITRW211_Project
                 if (!string.IsNullOrEmpty(htmlString))
                 {
                     string articleItem;
-
-                    //htmlString = htmlString.Substring(htmlString.IndexOf("First article"));
-                    //htmlString = htmlString.Remove(htmlString.LastIndexOf("<!-- Adjust order if mobile -->"));
-                    
                     // Get information per article
                     while (htmlString.Contains("article>"))
                     {
@@ -142,15 +138,27 @@ namespace ITRW211_Project
                         
                         if (!string.IsNullOrWhiteSpace(item[2]))
                         {
-                            // Add current article to list
                             ArticlesDetails.Add(item);
                         }
                     }
+
                     // After all articles are retrieved then add them to list box
                     for (int i = 0; i < ArticlesDetails.Count; i++)
                     {
                         listBoxDisplay.Items.Add(ArticlesDetails[i][2]);
                     }
+
+                    string pathImage = Application.StartupPath + "\\ArsTechnica" + "\\ArsTechnica" + "-Image.jpg";
+                    FileInfo fileInfo = new FileInfo(pathImage);
+                    if (!fileInfo.Exists)
+                    {
+                        using (var client = new WebClient())
+                        {
+                            client.Encoding = Encoding.UTF8;
+                            client.DownloadFile("https://raw.githubusercontent.com/coenraadhuman/ITRW211_Project/master/Resources/ars-sub-thumb.jpg", pathImage);
+                        }
+                    }
+
                     labelIntro.Text = "The following articles (" + listBoxDisplay.Items.Count + ") are available from Ars Technica";
                 }
                 else
@@ -165,32 +173,20 @@ namespace ITRW211_Project
                 Close();
             }
         }             
-        // Event to open article in reader
+        // Event to open article in reader when item is double-clicked.
         private void listBoxDisplay_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             for (int i = 0; i < ArticlesDetails.Count; i++)
             {
                 if(ArticlesDetails[i][2] == (string)listBoxDisplay.SelectedItem)
                 {
-                    /* item:
-                         * 0 - Article ID
-                         * 1 = Article Link
-                         * 2 - Article Heading
-                         * 3 - Article Author
-                         * 4 - Article Abstract
-                         * 5 - Article Image Link
-                         * 6 = Article Text
-                         * 7 - Article Image Path
-                         *  public FormReader(Form newMain, string SiteName, string Heading, string Author, string Article, string SiteLink, Image Article_Image)
-                         */
                     FormReader newReader = new FormReader(newMain, "Ars Technica", ArticlesDetails[i][2], ArticlesDetails[i][3], ArticlesDetails[i][6], ArticlesDetails[i][1], loadImage(ArticlesDetails[i][7]));
                     newReader.MdiParent = newMain;
                     newReader.Show();
                 }
             }
-            
         }
-        // Method to load download image, still to be completed
+        // Simple method to load download image
         private Image loadImage(string imagePath)
         {
             return Image.FromFile(imagePath); ;
@@ -265,8 +261,8 @@ namespace ITRW211_Project
                         }
                         else
                         {
-                            FileInfo fileInfo = new FileInfo(path + filename);
-                            if (fileInfo.Exists)
+                            FileInfo fileArticleHTML = new FileInfo(path + filename);
+                            if (fileArticleHTML.Exists)
                             {
                                 string textbackup = "";
                                 using (FileStream str = new FileStream(path + filename, FileMode.Open, FileAccess.Read))
@@ -443,43 +439,30 @@ namespace ITRW211_Project
                         }));
                     }
                     string path2 = Application.StartupPath + "\\" + "ArsTechnica" + "\\" + ThreadItem[0] + "\\" + ThreadItem[0];
+
                     // Download image
-                    try
+                    if (image_link != null)
                     {
-                        if(image_link == null)
+                        if (image_link.Contains("png"))
                         {
-                            using (var client = new WebClient())
-                            {
-                                client.Encoding = Encoding.UTF8;
-                                client.DownloadFile("https://raw.githubusercontent.com/coenraadhuman/ITRW211_Project/master/Resources/ars-sub-thumb.jpg", Application.StartupPath + "\\" + "ArsTechnica" + "\\" + ThreadItem[0] + "\\" + ThreadItem[0] + "-Image.jpg");
-                            }
+                            path2 += "-Image.png";
+                        }
+                        else if (image_link.Contains("jpg"))
+                        {
+                            path2 += "-Image.jpg";
+                        }
+                        else if (image_link.Contains("jpeg"))
+                        {
+                            path2 += "-Image.jpeg";
                         }
                         else
                         {
-                            
-                            if (image_link.Contains("png"))
-                            {
-                                path2 += "-Image.png";
-                            }
-                            else if (image_link.Contains("jpg"))
-                            {
-                                path2 += "-Image.jpg";
-                            }
-                            else if (image_link.Contains("jpeg"))
-                            {
-                                path2 += "-Image.jpeg";
-                            }
-                            else
-                            {
-                                image_link = "https://github.com/coenraadhuman/ITRW211_Project/blob/master/Resources/ars-sub-thumb.jpg";
-                                path2 += "-Image.jpg";
-                            }
-                            Invoke(new MethodInvoker(delegate
-                            {
-                                ArticlesDetails[i][7] = path2;
-                            }));
-                            FileInfo fileInfo = new FileInfo(path2);
-                            if (!fileInfo.Exists)
+                            path2 = Application.StartupPath + "\\ArsTechnica" + "\\ArsTechnica" + "-Image.jpg";
+                        }
+                        FileInfo fileInfo = new FileInfo(path2);
+                        if (!fileInfo.Exists)
+                        {
+                            try
                             {
                                 using (var client = new WebClient())
                                 {
@@ -487,49 +470,39 @@ namespace ITRW211_Project
                                     client.DownloadFile(image_link, path2);
                                 }
                             }
-                            else
+                            catch (Exception)
                             {
-                                Invoke(new MethodInvoker(delegate
-                                {
-                                    labelStatus.Text = "Image loaded from previous downloaded copy.";
-                                }));
+                                path2 = null;
                             }
                         }
-                    }
-                    catch (Exception err)
-                    {
-                        Invoke(new MethodInvoker(delegate
+                        else
                         {
-                            MessageBox.Show(err.Message + "\n\n" + err.StackTrace);
-                        }));
+                            Invoke(new MethodInvoker(delegate
+                            {
+                                labelStatus.Text = "Image loaded from previous downloaded copy.";
+                            }));
+                        }
+
                     }
+
                     // Load downloaded image
                     Image image;
                     try
                     {
                         image = Image.FromFile(path2);
                     }
-                    catch(OutOfMemoryException err)
+                    catch (Exception)
                     {
-                        using (var client = new WebClient())
-                        {
-                            client.Encoding = Encoding.UTF8;
-                            client.DownloadFile("https://raw.githubusercontent.com/coenraadhuman/ITRW211_Project/master/Resources/ars-sub-thumb.jpg", Application.StartupPath + "\\" + "ArsTechnica" + "\\" + ThreadItem[0] + "\\" + ThreadItem[0] + "-Image.jpg");
-                        }
-                        image = Image.FromFile(Application.StartupPath + "\\" + "ArsTechnica" + "\\" + ThreadItem[0] + "\\" + ThreadItem[0] + "-Image.jpg");
-                    }
-                    catch (Exception err)
-                    {
-                        MessageBox.Show(err.Message + "\n\n" + err.StackTrace);
-                        image = null;
+                        path2 = Application.StartupPath + "\\ArsTechnica" + "\\ArsTechnica" + "-Image.jpg";
+                        image = Image.FromFile(path2);
                     }
 
                     Invoke(new MethodInvoker(delegate
                     {
                         pictureBoxPreview.SizeMode = PictureBoxSizeMode.Zoom;
                         pictureBoxPreview.Image = image;
+                        ArticlesDetails[i][7] = path2;
                     }));
-                   
                 }
             }
         }

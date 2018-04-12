@@ -55,7 +55,7 @@
             // 
             this.labelIntro.AutoSize = true;
             this.labelIntro.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelIntro.ForeColor = System.Drawing.Color.OrangeRed;
+            this.labelIntro.ForeColor = System.Drawing.Color.Snow;
             this.labelIntro.Location = new System.Drawing.Point(12, 9);
             this.labelIntro.Name = "labelIntro";
             this.labelIntro.Size = new System.Drawing.Size(47, 15);
@@ -83,7 +83,7 @@
             // labelStatus
             // 
             this.labelStatus.AutoSize = true;
-            this.labelStatus.ForeColor = System.Drawing.Color.OrangeRed;
+            this.labelStatus.ForeColor = System.Drawing.Color.Snow;
             this.labelStatus.Location = new System.Drawing.Point(657, 437);
             this.labelStatus.Name = "labelStatus";
             this.labelStatus.Size = new System.Drawing.Size(0, 13);
@@ -92,7 +92,7 @@
             // labelStatus_Article
             // 
             this.labelStatus_Article.AutoSize = true;
-            this.labelStatus_Article.ForeColor = System.Drawing.Color.OrangeRed;
+            this.labelStatus_Article.ForeColor = System.Drawing.Color.Snow;
             this.labelStatus_Article.Location = new System.Drawing.Point(657, 455);
             this.labelStatus_Article.Name = "labelStatus_Article";
             this.labelStatus_Article.Size = new System.Drawing.Size(0, 13);
