@@ -1,6 +1,6 @@
 ﻿namespace ITRW211_Project
 {
-    partial class FormBoredPanda
+    partial class FormAppleInsider
     {
         /// <summary>
         /// Required designer variable.

@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace ITRW211_Project
 {
-    public partial class FormBoredPanda : Form
+    public partial class FormAppleInsider : Form
     {
-        public FormBoredPanda()
+        public FormAppleInsider()
         {
             InitializeComponent();
         }

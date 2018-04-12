@@ -48,13 +48,15 @@
             // 
             // buttonBoredPanda
             // 
+            this.buttonBoredPanda.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.buttonBoredPanda.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("buttonBoredPanda.BackgroundImage")));
+            this.buttonBoredPanda.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.buttonBoredPanda.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonBoredPanda.Location = new System.Drawing.Point(294, 15);
             this.buttonBoredPanda.Name = "buttonBoredPanda";
             this.buttonBoredPanda.Size = new System.Drawing.Size(276, 114);
             this.buttonBoredPanda.TabIndex = 1;
-            this.buttonBoredPanda.UseVisualStyleBackColor = true;
+            this.buttonBoredPanda.UseVisualStyleBackColor = false;
             this.buttonBoredPanda.Click += new System.EventHandler(this.buttonBoredPanda_Click);
             // 
             // buttonHackaday

@@ -57,11 +57,11 @@
     <Compile Include="FormArsTechnica.Designer.cs">
       <DependentUpon>FormArsTechnica.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormBoredPanda.cs">
+    <Compile Include="FormAppleInsider.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormBoredPanda.Designer.cs">
-      <DependentUpon>FormBoredPanda.cs</DependentUpon>
+    <Compile Include="FormAppleInsider.Designer.cs">
+      <DependentUpon>FormAppleInsider.cs</DependentUpon>
     </Compile>
     <Compile Include="FormHackaday.cs">
       <SubType>Form</SubType>
@@ -89,8 +89,8 @@
     <EmbeddedResource Include="FormArsTechnica.resx">
       <DependentUpon>FormArsTechnica.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormBoredPanda.resx">
-      <DependentUpon>FormBoredPanda.cs</DependentUpon>
+    <EmbeddedResource Include="FormAppleInsider.resx">
+      <DependentUpon>FormAppleInsider.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormHackaday.resx">
       <DependentUpon>FormHackaday.cs</DependentUpon>

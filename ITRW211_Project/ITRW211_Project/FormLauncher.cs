@@ -30,9 +30,9 @@ namespace ITRW211_Project
 
         private void buttonBoredPanda_Click(object sender, EventArgs e)
         {
-            FormBoredPanda newBored = new FormBoredPanda();
-            newBored.MdiParent = newMain;
-            newBored.Show();
+            FormAppleInsider newApple = new FormAppleInsider();
+            newApple.MdiParent = newMain;
+            newApple.Show();
             Close();
         }
 
