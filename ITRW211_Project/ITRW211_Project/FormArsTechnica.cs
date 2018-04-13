@@ -92,7 +92,7 @@ namespace ITRW211_Project
                     while (htmlString.Contains("article>"))
                     {
                         // Array that contains current article details
-                        string[] item = new string[8];
+                        string[] item = new string[9];
 
                         articleItem = htmlString.Substring(htmlString.IndexOf("<article class"));
                         articleItem = articleItem.Remove(articleItem.IndexOf("</article>") + 10);
@@ -112,8 +112,9 @@ namespace ITRW211_Project
                          * 3 - Article Author
                          * 4 - Article Abstract
                          * 5 - Article Image Link
-                         * 6 = Article Text
+                         * 6 - Article Text
                          * 7 - Article Image Path
+                         * 8 - Article Text Processed
                          */
                        
                         item[0] = item[0].Remove(item[0].LastIndexOf(">") - 6);
@@ -149,6 +150,8 @@ namespace ITRW211_Project
                         
                         item[4] = item[4].Remove(item[4].LastIndexOf("</p>"));
                         item[4] = item[4].Substring(item[4].LastIndexOf("excerpt") + 9);
+
+                        item[8] = "0";
                         
                         if (!string.IsNullOrWhiteSpace(item[2]))
                         {
@@ -192,8 +195,40 @@ namespace ITRW211_Project
         {
             for (int i = 0; i < ArticlesDetails.Count; i++)
             {
-                if(ArticlesDetails[i][2] == (string)listBoxDisplay.SelectedItem)
+                if (ArticlesDetails[i][2] == (string)listBoxDisplay.SelectedItem)
                 {
+                    if (string.IsNullOrWhiteSpace(ArticlesDetails[i][6]) && ArticlesDetails[i][8] == "0")
+                    {
+                        string article = "";
+                        ArticlesDetails[i][6] = ArticlesDetails[i][6].Substring(ArticlesDetails[i][6].IndexOf("<h1"));
+                        string line;
+                        ArticlesDetails[i][6] = ArticlesDetails[i][6].Substring(ArticlesDetails[i][6].IndexOf("<!-- cache hit"));
+                        ArticlesDetails[i][6] = ArticlesDetails[i][6].Substring(ArticlesDetails[i][6].IndexOf("<!-- cache hit"));
+                        ArticlesDetails[i][6] = ArticlesDetails[i][6].Substring(ArticlesDetails[i][6].IndexOf("<!-- cache hit"));
+                        if (ArticlesDetails[i][6].Contains("Listing image"))
+                        {
+                            ArticlesDetails[i][6] = ArticlesDetails[i][6].Remove(ArticlesDetails[i][6].IndexOf("Listing image"));
+                        }
+                        else
+                        {
+                            ArticlesDetails[i][6] = ArticlesDetails[i][6].Remove(ArticlesDetails[i][6].LastIndexOf("<!-- cache hit"));
+                        }
+                        while (ArticlesDetails[i][6].Contains("p>"))
+                        {
+                            line = ArticlesDetails[i][6].Substring(ArticlesDetails[i][6].IndexOf("<p>"));
+                            line = ArticlesDetails[i][6].Remove(ArticlesDetails[i][6].IndexOf("</p>") + 4);
+                            ArticlesDetails[i][6] = ArticlesDetails[i][6].Replace(line, "");
+                            line = line.Substring(line.IndexOf("<p>") + 3);
+                            //line = line.Remove(line.IndexOf("</p>"));
+                            article += line + "\n\n";
+                        }
+                        if (article.Contains("div>"))
+                        {
+                            article = article.Remove(article.IndexOf("div>"));
+                        }
+                        ArticlesDetails[i][8] = "1";
+                    }
+                    
                     FormReader newReader = new FormReader(newMain, "Ars Technica", ArticlesDetails[i][2], ArticlesDetails[i][3], ArticlesDetails[i][6], ArticlesDetails[i][1], loadImage(ArticlesDetails[i][7]));
                     newReader.MdiParent = newMain;
                     newReader.Show();
@@ -211,7 +246,7 @@ namespace ITRW211_Project
             string selected = "";
             string compare = "";
             string image_link = "";
-            string[] ThreadItem = new string[8];
+            string[] ThreadItem = new string[9];
             Invoke(new MethodInvoker(delegate
             {
                 selected = (string)listBoxDisplay.SelectedItem;
@@ -238,15 +273,16 @@ namespace ITRW211_Project
                         ThreadItem[7] = ArticlesDetails[i][7];
                     }));
                     /* item:
-                          * 0 - Article ID
-                          * 1 = Article Link
-                          * 2 - Article Heading
-                          * 3 - Article Author
-                          * 4 - Article Abstract
-                          * 5 - Article Image Link
-                          * 6 = Article Text
-                          * 7 - Article Image Path
-                          */
+                         * 0 - Article ID
+                         * 1 = Article Link
+                         * 2 - Article Heading
+                         * 3 - Article Author
+                         * 4 - Article Abstract
+                         * 5 - Article Image Link
+                         * 6 - Article Text
+                         * 7 - Article Image Path
+                         * 8 - Article Text Processed
+                         */
                     string filename = "\\" + ThreadItem[0] + "-HTML.txt";
                     string link = ThreadItem[1];
                     string path = Application.StartupPath + "\\ArsTechnica\\" + ThreadItem[0];
@@ -326,38 +362,8 @@ namespace ITRW211_Project
                         }));
                     }
                     // refine article
-                    string article = "";
-                    string selected_article = ThreadItem[6].Substring(ThreadItem[6].IndexOf("<h1"));
-                    image_link = selected_article;
-                    /*string line;
-                    selected_article = selected_article.Substring(selected_article.IndexOf("<!-- cache hit"));
-                    selected_article = selected_article.Substring(selected_article.IndexOf("<!-- cache hit"));
-                    selected_article = selected_article.Substring(selected_article.IndexOf("<!-- cache hit"));
-                    if (selected_article.Contains("Listing image"))
-                    {
-                        selected_article = selected_article.Remove(selected_article.IndexOf("Listing image"));
-                    }
-                    else
-                    {
-                        selected_article = selected_article.Remove(selected_article.LastIndexOf("<!-- cache hit"));
-                    }
-                    while (selected_article.Contains("p>"))
-                    {
-                        line = selected_article.Substring(selected_article.IndexOf("<p>"));
-                        line = selected_article.Remove(selected_article.IndexOf("</p>") + 4);
-                        selected_article = selected_article.Replace(line, "");
-                        line = line.Substring(line.IndexOf("<p>") + 3);
-                        //line = line.Remove(line.IndexOf("</p>"));
-                        article += line + "\n\n";
-                    }
-                    if (article.Contains("div>"))
-                    {
-                        article = article.Remove(article.IndexOf("div>"));
-                    }
-                    Invoke(new MethodInvoker(delegate
-                    {
-                        ArticlesDetails[i][6] = article;
-                    }));*/
+
+                    image_link = ThreadItem[6];
                     try
                     {
                         // Get image link
