@@ -32,6 +32,7 @@
             this.buttonArsTechnica = new System.Windows.Forms.Button();
             this.buttonAppleInsider = new System.Windows.Forms.Button();
             this.buttonHackaday = new System.Windows.Forms.Button();
+            this.progressBar = new System.Windows.Forms.ProgressBar();
             this.SuspendLayout();
             // 
             // buttonArsTechnica
@@ -71,21 +72,30 @@
             this.buttonHackaday.UseVisualStyleBackColor = true;
             this.buttonHackaday.Click += new System.EventHandler(this.buttonHackaday_Click);
             // 
+            // progressBar
+            // 
+            this.progressBar.Location = new System.Drawing.Point(12, 141);
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(840, 23);
+            this.progressBar.TabIndex = 3;
+            // 
             // FormLauncher
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(864, 139);
+            this.ClientSize = new System.Drawing.Size(864, 180);
+            this.Controls.Add(this.progressBar);
             this.Controls.Add(this.buttonHackaday);
             this.Controls.Add(this.buttonAppleInsider);
             this.Controls.Add(this.buttonArsTechnica);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.MaximumSize = new System.Drawing.Size(880, 178);
-            this.MinimumSize = new System.Drawing.Size(880, 178);
+            this.MaximumSize = new System.Drawing.Size(880, 219);
+            this.MinimumSize = new System.Drawing.Size(880, 219);
             this.Name = "FormLauncher";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Choose a site:";
+            this.Load += new System.EventHandler(this.FormLauncher_Load);
             this.ResumeLayout(false);
 
         }
@@ -95,6 +105,7 @@
         private System.Windows.Forms.Button buttonArsTechnica;
         private System.Windows.Forms.Button buttonAppleInsider;
         private System.Windows.Forms.Button buttonHackaday;
+        private System.Windows.Forms.ProgressBar progressBar;
     }
 }
 

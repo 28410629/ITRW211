@@ -12,6 +12,8 @@ namespace ITRW211_Project
 {
     public partial class FormLauncher : Form
     {
+        public static double value = 0;
+
         private Form newMain;
 
         public FormLauncher(Form newMain)
@@ -42,6 +44,14 @@ namespace ITRW211_Project
             newApple.MdiParent = newMain;
             newApple.Show();
             Close();
+        }
+
+        private void FormLauncher_Load(object sender, EventArgs e)
+        {
+            progressBar.Maximum = 1;
+            progressBar.Minimum = 0;
+            progressBar.Step = 100;
+            progressBar.Value = (int)value;
         }
     }
 }

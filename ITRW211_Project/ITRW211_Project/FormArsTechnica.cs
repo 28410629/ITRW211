@@ -156,6 +156,7 @@ namespace ITRW211_Project
                         if (!string.IsNullOrWhiteSpace(item[2]))
                         {
                             ArticlesDetails.Add(item);
+                            FormLauncher.value += 0.01;
                         }
                     }
 
