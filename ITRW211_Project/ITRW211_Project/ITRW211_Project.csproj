@@ -45,6 +45,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormAppleData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAppleData.Designer.cs">
+      <DependentUpon>FormAppleData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormArsData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormArsData.Designer.cs">
+      <DependentUpon>FormArsData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormHackData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormHackData.Designer.cs">
+      <DependentUpon>FormHackData.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormLauncher.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -69,6 +87,12 @@
     <Compile Include="FormHackaday.Designer.cs">
       <DependentUpon>FormHackaday.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormListReadArticles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormListReadArticles.Designer.cs">
+      <DependentUpon>FormListReadArticles.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -83,6 +107,15 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormAppleData.resx">
+      <DependentUpon>FormAppleData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormArsData.resx">
+      <DependentUpon>FormArsData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormHackData.resx">
+      <DependentUpon>FormHackData.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormLauncher.resx">
       <DependentUpon>FormLauncher.cs</DependentUpon>
     </EmbeddedResource>
@@ -94,6 +127,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormHackaday.resx">
       <DependentUpon>FormHackaday.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormListReadArticles.resx">
+      <DependentUpon>FormListReadArticles.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>

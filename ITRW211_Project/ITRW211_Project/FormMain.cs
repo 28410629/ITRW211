@@ -35,5 +35,12 @@ namespace ITRW211_Project
             newLauncher.MdiParent = this;
             newLauncher.Show();
         }
+
+        private void readArticlesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormListReadArticles newLauncher = new FormListReadArticles(this);
+            newLauncher.MdiParent = this;
+            newLauncher.Show();
+        }
     }
 }

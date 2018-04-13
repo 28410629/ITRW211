@@ -28,19 +28,19 @@ namespace ITRW211_Project
             Close();
         }
 
-        private void buttonBoredPanda_Click(object sender, EventArgs e)
-        {
-            FormAppleInsider newApple = new FormAppleInsider();
-            newApple.MdiParent = newMain;
-            newApple.Show();
-            Close();
-        }
-
         private void buttonHackaday_Click(object sender, EventArgs e)
         {
             FormHackaday newHack = new FormHackaday();
             newHack.MdiParent = newMain;
             newHack.Show();
+            Close();
+        }
+
+        private void buttonAppleInsider_Click(object sender, EventArgs e)
+        {
+            FormAppleInsider newApple = new FormAppleInsider();
+            newApple.MdiParent = newMain;
+            newApple.Show();
             Close();
         }
     }

@@ -35,6 +35,7 @@
             this.windowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.readArticlesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,6 +56,7 @@
             // 
             this.openLauncherToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openLauncherToolStripMenuItem1,
+            this.readArticlesToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.openLauncherToolStripMenuItem.Name = "openLauncherToolStripMenuItem";
             this.openLauncherToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
@@ -63,14 +65,14 @@
             // openLauncherToolStripMenuItem1
             // 
             this.openLauncherToolStripMenuItem1.Name = "openLauncherToolStripMenuItem1";
-            this.openLauncherToolStripMenuItem1.Size = new System.Drawing.Size(155, 22);
+            this.openLauncherToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.openLauncherToolStripMenuItem1.Text = "Open Launcher";
             this.openLauncherToolStripMenuItem1.Click += new System.EventHandler(this.openLauncherToolStripMenuItem1_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             // 
             // windowToolStripMenuItem
@@ -93,6 +95,13 @@
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            // 
+            // readArticlesToolStripMenuItem
+            // 
+            this.readArticlesToolStripMenuItem.Name = "readArticlesToolStripMenuItem";
+            this.readArticlesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.readArticlesToolStripMenuItem.Text = "List Read Articles";
+            this.readArticlesToolStripMenuItem.Click += new System.EventHandler(this.readArticlesToolStripMenuItem_Click);
             // 
             // FormMain
             // 
@@ -122,5 +131,6 @@
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem windowToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem readArticlesToolStripMenuItem;
     }
 }

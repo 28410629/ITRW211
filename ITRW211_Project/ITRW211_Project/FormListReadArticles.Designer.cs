@@ -1,6 +1,6 @@
 ﻿namespace ITRW211_Project
 {
-    partial class FormLauncher
+    partial class FormListReadArticles
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormLauncher));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormListReadArticles));
             this.buttonArsTechnica = new System.Windows.Forms.Button();
             this.buttonAppleInsider = new System.Windows.Forms.Button();
             this.buttonHackaday = new System.Windows.Forms.Button();
@@ -42,9 +42,9 @@
             this.buttonArsTechnica.Location = new System.Drawing.Point(12, 12);
             this.buttonArsTechnica.Name = "buttonArsTechnica";
             this.buttonArsTechnica.Size = new System.Drawing.Size(276, 114);
-            this.buttonArsTechnica.TabIndex = 0;
+            this.buttonArsTechnica.TabIndex = 1;
             this.buttonArsTechnica.UseVisualStyleBackColor = true;
-            this.buttonArsTechnica.Click += new System.EventHandler(this.ArsTechnicaClick);
+            this.buttonArsTechnica.Click += new System.EventHandler(this.buttonArsTechnica_Click);
             // 
             // buttonAppleInsider
             // 
@@ -55,7 +55,7 @@
             this.buttonAppleInsider.Location = new System.Drawing.Point(294, 12);
             this.buttonAppleInsider.Name = "buttonAppleInsider";
             this.buttonAppleInsider.Size = new System.Drawing.Size(276, 114);
-            this.buttonAppleInsider.TabIndex = 1;
+            this.buttonAppleInsider.TabIndex = 2;
             this.buttonAppleInsider.UseVisualStyleBackColor = false;
             this.buttonAppleInsider.Click += new System.EventHandler(this.buttonAppleInsider_Click);
             // 
@@ -67,11 +67,11 @@
             this.buttonHackaday.Location = new System.Drawing.Point(576, 12);
             this.buttonHackaday.Name = "buttonHackaday";
             this.buttonHackaday.Size = new System.Drawing.Size(276, 114);
-            this.buttonHackaday.TabIndex = 2;
+            this.buttonHackaday.TabIndex = 3;
             this.buttonHackaday.UseVisualStyleBackColor = true;
             this.buttonHackaday.Click += new System.EventHandler(this.buttonHackaday_Click);
             // 
-            // FormLauncher
+            // FormListReadArticles
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -83,9 +83,9 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MaximumSize = new System.Drawing.Size(880, 178);
             this.MinimumSize = new System.Drawing.Size(880, 178);
-            this.Name = "FormLauncher";
+            this.Name = "FormListReadArticles";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Choose a site:";
+            this.Text = "Choose a site to view read articles:";
             this.ResumeLayout(false);
 
         }
@@ -97,4 +97,3 @@
         private System.Windows.Forms.Button buttonHackaday;
     }
 }
-
