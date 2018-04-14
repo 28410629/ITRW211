@@ -19,6 +19,8 @@ namespace ITRW211_Project
         public double value = 0;
         // List of latest articles for Ars Technica
         private List<string[]> ArticlesDetails_Ars = new List<string[]>();
+        // HTML for Ars Technica
+        string htmlArs;
         // Main form
         private Form newMain;
 
@@ -30,11 +32,20 @@ namespace ITRW211_Project
 
         private void ArsTechnicaClick(object sender, EventArgs e)
         {
-            Thread
+            // Progressbar value
+            value += 5;
+            // Download HTML
+            htmlArs = downloadHTML("https://arstechnica.com/", Application.StartupPath + "\\ArsTechnica", "\\ArsTechnica-HTML.txt");
+            // Progressbar value
+            value += 5;
+            // Process HMTL
+            Thread threadProcess = new Thread(new ThreadStart(process_mainHTML_Ars));
             FormArsTechnica newArs = new FormArsTechnica(newMain);
-            newArs.MdiParent = newMain;
-            newArs.Show();
-            Close();
+            threadProcess.Start();
+            // 
+            //newArs.MdiParent = newMain;
+            //newArs.Show();
+            //Close();
         }
 
         private void buttonHackaday_Click(object sender, EventArgs e)
@@ -55,7 +66,7 @@ namespace ITRW211_Project
 
         private void FormLauncher_Load(object sender, EventArgs e)
         {
-            progressBar.Maximum = 1;
+            progressBar.Maximum = 100;
             progressBar.Minimum = 0;
             progressBar.Step = 100;
             progressBar.Value = (int)value;
@@ -111,21 +122,22 @@ namespace ITRW211_Project
             }
         }
 
-        private void download_mainHTML_Ars()
+        private void process_mainHTML_Ars()
         {
-            string htmlString = downloadHTML("https://arstechnica.com/", Application.StartupPath + "\\ArsTechnica", "\\ArsTechnica-HTML.txt");
-            if (!string.IsNullOrEmpty(htmlString))
+            
+            if (!string.IsNullOrEmpty(htmlArs))
             {
                 string articleItem;
+                double amountArticles = ArticlesDetails_Ars.Count;
                 // Get information per article
-                while (htmlString.Contains("article>"))
+                while (htmlArs.Contains("article>"))
                 {
                     // Array that contains current article details
                     string[] item = new string[9];
 
-                    articleItem = htmlString.Substring(htmlString.IndexOf("<article class"));
+                    articleItem = htmlArs.Substring(htmlArs.IndexOf("<article class"));
                     articleItem = articleItem.Remove(articleItem.IndexOf("</article>") + 10);
-                    htmlString = htmlString.Replace(articleItem, "");
+                    htmlArs = htmlArs.Replace(articleItem, "");
                     articleItem = articleItem.Remove(articleItem.IndexOf("</time>"));
                     articleItem = articleItem.Substring(articleItem.LastIndexOf("<header>") + 8);
 
@@ -182,10 +194,14 @@ namespace ITRW211_Project
 
                     item[8] = "0";
 
-                    if (!string.IsNullOrWhiteSpace(item[2]))
+                    Invoke(new MethodInvoker(delegate
                     {
-                        ArticlesDetails_Ars.Add(item);
-                    }
+                        if (!string.IsNullOrWhiteSpace(item[2]))
+                        {
+                            ArticlesDetails_Ars.Add(item);
+                            value += ((1 / amountArticles) * 100) * 0.1;
+                        }
+                    }));
                 }
             }
         }
