@@ -40,7 +40,7 @@ namespace ITRW211_Project
                 listBoxDisplay.Items.Add(ArticlesDetails[i][2]);
             }
 
-            labelIntro.Text = "The following articles (" + listBoxDisplay.Items.Count + ") are available from Ars Technica";
+            labelIntro.Text = "The following articles (" + ArticlesDetails.Count + ") are available from Ars Technica";
         }             
         // Event to open article in reader when item is double-clicked.
         private void listBoxDisplay_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -90,15 +90,47 @@ namespace ITRW211_Project
         // Simple method to load download image
         private Image loadImage(string imagePath)
         {
-            return Image.FromFile(imagePath); ;
+            try
+            {
+                FileInfo fileInfo2 = new FileInfo(imagePath);
+                if (fileInfo2.Exists)
+                { 
+                    return Image.FromFile(imagePath);
+                }
+                else
+                {
+                    return Properties.Resources.ars_sub_thumb;
+                }
+            }
+            catch(Exception)
+            {
+                return Properties.Resources.ars_sub_thumb;
+            }
         }
         
         // Event to display information when highlighted item is changed on listbox
         private void listBoxDisplay_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-            
+            for (int i = 0; i < ArticlesDetails.Count; i++)
+            {
+                if (ArticlesDetails[i][2] == (string)listBoxDisplay.SelectedItem)
+                {
+                    /* item:
+                     * 0 - Article ID
+                     * 1 = Article Link
+                     * 2 - Article Heading
+                     * 3 - Article Author
+                     * 4 - Article Abstract
+                     * 5 - Article Image Link
+                     * 6 - Article Text
+                     * 7 - Article Image Path
+                     * 8 - Article Text Processed
+                     */
+                    labelArticleInfo.Text = "Author: " + ArticlesDetails[i][3] + "\nAbstract: " + ArticlesDetails[i][4];
+                    pictureBoxPreview.SizeMode = PictureBoxSizeMode.Zoom;
+                    pictureBoxPreview.Image = loadImage(ArticlesDetails[i][7]);
+                }
+            }
         }
-
     }
 }

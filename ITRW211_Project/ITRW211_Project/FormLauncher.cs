@@ -16,16 +16,13 @@ namespace ITRW211_Project
     public partial class FormLauncher : Form
     {
         // List of latest articles for Ars Technica
-        private List<string[]> ArticlesDetails_Ars = new List<string[]>();
+        private static List<string[]> ArticlesDetails_Ars = new List<string[]>();
         // HTML for Ars Technica
         string htmlArs;
         // Main form
         private Form newMain;
         // Progressbar current value
         int progressBar_value = 0;
-        // Thread still active
-        bool threadStopped = false;
-
 
         public FormLauncher(Form newMain)
         {
@@ -44,14 +41,11 @@ namespace ITRW211_Project
             progressBar_value += (int)Math.Round(10.00);
             progressBar.Value = progressBar_value;
             // Process HMTL, download article's html and download images
-            Thread threadProcess = new Thread(new ThreadStart(download_Ars));
-            threadProcess.Start();
-            // check if thread is finished and then create browser
-            /*
-            FormArsTechnica newArs = new FormArsTechnica(newMain, ArticlesDetails_Ars);
-            newArs.MdiParent = newMain;
-            newArs.Show();
-            Close();*/
+            Thread thread = new Thread(new ThreadStart(download_Ars));
+            thread.Start();
+            //download_Ars();
+            // Open browser and close selector
+            
         }
 
         private void buttonHackaday_Click(object sender, EventArgs e)
@@ -129,7 +123,6 @@ namespace ITRW211_Project
         // Method that processes main html for articles
         private void download_Ars()
         {
-
             if (!string.IsNullOrEmpty(htmlArs))
             {
                 string articleItem;
@@ -199,29 +192,21 @@ namespace ITRW211_Project
 
                     item[8] = "0";
 
-                    Invoke(new MethodInvoker(delegate
+                    if (!string.IsNullOrWhiteSpace(item[2]))
                     {
-                        if (!string.IsNullOrWhiteSpace(item[2]))
-                        {
-                            ArticlesDetails_Ars.Add(item);
-                        }
-                    }));
+                        ArticlesDetails_Ars.Add(item);
+                    }
                 }
-                Invoke(new MethodInvoker(delegate
+                Invoke(new MethodInvoker(delegate ()
                 {
                     progressBar_value += (int)Math.Round(20.00);
                     progressBar.Value = progressBar_value;
                 }));
-                List<string[]> list = new List<string[]>();
-                Invoke(new MethodInvoker(delegate
+                for (int i = 0; i < ArticlesDetails_Ars.Count; i++)
                 {
-                    list = ArticlesDetails_Ars;
-                }));
-                for (int i = 0; i < list.Count; i++)
-                {
-                    string link = list[i][1];
-                    string path = Application.StartupPath + "\\ArsTechnica\\" + list[i][0];
-                    string filename = "\\" + list[i][0] + "-HTML.txt";
+                    string link = ArticlesDetails_Ars[i][1];
+                    string path = Application.StartupPath + "\\ArsTechnica\\" + ArticlesDetails_Ars[i][0];
+                    string filename = "\\" + ArticlesDetails_Ars[i][0] + "-HTML.txt";
                     try
                     {
                         if (!Directory.Exists(path))
@@ -231,7 +216,7 @@ namespace ITRW211_Project
                             {
                                 client.Encoding = Encoding.UTF8;
                                 string text_backup = client.DownloadString(link);
-                                list[i][6] = text_backup;
+                                ArticlesDetails_Ars[i][6] = text_backup;
                                 using (FileStream str = new FileStream(path + filename, FileMode.Create, FileAccess.Write))
                                 {
                                     using (StreamWriter writer = new StreamWriter(str))
@@ -239,10 +224,6 @@ namespace ITRW211_Project
                                         writer.WriteLine(text_backup);
                                     }
                                 }
-                                Invoke(new MethodInvoker(delegate
-                                {
-                                    ArticlesDetails_Ars[i][6] = text_backup;
-                                }));
                             }
                         }
                         else
@@ -261,11 +242,7 @@ namespace ITRW211_Project
                                         }
                                     }
                                 }
-                                list[i][6] = textbackup;
-                                Invoke(new MethodInvoker(delegate
-                                {
-                                    ArticlesDetails_Ars[i][6] = textbackup;
-                                }));
+                                ArticlesDetails_Ars[i][6] = textbackup;
                             }
                             else
                             {
@@ -273,7 +250,7 @@ namespace ITRW211_Project
                                 {
                                     client.Encoding = Encoding.UTF8;
                                     string text_backup = client.DownloadString(link);
-                                    list[i][6] = text_backup;
+                                    ArticlesDetails_Ars[i][6] = text_backup;
                                     using (FileStream str = new FileStream(path + filename, FileMode.Create, FileAccess.Write))
                                     {
                                         using (StreamWriter writer = new StreamWriter(str))
@@ -281,31 +258,24 @@ namespace ITRW211_Project
                                             writer.WriteLine(text_backup);
                                         }
                                     }
-                                    Invoke(new MethodInvoker(delegate
-                                    {
-                                        ArticlesDetails_Ars[i][6] = text_backup;
-                                    }));
                                 }
                             }
                         }
                     }
                     catch (Exception err)
                     {
-                        Invoke(new MethodInvoker(delegate
-                        {
-                            MessageBox.Show("Article not downloaded" + "\n\n" + err.Message + "\n\n" + err.StackTrace);
-                        }));
+                        MessageBox.Show("Article not downloaded" + "\n\n" + err.Message + "\n\n" + err.StackTrace);
                     }
                 }
-                Invoke(new MethodInvoker(delegate
+                Invoke(new MethodInvoker(delegate ()
                 {
                     progressBar_value += (int)Math.Round(20.00);
                     progressBar.Value = progressBar_value;
                 }));
-                for (int i = 0; i < list.Count; i++)
+                for (int i = 0; i < ArticlesDetails_Ars.Count; i++)
                 {
                     // Get image link
-                    string image_link = list[i][6];
+                    string image_link = ArticlesDetails_Ars[i][6];
                     try
                     {
                         if (image_link.Contains("<img src="))
@@ -369,32 +339,24 @@ namespace ITRW211_Project
                         {
                             image_link = null;
                         }
-                        list[i][5] = image_link;
-                        Invoke(new MethodInvoker(delegate
-                        {
-                            ArticlesDetails_Ars[i][5] = image_link;
-                        }));
+                        
+                        ArticlesDetails_Ars[i][5] = image_link;
                     }
-                    catch (Exception err)
+                    catch (Exception)
                     {
-                        list[i][5] = null;
-                        Invoke(new MethodInvoker(delegate
-                        {
-                            ArticlesDetails_Ars[i][5] = image_link;
-                            MessageBox.Show("Image link could not be resolved." + "\n\n" + err.Message + "\n\n" + err.StackTrace);
-                        }));
+                        ArticlesDetails_Ars[i][5] = null;
                     }
                 }
-                Invoke(new MethodInvoker(delegate
+                Invoke(new MethodInvoker(delegate ()
                 {
                     progressBar_value += (int)Math.Round(20.00);
                     progressBar.Value = progressBar_value;
                 }));
                 // Download images
-                for (int i = 0; i < list.Count; i++)
+                for (int i = 0; i < ArticlesDetails_Ars.Count; i++)
                 {
-                    string path2 = Application.StartupPath + "\\" + "ArsTechnica" + "\\" + list[i][0] + "\\" + list[i][0];
-                    string image_link = list[i][5];
+                    string path2 = Application.StartupPath + "\\" + "ArsTechnica" + "\\" + ArticlesDetails_Ars[i][0] + "\\" + ArticlesDetails_Ars[i][0];
+                    string image_link = ArticlesDetails_Ars[i][5];
                     if (image_link != null)
                     {
                         if (image_link.Contains("png"))
@@ -413,7 +375,9 @@ namespace ITRW211_Project
                         {
                             path2 = Application.StartupPath + "\\ArsTechnica" + "\\ArsTechnica" + "-Image.jpg";
                         }
+                        ArticlesDetails_Ars[i][7] = path2;
                         FileInfo fileInfo2 = new FileInfo(path2);
+                        
                         if (!fileInfo2.Exists)
                         {
                             try
@@ -430,23 +394,16 @@ namespace ITRW211_Project
                         }
                     }
                 }
-                string pathImage = Application.StartupPath + "\\ArsTechnica" + "\\ArsTechnica" + "-Image.jpg";
-                FileInfo fileInfo = new FileInfo(pathImage);
-                if (!fileInfo.Exists)
+                Invoke(new MethodInvoker(delegate ()
                 {
-                    using (var client = new WebClient())
-                    {
-                        client.Encoding = Encoding.UTF8;
-                        client.DownloadFile("https://raw.githubusercontent.com/coenraadhuman/ITRW211_Project/master/Resources/ars-sub-thumb.jpg", pathImage);
-                    }
-                }
-                Invoke(new MethodInvoker(delegate
-                {
-                    threadStopped = true;
                     progressBar_value += (int)Math.Round(20.00);
                     progressBar.Value = progressBar_value;
+                    // Download completed
+                    FormArsTechnica newArs = new FormArsTechnica(newMain, ArticlesDetails_Ars);
+                    newArs.MdiParent = newMain;
+                    newArs.Show();
+                    Close();
                 }));
-                // Download completed
             }
         }
     }

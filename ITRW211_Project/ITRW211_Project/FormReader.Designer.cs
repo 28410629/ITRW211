@@ -101,7 +101,6 @@
             this.Controls.Add(this.buttonSiteLink);
             this.Controls.Add(this.pictureBoxImage);
             this.Controls.Add(this.labelSiteName);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MaximumSize = new System.Drawing.Size(1325, 521);
             this.MinimumSize = new System.Drawing.Size(1325, 521);
             this.Name = "FormReader";
