@@ -42,7 +42,7 @@ namespace ITRW211_Project
             progressBar_value += (int)Math.Round(10.00);
             progressBar.Value = progressBar_value;
             // Process HMTL, download article's html and download images
-            Thread threadProcess = new Thread(new ThreadStart(process_mainHTML_Ars));
+            Thread threadProcess = new Thread(new ThreadStart(download_Ars));
             threadProcess.Start();
             // FormArsTechnica newArs = new FormArsTechnica(newMain);
             //newArs.MdiParent = newMain;
@@ -123,7 +123,7 @@ namespace ITRW211_Project
             }
         }
         // Method that processes main html for articles
-        private void process_mainHTML_Ars()
+        private void download_Arss()
         {
 
             if (!string.IsNullOrEmpty(htmlArs))
@@ -427,6 +427,12 @@ namespace ITRW211_Project
                         }
                     }
                 }
+                Invoke(new MethodInvoker(delegate
+                {
+                    progressBar_value += (int)Math.Round(20.00);
+                    progressBar.Value = progressBar_value;
+                }));
+                // Download completed
             }
         }
     }
