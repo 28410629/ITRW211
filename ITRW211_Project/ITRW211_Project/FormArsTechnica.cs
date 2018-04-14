@@ -52,35 +52,43 @@ namespace ITRW211_Project
                     if (string.IsNullOrWhiteSpace(ArticlesDetails[i][6]) && ArticlesDetails[i][8] == "0")
                     {
                         string article = "";
-                        ArticlesDetails[i][6] = ArticlesDetails[i][6].Substring(ArticlesDetails[i][6].IndexOf("<h1"));
+                       
                         string line;
-                        ArticlesDetails[i][6] = ArticlesDetails[i][6].Substring(ArticlesDetails[i][6].IndexOf("<!-- cache hit"));
-                        ArticlesDetails[i][6] = ArticlesDetails[i][6].Substring(ArticlesDetails[i][6].IndexOf("<!-- cache hit"));
-                        ArticlesDetails[i][6] = ArticlesDetails[i][6].Substring(ArticlesDetails[i][6].IndexOf("<!-- cache hit"));
-                        if (ArticlesDetails[i][6].Contains("Listing image"))
+                        ArticlesDetails[i][6] = ArticlesDetails[i][6].Substring(ArticlesDetails[i][6].IndexOf("cache hit"));
+                        MessageBox.Show(ArticlesDetails[i][6]);
+                        ArticlesDetails[i][6] = ArticlesDetails[i][6].Substring(ArticlesDetails[i][6].IndexOf("cache hit"));
+                        MessageBox.Show(ArticlesDetails[i][6]);
+                        ArticlesDetails[i][6] = ArticlesDetails[i][6].Substring(ArticlesDetails[i][6].IndexOf("cache hit"));
+                        MessageBox.Show(ArticlesDetails[i][6]);
+                        /*if (ArticlesDetails[i][6].Contains("Listing image"))
                         {
                             ArticlesDetails[i][6] = ArticlesDetails[i][6].Remove(ArticlesDetails[i][6].IndexOf("Listing image"));
                         }
                         else
                         {
                             ArticlesDetails[i][6] = ArticlesDetails[i][6].Remove(ArticlesDetails[i][6].LastIndexOf("<!-- cache hit"));
-                        }
+                        }*/
                         while (ArticlesDetails[i][6].Contains("p>"))
                         {
                             line = ArticlesDetails[i][6].Substring(ArticlesDetails[i][6].IndexOf("<p>"));
+                            MessageBox.Show(line);
                             line = ArticlesDetails[i][6].Remove(ArticlesDetails[i][6].IndexOf("</p>") + 4);
+                            MessageBox.Show(line);
                             ArticlesDetails[i][6] = ArticlesDetails[i][6].Replace(line, "");
                             line = line.Substring(line.IndexOf("<p>") + 3);
-                            //line = line.Remove(line.IndexOf("</p>"));
-                            article += line + "\n\n";
+                            MessageBox.Show(line);
+                            line = line.Remove(line.IndexOf("</p>"));
+                            MessageBox.Show(line);
+                            line = line + "\n\n";
+                            article += line;
                         }
                         if (article.Contains("div>"))
                         {
                             article = article.Remove(article.IndexOf("div>"));
                         }
+                        ArticlesDetails[i][6] = article;
                         ArticlesDetails[i][8] = "1";
                     }
-                    
                     FormReader newReader = new FormReader(newMain, "Ars Technica", ArticlesDetails[i][2], ArticlesDetails[i][3], ArticlesDetails[i][6], ArticlesDetails[i][1], loadImage(ArticlesDetails[i][7]));
                     newReader.MdiParent = newMain;
                     newReader.Show();
