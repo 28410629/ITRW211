@@ -26,6 +26,7 @@ namespace ITRW211_Project
             pictureBoxImage.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBoxImage.Image = Article_Image;
             labelAuthor.Text = Author;
+            Text = labelSiteName.Text;
         }
 
         private void buttonSiteLink_Click(object sender, EventArgs e)

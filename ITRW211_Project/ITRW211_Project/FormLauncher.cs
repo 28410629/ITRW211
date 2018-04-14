@@ -17,8 +17,6 @@ namespace ITRW211_Project
     {
         // List of latest articles for Ars Technica
         private static List<string[]> ArticlesDetails_Ars = new List<string[]>();
-        // HTML for Ars Technica
-        string htmlArs;
         // Main form
         private Form newMain;
         // Progressbar current value
@@ -32,20 +30,9 @@ namespace ITRW211_Project
 
         private void ArsTechnicaClick(object sender, EventArgs e)
         {
-            // Progressbar value
-            progressBar_value += (int)Math.Round(10.00);
-            progressBar.Value = progressBar_value;
-            // Download HTML
-            htmlArs = downloadHTML("https://arstechnica.com/", Application.StartupPath + "\\ArsTechnica", "\\ArsTechnica-HTML.txt");
-            // Progressbar value
-            progressBar_value += (int)Math.Round(10.00);
-            progressBar.Value = progressBar_value;
             // Process HMTL, download article's html and download images
             Thread thread = new Thread(new ThreadStart(download_Ars));
             thread.Start();
-            //download_Ars();
-            // Open browser and close selector
-            
         }
 
         private void buttonHackaday_Click(object sender, EventArgs e)
@@ -73,7 +60,7 @@ namespace ITRW211_Project
         }
 
         // Method that downloads main html for latest articles
-        private string downloadHTML(string link, string path, string filename)
+        private static string downloadHTML(string link, string path, string filename)
         {
             try
             {
@@ -123,6 +110,18 @@ namespace ITRW211_Project
         // Method that processes main html for articles
         private void download_Ars()
         {
+            Invoke(new MethodInvoker(delegate ()
+            {
+                progressBar_value += (int)Math.Round(10.00);
+                progressBar.Value = progressBar_value;
+            }));
+            // Download HTML
+            string htmlArs = downloadHTML("https://arstechnica.com/", Application.StartupPath + "\\ArsTechnica", "\\ArsTechnica-HTML.txt");
+            Invoke(new MethodInvoker(delegate ()
+            {
+                progressBar_value += (int)Math.Round(10.00);
+                progressBar.Value = progressBar_value;
+            }));
             if (!string.IsNullOrEmpty(htmlArs))
             {
                 string articleItem;
