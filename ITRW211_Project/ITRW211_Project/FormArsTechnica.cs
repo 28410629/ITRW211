@@ -28,59 +28,12 @@ namespace ITRW211_Project
             this.newMain = newMain;
         }
 
-        // Method that downloads main html for latest articles
-        private string downloadHTML(string link, string path, string filename)
-        {
-            try
-            {
-                if (!Directory.Exists(path))
-                {
-                    Directory.CreateDirectory(path);
-                }
-                using (var client = new WebClient())
-                {
-                    client.Encoding = Encoding.UTF8;
-                    string text_backup = client.DownloadString(link);
-                    using (FileStream str = new FileStream(path + filename, FileMode.Create, FileAccess.Write))
-                    {
-                        using (StreamWriter writer = new StreamWriter(str))
-                        {
-                            writer.WriteLine(text_backup);
-                        }
-                    }
-                    return text_backup;
-                }
-            }
-            catch (Exception err)
-            {
-                MessageBox.Show(err.Message + "\n\n" + err.StackTrace);
-                FileInfo fileInfo = new FileInfo(path + filename);
-                if (fileInfo.Exists)
-                {
-                    using (FileStream str = new FileStream(path + filename, FileMode.Open, FileAccess.Read))
-                    {
-                        using (StreamReader reader = new StreamReader(str))
-                        {
-                            string text = "";
-                            while (!reader.EndOfStream)
-                            {
-                                text += reader.ReadLine();
-                            }
-                            return text;
-                        }
-                    }
-                }
-                else
-                {
-                    return null;
-                }
-            }
-        }
+        
 
         // Event for when form loads to process all new articles
         private void FormArsTechnica_Load(object sender, EventArgs e)
         {
-            htmlString = downloadHTML("https://arstechnica.com/", Application.StartupPath + "\\ArsTechnica", "\\ArsTechnica-HTML.txt");
+            
             try
             {
                 

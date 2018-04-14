@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
+using System.Net;
+using System.Threading;
 
 namespace ITRW211_Project
 {
@@ -14,8 +17,6 @@ namespace ITRW211_Project
     {
         // Progressbar value
         public double value = 0;
-        // HTML string
-        private string htmlString = "";
         // List of latest articles for Ars Technica
         private List<string[]> ArticlesDetails_Ars = new List<string[]>();
         // Main form
@@ -29,6 +30,7 @@ namespace ITRW211_Project
 
         private void ArsTechnicaClick(object sender, EventArgs e)
         {
+            Thread
             FormArsTechnica newArs = new FormArsTechnica(newMain);
             newArs.MdiParent = newMain;
             newArs.Show();
@@ -60,8 +62,58 @@ namespace ITRW211_Project
 
         }
 
+        // Method that downloads main html for latest articles
+        private string downloadHTML(string link, string path, string filename)
+        {
+            try
+            {
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+                using (var client = new WebClient())
+                {
+                    client.Encoding = Encoding.UTF8;
+                    string text_backup = client.DownloadString(link);
+                    using (FileStream str = new FileStream(path + filename, FileMode.Create, FileAccess.Write))
+                    {
+                        using (StreamWriter writer = new StreamWriter(str))
+                        {
+                            writer.WriteLine(text_backup);
+                        }
+                    }
+                    return text_backup;
+                }
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message + "\n\n" + err.StackTrace);
+                FileInfo fileInfo = new FileInfo(path + filename);
+                if (fileInfo.Exists)
+                {
+                    using (FileStream str = new FileStream(path + filename, FileMode.Open, FileAccess.Read))
+                    {
+                        using (StreamReader reader = new StreamReader(str))
+                        {
+                            string text = "";
+                            while (!reader.EndOfStream)
+                            {
+                                text += reader.ReadLine();
+                            }
+                            return text;
+                        }
+                    }
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+
         private void download_mainHTML_Ars()
         {
+            string htmlString = downloadHTML("https://arstechnica.com/", Application.StartupPath + "\\ArsTechnica", "\\ArsTechnica-HTML.txt");
             if (!string.IsNullOrEmpty(htmlString))
             {
                 string articleItem;
@@ -132,7 +184,7 @@ namespace ITRW211_Project
 
                     if (!string.IsNullOrWhiteSpace(item[2]))
                     {
-                        ArticlesDetails.Add(item);
+                        ArticlesDetails_Ars.Add(item);
                     }
                 }
             }
