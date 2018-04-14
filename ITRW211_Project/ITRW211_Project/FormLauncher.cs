@@ -366,15 +366,18 @@ namespace ITRW211_Project
                         {
                             image_link = null;
                         }
+                        list[i][5] = image_link;
                         Invoke(new MethodInvoker(delegate
                         {
-                            MessageBox.Show("Image link could not be resolved." + "\n\n" + err.Message + "\n\n" + err.StackTrace);
+                            ArticlesDetails_Ars[i][5] = image_link;
                         }));
                     }
                     catch (Exception err)
                     {
+                        list[i][5] = null;
                         Invoke(new MethodInvoker(delegate
                         {
+                            ArticlesDetails_Ars[i][5] = image_link;
                             MessageBox.Show("Image link could not be resolved." + "\n\n" + err.Message + "\n\n" + err.StackTrace);
                         }));
                     }
