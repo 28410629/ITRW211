@@ -34,12 +34,12 @@ namespace ITRW211_Project
         private void ArsTechnicaClick(object sender, EventArgs e)
         {
             // Progressbar value
-            progressBar_value += (int)Math.Round(5.00);
+            progressBar_value += (int)Math.Round(10.00);
             progressBar.Value = progressBar_value;
             // Download HTML
             htmlArs = downloadHTML("https://arstechnica.com/", Application.StartupPath + "\\ArsTechnica", "\\ArsTechnica-HTML.txt");
             // Progressbar value
-            progressBar_value += (int)Math.Round(5.00);
+            progressBar_value += (int)Math.Round(10.00);
             progressBar.Value = progressBar_value;
             // Process HMTL, download article's html and download images
             Thread threadProcess = new Thread(new ThreadStart(process_mainHTML_Ars));
@@ -205,7 +205,7 @@ namespace ITRW211_Project
                 }
                 Invoke(new MethodInvoker(delegate
                 {
-                    progressBar_value += (int)Math.Round(30.00);
+                    progressBar_value += (int)Math.Round(20.00);
                     progressBar.Value = progressBar_value;
                 }));
 
@@ -296,7 +296,7 @@ namespace ITRW211_Project
                 }
                 Invoke(new MethodInvoker(delegate
                 {
-                    progressBar_value += (int)Math.Round(30.00);
+                    progressBar_value += (int)Math.Round(20.00);
                     progressBar.Value = progressBar_value;
                 }));
                 for (int i = 0; i < list.Count; i++)
@@ -380,6 +380,51 @@ namespace ITRW211_Project
                             ArticlesDetails_Ars[i][5] = image_link;
                             MessageBox.Show("Image link could not be resolved." + "\n\n" + err.Message + "\n\n" + err.StackTrace);
                         }));
+                    }
+                }
+                Invoke(new MethodInvoker(delegate
+                {
+                    progressBar_value += (int)Math.Round(20.00);
+                    progressBar.Value = progressBar_value;
+                }));
+                // Download images
+                for (int i = 0; i < list.Count; i++)
+                {
+                    string path2 = Application.StartupPath + "\\" + "ArsTechnica" + "\\" + list[i][0] + "\\" + list[i][0];
+                    string image_link = list[i][5];
+                    if (image_link != null)
+                    {
+                        if (image_link.Contains("png"))
+                        {
+                            path2 += "-Image.png";
+                        }
+                        else if (image_link.Contains("jpg"))
+                        {
+                            path2 += "-Image.jpg";
+                        }
+                        else if (image_link.Contains("jpeg"))
+                        {
+                            path2 += "-Image.jpeg";
+                        }
+                        else
+                        {
+                            path2 = Application.StartupPath + "\\ArsTechnica" + "\\ArsTechnica" + "-Image.jpg";
+                        }
+                        FileInfo fileInfo = new FileInfo(path2);
+                        if (!fileInfo.Exists)
+                        {
+                            try
+                            {
+                                using (var client = new WebClient())
+                                {
+                                    client.Encoding = Encoding.UTF8;
+                                    client.DownloadFile(image_link, path2);
+                                }
+                            }
+                            catch (Exception)
+                            {
+                            }
+                        }
                     }
                 }
             }
