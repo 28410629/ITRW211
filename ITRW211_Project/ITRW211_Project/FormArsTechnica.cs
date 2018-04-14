@@ -105,28 +105,12 @@ namespace ITRW211_Project
         {
             return Image.FromFile(imagePath); ;
         }
-        // Method that downloads image and article site html for processing
-        private void downloadData()
-        {
-            
-                        
-                    }
-                    
-                    Invoke(new MethodInvoker(delegate
-                    {
-                        pictureBoxPreview.SizeMode = PictureBoxSizeMode.Zoom;
-                        pictureBoxPreview.Image = image;
-                        ArticlesDetails[i][7] = path2;
-                    }));
-                }
-            }
-        }
+        
         // Event to display information when highlighted item is changed on listbox
         private void listBoxDisplay_SelectedIndexChanged(object sender, EventArgs e)
         {
             labelStatus.Text = "";
-            Thread threadData = new Thread(new ThreadStart(downloadData));
-            threadData.Start();
+            
         }
 
     }
