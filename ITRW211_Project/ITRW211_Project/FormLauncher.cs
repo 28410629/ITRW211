@@ -258,7 +258,7 @@ namespace ITRW211_Project
                                         }
                                     }
                                 }
-                                list[i][6] = text_backup;
+                                list[i][6] = textbackup;
                                 Invoke(new MethodInvoker(delegate
                                 {
                                     ArticlesDetails_Ars[i][6] = textbackup;
@@ -366,13 +366,18 @@ namespace ITRW211_Project
                         {
                             image_link = null;
                         }
+                        Invoke(new MethodInvoker(delegate
+                        {
+                            MessageBox.Show("Image link could not be resolved." + "\n\n" + err.Message + "\n\n" + err.StackTrace);
+                        }));
                     }
                     catch (Exception err)
                     {
-                    Invoke(new MethodInvoker(delegate
-                    {
-                        MessageBox.Show("Image link could not be resolved." + "\n\n" + err.Message + "\n\n" + err.StackTrace);
-                    }));
+                        Invoke(new MethodInvoker(delegate
+                        {
+                            MessageBox.Show("Image link could not be resolved." + "\n\n" + err.Message + "\n\n" + err.StackTrace);
+                        }));
+                    }
                 }
             }
         }
