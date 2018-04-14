@@ -21,6 +21,9 @@ namespace ITRW211_Project
         string htmlArs;
         // Main form
         private Form newMain;
+        // Progressbar current value
+        int progressBar_value = 0;
+
 
         public FormLauncher(Form newMain)
         {
@@ -31,11 +34,13 @@ namespace ITRW211_Project
         private void ArsTechnicaClick(object sender, EventArgs e)
         {
             // Progressbar value
-            progressBar.Value += (int)Math.Round(5.00);
+            progressBar_value += (int)Math.Round(5.00);
+            progressBar.Value = progressBar_value;
             // Download HTML
             htmlArs = downloadHTML("https://arstechnica.com/", Application.StartupPath + "\\ArsTechnica", "\\ArsTechnica-HTML.txt");
             // Progressbar value
-            progressBar.Value += (int)Math.Round(5.00);
+            progressBar_value += (int)Math.Round(5.00);
+            progressBar.Value = progressBar_value;
             // Process HMTL
             Thread threadProcess = new Thread(new ThreadStart(process_mainHTML_Ars));
             threadProcess.Start();
@@ -194,11 +199,16 @@ namespace ITRW211_Project
                     {
                         if (!string.IsNullOrWhiteSpace(item[2]))
                         {
+                            MessageBox.Show(item[2]);
                             ArticlesDetails_Ars.Add(item);
-                            progressBar.Value = (int)Math.Round(((((double)1 / (double)ArticlesDetails_Ars.Count) * 100.0) * 0.1));
                         }
                     }));
                 }
+                Invoke(new MethodInvoker(delegate
+                {
+                    progressBar_value += (int)Math.Round(30.00);
+                    progressBar.Value = progressBar_value;
+                }));
             }
         }
     }
