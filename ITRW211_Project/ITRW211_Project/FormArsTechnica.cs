@@ -20,9 +20,7 @@ namespace ITRW211_Project
         // Pass main form for MDI
         Form newMain;
         // Main html string file - downloaded everytime site is opened
-        private string htmlString = "";
-        // List of latest articles
-        private List<string[]> ArticlesDetails = new List<string[]>();
+       
 
         public FormArsTechnica(Form newMain)
         {
@@ -85,81 +83,7 @@ namespace ITRW211_Project
             htmlString = downloadHTML("https://arstechnica.com/", Application.StartupPath + "\\ArsTechnica", "\\ArsTechnica-HTML.txt");
             try
             {
-                if (!string.IsNullOrEmpty(htmlString))
-                {
-                    string articleItem;
-                    // Get information per article
-                    while (htmlString.Contains("article>"))
-                    {
-                        // Array that contains current article details
-                        string[] item = new string[9];
-
-                        articleItem = htmlString.Substring(htmlString.IndexOf("<article class"));
-                        articleItem = articleItem.Remove(articleItem.IndexOf("</article>") + 10);
-                        htmlString = htmlString.Replace(articleItem, "");
-                        articleItem = articleItem.Remove(articleItem.IndexOf("</time>"));
-                        articleItem = articleItem.Substring(articleItem.LastIndexOf("<header>") + 8);
-
-                        for (int i = 0; i < item.Length; i++)
-                        {
-                            item[i] = articleItem;
-                        }
-
-                        /* item:
-                         * 0 - Article ID
-                         * 1 = Article Link
-                         * 2 - Article Heading
-                         * 3 - Article Author
-                         * 4 - Article Abstract
-                         * 5 - Article Image Link
-                         * 6 - Article Text
-                         * 7 - Article Image Path
-                         * 8 - Article Text Processed
-                         */
-                       
-                        item[0] = item[0].Remove(item[0].LastIndexOf(">") - 6);
-                        item[0] = item[0].Substring(item[0].LastIndexOf("datetime=") + 10);
-                        item[0] = item[0].Replace(":", "");
-                        item[0] = item[0].Replace("+", "");
-                        item[0] = item[0].Replace("-", "");
-                        item[0] = item[0].Replace("T", "");
-                        
-                        item[1] = item[1].Substring(item[1].IndexOf("ref=") + 5);
-                        item[1] = item[1].Remove(item[1].IndexOf("</a></h2>"));
-                        item[1] = item[1].Remove(item[1].IndexOf(">") - 1);
-                        
-                        item[2] = item[2].Remove(item[2].LastIndexOf("</a></h2>"));
-                        if (item[2].Contains("&amp;"))
-                        {
-                            item[2] = item[2].Replace("&amp;", "&");
-                        }
-                        if (item[2].Contains("em>"))
-                        {
-                            string part2 = item[2].Substring(item[2].LastIndexOf(">") + 1);
-                            item[2] = item[2].Remove(item[2].LastIndexOf("em>") - 2);
-                            item[2] = item[2].Substring(item[2].LastIndexOf("em>") + 3);
-                            item[2] += part2;
-                        }
-                        else
-                        {
-                            item[2] = item[2].Substring(item[2].LastIndexOf(">") + 1);
-                        }
-                        
-                        item[3] = item[3].Remove(item[3].LastIndexOf("</span>"));
-                        item[3] = item[3].Substring(item[3].LastIndexOf(">") + 1);
-                        
-                        item[4] = item[4].Remove(item[4].LastIndexOf("</p>"));
-                        item[4] = item[4].Substring(item[4].LastIndexOf("excerpt") + 9);
-
-                        item[8] = "0";
-                        
-                        if (!string.IsNullOrWhiteSpace(item[2]))
-                        {
-                            ArticlesDetails.Add(item);
-                            FormLauncher.value += 0.01;
-                        }
-                    }
-
+                
                     // After all articles are retrieved then add them to list box
                     for (int i = 0; i < ArticlesDetails.Count; i++)
                     {
@@ -178,12 +102,7 @@ namespace ITRW211_Project
                     }
 
                     labelIntro.Text = "The following articles (" + listBoxDisplay.Items.Count + ") are available from Ars Technica";
-                }
-                else
-                {
-                    MessageBox.Show("Are you connected to the internet?\nNo backup file found either.");
-                    Close();
-                }
+
             }
             catch (Exception err)
             {
