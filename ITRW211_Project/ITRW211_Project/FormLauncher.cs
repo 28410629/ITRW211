@@ -15,8 +15,6 @@ namespace ITRW211_Project
 {
     public partial class FormLauncher : Form
     {
-        // Progressbar value
-        public double value = 0;
         // List of latest articles for Ars Technica
         private List<string[]> ArticlesDetails_Ars = new List<string[]>();
         // HTML for Ars Technica
@@ -33,16 +31,15 @@ namespace ITRW211_Project
         private void ArsTechnicaClick(object sender, EventArgs e)
         {
             // Progressbar value
-            value += 5;
+            progressBar.Value += (int)Math.Round(5.00);
             // Download HTML
             htmlArs = downloadHTML("https://arstechnica.com/", Application.StartupPath + "\\ArsTechnica", "\\ArsTechnica-HTML.txt");
             // Progressbar value
-            value += 5;
+            progressBar.Value += (int)Math.Round(5.00);
             // Process HMTL
             Thread threadProcess = new Thread(new ThreadStart(process_mainHTML_Ars));
-            FormArsTechnica newArs = new FormArsTechnica(newMain);
             threadProcess.Start();
-            // 
+            // FormArsTechnica newArs = new FormArsTechnica(newMain);
             //newArs.MdiParent = newMain;
             //newArs.Show();
             //Close();
@@ -69,8 +66,7 @@ namespace ITRW211_Project
             progressBar.Maximum = 100;
             progressBar.Minimum = 0;
             progressBar.Step = 100;
-            progressBar.Value = (int)value;
-
+            progressBar.Value = 0;
         }
 
         // Method that downloads main html for latest articles
@@ -199,7 +195,7 @@ namespace ITRW211_Project
                         if (!string.IsNullOrWhiteSpace(item[2]))
                         {
                             ArticlesDetails_Ars.Add(item);
-                            value += ((1 / amountArticles) * 100) * 0.1;
+                            progressBar.Value = (int)Math.Round(((((double)1 / (double)ArticlesDetails_Ars.Count) * 100.0) * 0.1));
                         }
                     }));
                 }

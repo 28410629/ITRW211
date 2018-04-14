@@ -19,13 +19,16 @@ namespace ITRW211_Project
     {
         // Pass main form for MDI
         Form newMain;
-        // Main html string file - downloaded everytime site is opened
-       
+        //
+        List<string[]> ArticlesDetails = new List<string[]>();
 
-        public FormArsTechnica(Form newMain)
+
+
+        public FormArsTechnica(Form newMain, List<string[]> ArticlesDetails)
         {
             InitializeComponent();
             this.newMain = newMain;
+            this.ArticlesDetails = ArticlesDetails;
         }
 
         
@@ -33,35 +36,24 @@ namespace ITRW211_Project
         // Event for when form loads to process all new articles
         private void FormArsTechnica_Load(object sender, EventArgs e)
         {
-            
-            try
+            // After all articles are retrieved then add them to list box
+            for (int i = 0; i < ArticlesDetails.Count; i++)
             {
-                
-                    // After all articles are retrieved then add them to list box
-                    for (int i = 0; i < ArticlesDetails.Count; i++)
-                    {
-                        listBoxDisplay.Items.Add(ArticlesDetails[i][2]);
-                    }
-
-                    string pathImage = Application.StartupPath + "\\ArsTechnica" + "\\ArsTechnica" + "-Image.jpg";
-                    FileInfo fileInfo = new FileInfo(pathImage);
-                    if (!fileInfo.Exists)
-                    {
-                        using (var client = new WebClient())
-                        {
-                            client.Encoding = Encoding.UTF8;
-                            client.DownloadFile("https://raw.githubusercontent.com/coenraadhuman/ITRW211_Project/master/Resources/ars-sub-thumb.jpg", pathImage);
-                        }
-                    }
-
-                    labelIntro.Text = "The following articles (" + listBoxDisplay.Items.Count + ") are available from Ars Technica";
-
+                listBoxDisplay.Items.Add(ArticlesDetails[i][2]);
             }
-            catch (Exception err)
+
+            string pathImage = Application.StartupPath + "\\ArsTechnica" + "\\ArsTechnica" + "-Image.jpg";
+            FileInfo fileInfo = new FileInfo(pathImage);
+            if (!fileInfo.Exists)
             {
-                MessageBox.Show(err.Message + "\n\n" + err.StackTrace);
-                Close();
+                using (var client = new WebClient())
+                {
+                    client.Encoding = Encoding.UTF8;
+                    client.DownloadFile("https://raw.githubusercontent.com/coenraadhuman/ITRW211_Project/master/Resources/ars-sub-thumb.jpg", pathImage);
+                }
             }
+
+            labelIntro.Text = "The following articles (" + listBoxDisplay.Items.Count + ") are available from Ars Technica";
         }             
         // Event to open article in reader when item is double-clicked.
         private void listBoxDisplay_MouseDoubleClick(object sender, MouseEventArgs e)
