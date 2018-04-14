@@ -23,6 +23,8 @@ namespace ITRW211_Project
         private Form newMain;
         // Progressbar current value
         int progressBar_value = 0;
+        // Thread still active
+        bool threadStopped = false;
 
 
         public FormLauncher(Form newMain)
@@ -44,10 +46,12 @@ namespace ITRW211_Project
             // Process HMTL, download article's html and download images
             Thread threadProcess = new Thread(new ThreadStart(download_Ars));
             threadProcess.Start();
-            // FormArsTechnica newArs = new FormArsTechnica(newMain);
-            //newArs.MdiParent = newMain;
-            //newArs.Show();
-            //Close();
+            // check if thread is finished and then create browser
+            /*
+            FormArsTechnica newArs = new FormArsTechnica(newMain, ArticlesDetails_Ars);
+            newArs.MdiParent = newMain;
+            newArs.Show();
+            Close();*/
         }
 
         private void buttonHackaday_Click(object sender, EventArgs e)
@@ -123,7 +127,7 @@ namespace ITRW211_Project
             }
         }
         // Method that processes main html for articles
-        private void download_Arss()
+        private void download_Ars()
         {
 
             if (!string.IsNullOrEmpty(htmlArs))
@@ -208,7 +212,6 @@ namespace ITRW211_Project
                     progressBar_value += (int)Math.Round(20.00);
                     progressBar.Value = progressBar_value;
                 }));
-
                 List<string[]> list = new List<string[]>();
                 Invoke(new MethodInvoker(delegate
                 {
@@ -410,8 +413,8 @@ namespace ITRW211_Project
                         {
                             path2 = Application.StartupPath + "\\ArsTechnica" + "\\ArsTechnica" + "-Image.jpg";
                         }
-                        FileInfo fileInfo = new FileInfo(path2);
-                        if (!fileInfo.Exists)
+                        FileInfo fileInfo2 = new FileInfo(path2);
+                        if (!fileInfo2.Exists)
                         {
                             try
                             {
@@ -427,8 +430,19 @@ namespace ITRW211_Project
                         }
                     }
                 }
+                string pathImage = Application.StartupPath + "\\ArsTechnica" + "\\ArsTechnica" + "-Image.jpg";
+                FileInfo fileInfo = new FileInfo(pathImage);
+                if (!fileInfo.Exists)
+                {
+                    using (var client = new WebClient())
+                    {
+                        client.Encoding = Encoding.UTF8;
+                        client.DownloadFile("https://raw.githubusercontent.com/coenraadhuman/ITRW211_Project/master/Resources/ars-sub-thumb.jpg", pathImage);
+                    }
+                }
                 Invoke(new MethodInvoker(delegate
                 {
+                    threadStopped = true;
                     progressBar_value += (int)Math.Round(20.00);
                     progressBar.Value = progressBar_value;
                 }));

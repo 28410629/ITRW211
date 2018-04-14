@@ -31,8 +31,6 @@ namespace ITRW211_Project
             this.ArticlesDetails = ArticlesDetails;
         }
 
-        
-
         // Event for when form loads to process all new articles
         private void FormArsTechnica_Load(object sender, EventArgs e)
         {
@@ -40,17 +38,6 @@ namespace ITRW211_Project
             for (int i = 0; i < ArticlesDetails.Count; i++)
             {
                 listBoxDisplay.Items.Add(ArticlesDetails[i][2]);
-            }
-
-            string pathImage = Application.StartupPath + "\\ArsTechnica" + "\\ArsTechnica" + "-Image.jpg";
-            FileInfo fileInfo = new FileInfo(pathImage);
-            if (!fileInfo.Exists)
-            {
-                using (var client = new WebClient())
-                {
-                    client.Encoding = Encoding.UTF8;
-                    client.DownloadFile("https://raw.githubusercontent.com/coenraadhuman/ITRW211_Project/master/Resources/ars-sub-thumb.jpg", pathImage);
-                }
             }
 
             labelIntro.Text = "The following articles (" + listBoxDisplay.Items.Count + ") are available from Ars Technica";
@@ -109,7 +96,7 @@ namespace ITRW211_Project
         // Event to display information when highlighted item is changed on listbox
         private void listBoxDisplay_SelectedIndexChanged(object sender, EventArgs e)
         {
-            labelStatus.Text = "";
+
             
         }
 
