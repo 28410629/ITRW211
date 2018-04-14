@@ -41,12 +41,9 @@ namespace ITRW211_Project
             // Progressbar value
             progressBar_value += (int)Math.Round(5.00);
             progressBar.Value = progressBar_value;
-            // Process HMTL
+            // Process HMTL, download article's html and download images
             Thread threadProcess = new Thread(new ThreadStart(process_mainHTML_Ars));
             threadProcess.Start();
-            // Download article HTML
-            Thread threadDownload = new Thread(new ThreadStart(download_articleHTML_Ars));
-            threadDownload.Start();
             // FormArsTechnica newArs = new FormArsTechnica(newMain);
             //newArs.MdiParent = newMain;
             //newArs.Show();
@@ -128,7 +125,7 @@ namespace ITRW211_Project
         // Method that processes main html for articles
         private void process_mainHTML_Ars()
         {
-            
+
             if (!string.IsNullOrEmpty(htmlArs))
             {
                 string articleItem;
@@ -211,71 +208,27 @@ namespace ITRW211_Project
                     progressBar_value += (int)Math.Round(30.00);
                     progressBar.Value = progressBar_value;
                 }));
-            }
-        }
-        // Download individual articles
-        private void download_articleHTML_Ars()
-        {
-            List<string[]> list = new List<string[]>();
-            Invoke(new MethodInvoker(delegate
-            {
-                list = ArticlesDetails_Ars;
-            }));
-            for (int i = 0; i < list.Count; i++)
-            {
-                string link = list[i][1];
-                string path = Application.StartupPath + "\\ArsTechnica\\" + list[i][0];
-                string filename = "\\" + list[i][0] + "-HTML.txt";
-                try
+
+                List<string[]> list = new List<string[]>();
+                Invoke(new MethodInvoker(delegate
                 {
-                    if (!Directory.Exists(path))
+                    list = ArticlesDetails_Ars;
+                }));
+                for (int i = 0; i < list.Count; i++)
+                {
+                    string link = list[i][1];
+                    string path = Application.StartupPath + "\\ArsTechnica\\" + list[i][0];
+                    string filename = "\\" + list[i][0] + "-HTML.txt";
+                    try
                     {
-                        Directory.CreateDirectory(path);
-                        using (var client = new WebClient())
+                        if (!Directory.Exists(path))
                         {
-                            client.Encoding = Encoding.UTF8;
-                            string text_backup = client.DownloadString(link);
-                            list[i][6] = text_backup;
-                            using (FileStream str = new FileStream(path + filename, FileMode.Create, FileAccess.Write))
-                            {
-                                using (StreamWriter writer = new StreamWriter(str))
-                                {
-                                    writer.WriteLine(text_backup);
-                                }
-                            }
-                            Invoke(new MethodInvoker(delegate
-                            {
-                                ArticlesDetails_Ars[i][6] = text_backup;
-                            }));
-                        }
-                    }
-                    else
-                    {
-                        FileInfo fileArticleHTML = new FileInfo(path + filename);
-                        if (fileArticleHTML.Exists)
-                        {
-                            string textbackup = "";
-                            using (FileStream str = new FileStream(path + filename, FileMode.Open, FileAccess.Read))
-                            {
-                                using (StreamReader reader = new StreamReader(str))
-                                {
-                                    while (!reader.EndOfStream)
-                                    {
-                                        textbackup += reader.ReadLine();
-                                    }
-                                }
-                            }
-                            Invoke(new MethodInvoker(delegate
-                            {
-                                ArticlesDetails_Ars[i][6] = textbackup;
-                            }));
-                        }
-                        else
-                        {
+                            Directory.CreateDirectory(path);
                             using (var client = new WebClient())
                             {
                                 client.Encoding = Encoding.UTF8;
                                 string text_backup = client.DownloadString(link);
+                                list[i][6] = text_backup;
                                 using (FileStream str = new FileStream(path + filename, FileMode.Create, FileAccess.Write))
                                 {
                                     using (StreamWriter writer = new StreamWriter(str))
@@ -289,21 +242,139 @@ namespace ITRW211_Project
                                 }));
                             }
                         }
+                        else
+                        {
+                            FileInfo fileArticleHTML = new FileInfo(path + filename);
+                            if (fileArticleHTML.Exists)
+                            {
+                                string textbackup = "";
+                                using (FileStream str = new FileStream(path + filename, FileMode.Open, FileAccess.Read))
+                                {
+                                    using (StreamReader reader = new StreamReader(str))
+                                    {
+                                        while (!reader.EndOfStream)
+                                        {
+                                            textbackup += reader.ReadLine();
+                                        }
+                                    }
+                                }
+                                list[i][6] = text_backup;
+                                Invoke(new MethodInvoker(delegate
+                                {
+                                    ArticlesDetails_Ars[i][6] = textbackup;
+                                }));
+                            }
+                            else
+                            {
+                                using (var client = new WebClient())
+                                {
+                                    client.Encoding = Encoding.UTF8;
+                                    string text_backup = client.DownloadString(link);
+                                    list[i][6] = text_backup;
+                                    using (FileStream str = new FileStream(path + filename, FileMode.Create, FileAccess.Write))
+                                    {
+                                        using (StreamWriter writer = new StreamWriter(str))
+                                        {
+                                            writer.WriteLine(text_backup);
+                                        }
+                                    }
+                                    Invoke(new MethodInvoker(delegate
+                                    {
+                                        ArticlesDetails_Ars[i][6] = text_backup;
+                                    }));
+                                }
+                            }
+                        }
+                    }
+                    catch (Exception err)
+                    {
+                        Invoke(new MethodInvoker(delegate
+                        {
+                            MessageBox.Show("Article not downloaded" + "\n\n" + err.Message + "\n\n" + err.StackTrace);
+                        }));
                     }
                 }
-                catch (Exception err)
+                Invoke(new MethodInvoker(delegate
                 {
+                    progressBar_value += (int)Math.Round(30.00);
+                    progressBar.Value = progressBar_value;
+                }));
+                for (int i = 0; i < list.Count; i++)
+                {
+                    // Get image link
+                    string image_link = list[i][6];
+                    try
+                    {
+                        if (image_link.Contains("<img src="))
+                        {
+                            image_link = image_link.Substring(image_link.IndexOf("<img src=") + 10);
+                            if (image_link.Contains("png"))
+                            {
+                                image_link = image_link.Remove(image_link.IndexOf("png") + 3);
+                            }
+                            else if (image_link.Contains("jpg"))
+                            {
+                                image_link = image_link.Remove(image_link.IndexOf("jpg") + 3);
+                            }
+                            else if (image_link.Contains("jpeg"))
+                            {
+                                image_link = image_link.Remove(image_link.IndexOf("jpeg") + 3);
+                            }
+                            else
+                            {
+                                image_link = null;
+                            }
+
+                            if (image_link.Length > 200)
+                            {
+                                List<int> small_list = new List<int>();
+                                if (image_link.Contains("jpeg") & image_link.Contains("png") & image_link.Contains("jpg"))
+                                {
+                                    if (image_link.IndexOf("jpeg") > 0) { small_list.Add(image_link.IndexOf("jpeg")); }
+                                    if (image_link.IndexOf("jpg") > 0) { small_list.Add(image_link.IndexOf("jpg")); }
+                                    if (image_link.IndexOf("png") > 0) { small_list.Add(image_link.IndexOf("png")); }
+                                    image_link = image_link.Remove(small_list.Min() + 4);
+                                    if (!image_link.Contains("jpeg")) { image_link.Remove(image_link.Length - 1); }
+                                }
+                                else if (image_link.Contains("jpeg") && image_link.Contains("png"))
+                                {
+                                    if (image_link.IndexOf("jpeg") > 0) { small_list.Add(image_link.IndexOf("jpeg")); }
+                                    if (image_link.IndexOf("png") > 0) { small_list.Add(image_link.IndexOf("png")); }
+                                    image_link = image_link.Remove(small_list.Min() + 4);
+                                    if (!image_link.Contains("jpeg")) { image_link.Remove(image_link.Length - 1); }
+                                }
+                                else if (image_link.Contains("jpg") && image_link.Contains("png"))
+                                {
+                                    if (image_link.IndexOf("jpg") > 0) { small_list.Add(image_link.IndexOf("jpg")); }
+                                    if (image_link.IndexOf("png") > 0) { small_list.Add(image_link.IndexOf("png")); }
+                                    image_link = image_link.Remove(small_list.Min() + 4);
+                                }
+                                else if (image_link.Contains("jpg") && image_link.Contains("jpeg"))
+                                {
+                                    if (image_link.IndexOf("jpeg") > 0) { small_list.Add(image_link.IndexOf("jpeg")); }
+                                    if (image_link.IndexOf("jpg") > 0) { small_list.Add(image_link.IndexOf("jpg")); }
+                                    image_link = image_link.Remove(small_list.Min() + 4);
+                                    if (!image_link.Contains("jpeg")) { image_link.Remove(image_link.Length - 1); }
+                                }
+                                else
+                                {
+                                    image_link = null;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            image_link = null;
+                        }
+                    }
+                    catch (Exception err)
+                    {
                     Invoke(new MethodInvoker(delegate
                     {
-                        MessageBox.Show("Article not downloaded" + "\n\n" + err.Message + "\n\n" + err.StackTrace);
+                        MessageBox.Show("Image link could not be resolved." + "\n\n" + err.Message + "\n\n" + err.StackTrace);
                     }));
                 }
             }
-            Invoke(new MethodInvoker(delegate
-            {
-                progressBar_value += (int)Math.Round(30.00);
-                progressBar.Value = progressBar_value;
-            }));
         }
     }
 }

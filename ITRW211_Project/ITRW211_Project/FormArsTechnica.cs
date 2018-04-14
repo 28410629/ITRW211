@@ -108,52 +108,7 @@ namespace ITRW211_Project
         // Method that downloads image and article site html for processing
         private void downloadData()
         {
-            string selected = "";
-            string compare = "";
-            string image_link = "";
-            string[] ThreadItem = new string[9];
-            Invoke(new MethodInvoker(delegate
-            {
-                selected = (string)listBoxDisplay.SelectedItem;
-            }));
-            for (int i = 0; i < ArticlesDetails.Count; i++)
-            {
-                Invoke(new MethodInvoker(delegate
-                {
-                    compare = ArticlesDetails[i][2];
-                }));
-                if (selected == compare)
-                {
-                    Invoke(new MethodInvoker(delegate
-                    {
-                        labelArticleInfo.Text = "Author: " + ArticlesDetails[i][3] +
-                                            "\nAbstract: " + ArticlesDetails[i][4];
-                        ThreadItem[0] = ArticlesDetails[i][0];
-                        ThreadItem[1] = ArticlesDetails[i][1];
-                        ThreadItem[2] = ArticlesDetails[i][2];
-                        ThreadItem[3] = ArticlesDetails[i][3];
-                        ThreadItem[4] = ArticlesDetails[i][4];
-                        ThreadItem[5] = ArticlesDetails[i][5];
-                        ThreadItem[6] = ArticlesDetails[i][6];
-                        ThreadItem[7] = ArticlesDetails[i][7];
-                    }));
-                    /* item:
-                         * 0 - Article ID
-                         * 1 = Article Link
-                         * 2 - Article Heading
-                         * 3 - Article Author
-                         * 4 - Article Abstract
-                         * 5 - Article Image Link
-                         * 6 - Article Text
-                         * 7 - Article Image Path
-                         * 8 - Article Text Processed
-                         */
-                    
-                    // refine article
-
-                    image_link = ThreadItem[6];
-                    try
-                    {
+            
                         // Get image link
                         if (image_link.Contains("<img src="))
                         {
@@ -299,5 +254,6 @@ namespace ITRW211_Project
             Thread threadData = new Thread(new ThreadStart(downloadData));
             threadData.Start();
         }
+
     }
 }
