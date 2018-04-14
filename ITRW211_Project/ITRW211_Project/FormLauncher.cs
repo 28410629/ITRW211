@@ -44,6 +44,9 @@ namespace ITRW211_Project
             // Process HMTL
             Thread threadProcess = new Thread(new ThreadStart(process_mainHTML_Ars));
             threadProcess.Start();
+            // Download article HTML
+            Thread threadDownload = new Thread(new ThreadStart(download_articleHTML_Ars));
+            threadDownload.Start();
             // FormArsTechnica newArs = new FormArsTechnica(newMain);
             //newArs.MdiParent = newMain;
             //newArs.Show();
@@ -211,5 +214,93 @@ namespace ITRW211_Project
                 }));
             }
         }
+        // Download individual articles
+        private void download_articleHTML_Ars()
+        {
+            List<string[]> list = new List<string[]>();
+            Invoke(new MethodInvoker(delegate
+            {
+                list = ArticlesDetails_Ars;
+            }));
+            for (int i = 0; i < list.Count; i++)
+            {
+                string filename = "\\" + list[i][0] + "-HTML.txt";
+                string link = list[i][1];
+                string path = Application.StartupPath + "\\ArsTechnica\\" + list[0];
+                try
+                {
+                    if (!Directory.Exists(path))
+                    {
+                        Directory.CreateDirectory(path);
+                        using (var client = new WebClient())
+                        {
+                            client.Encoding = Encoding.UTF8;
+                            string text_backup = client.DownloadString(link);
+                            list[i][6] = text_backup;
+                            using (FileStream str = new FileStream(path + filename, FileMode.Create, FileAccess.Write))
+                            {
+                                using (StreamWriter writer = new StreamWriter(str))
+                                {
+                                    writer.WriteLine(text_backup);
+                                }
+                            }
+                            Invoke(new MethodInvoker(delegate
+                            {
+                                ArticlesDetails_Ars[i][6] = text_backup;
+                            }));
+                        }
+                    }
+                    else
+                    {
+                        FileInfo fileArticleHTML = new FileInfo(path + filename);
+                        if (fileArticleHTML.Exists)
+                        {
+                            string textbackup = "";
+                            using (FileStream str = new FileStream(path + filename, FileMode.Open, FileAccess.Read))
+                            {
+                                using (StreamReader reader = new StreamReader(str))
+                                {
+                                    while (!reader.EndOfStream)
+                                    {
+                                        textbackup += reader.ReadLine();
+                                    }
+                                }
+                            }
+                            Invoke(new MethodInvoker(delegate
+                            {
+                                ArticlesDetails_Ars[i][6] = textbackup;
+                            }));
+                        }
+                        else
+                        {
+                            using (var client = new WebClient())
+                            {
+                                client.Encoding = Encoding.UTF8;
+                                string text_backup = client.DownloadString(link);
+                                using (FileStream str = new FileStream(path + filename, FileMode.Create, FileAccess.Write))
+                                {
+                                    using (StreamWriter writer = new StreamWriter(str))
+                                    {
+                                        writer.WriteLine(text_backup);
+                                    }
+                                }
+                                Invoke(new MethodInvoker(delegate
+                                {
+                                    ArticlesDetails_Ars[i][6] = text_backup;
+                                }));
+                            }
+                        }
+                    }
+                }
+                catch (Exception err)
+                {
+                    Invoke(new MethodInvoker(delegate
+                    {
+                        MessageBox.Show("Article not downloaded" + "\n\n" + err.Message + "\n\n" + err.StackTrace);
+                    }));
+                }
+            }
+        }
+
     }
 }
