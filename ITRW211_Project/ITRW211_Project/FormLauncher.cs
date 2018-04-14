@@ -125,7 +125,7 @@ namespace ITRW211_Project
                 }
             }
         }
-
+        // Method that processes main html for articles
         private void process_mainHTML_Ars()
         {
             
@@ -202,7 +202,6 @@ namespace ITRW211_Project
                     {
                         if (!string.IsNullOrWhiteSpace(item[2]))
                         {
-                            MessageBox.Show(item[2]);
                             ArticlesDetails_Ars.Add(item);
                         }
                     }));
@@ -221,11 +220,16 @@ namespace ITRW211_Project
             Invoke(new MethodInvoker(delegate
             {
                 list = ArticlesDetails_Ars;
+                MessageBox.Show(list.Count + "\n\n" + ArticlesDetails_Ars.Count);
             }));
             for (int i = 0; i < list.Count; i++)
             {
                 string filename = "\\" + list[i][0] + "-HTML.txt";
                 string link = list[i][1];
+                Invoke(new MethodInvoker(delegate
+                {
+                    MessageBox.Show(list[i][1] + "\n\n" + list[i][0]);
+                }));
                 string path = Application.StartupPath + "\\ArsTechnica\\" + list[0];
                 try
                 {
@@ -300,7 +304,11 @@ namespace ITRW211_Project
                     }));
                 }
             }
+            Invoke(new MethodInvoker(delegate
+            {
+                progressBar_value += (int)Math.Round(30.00);
+                progressBar.Value = progressBar_value;
+            }));
         }
-
     }
 }
