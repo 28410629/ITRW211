@@ -75,5 +75,6 @@ namespace ITRW211_Project
                 lstHeadlines.Items.Clear();
                 lstHeadlines.Items.AddRange(ExtractHeadlines().ToArray());
             }
+        }
     }
 }
