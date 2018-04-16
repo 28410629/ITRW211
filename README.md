@@ -1,4 +1,4 @@
-# ITRW211 Project
+# ITRW211 Project '18
 Simple Web Scraper to read articles from Ars Technica, Apple Insider and Hackaday.
 
 System requirements:
@@ -6,5 +6,9 @@ System requirements:
 * Windows 7, 8, 8.1 and 10
 * .Net Framework 4.6.1
 
+Group member:
+* Coenraad Human
+* Pieter Brand
+* Savannah Fritze
 
 ![University Logo](https://raw.githubusercontent.com/coenraadhuman/ITRW211_Project/master/Resources/unilogo.png)
