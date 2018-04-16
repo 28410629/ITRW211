@@ -89,6 +89,7 @@
             this.Controls.Add(this.labelArticleInfo);
             this.Controls.Add(this.labelIntro);
             this.Controls.Add(this.listBoxDisplay);
+            this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(682, 510);
             this.Name = "FormArsTechnica";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

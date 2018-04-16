@@ -8,8 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
-using System.Net;
-using System.Threading;
 
 // This class was created by Coenraad Human 28410629
 
@@ -57,10 +55,6 @@ namespace ITRW211_Project
                             string article = "";
                             string line = "";
                             
-                            //data_copy = data_copy.Remove(data_copy.IndexOf("cache hit"));
-                            //data_copy = data_copy.Substring(data_copy.IndexOf("<p>"));
-                            
-
                             while (data_copy.Contains("<p>"))
                             {
                                 line = data_copy;
@@ -85,6 +79,7 @@ namespace ITRW211_Project
                                     }
                                     catch (ArgumentOutOfRangeException)
                                     {
+                                        // Still have an error here with minimal articals, due to not always being '<a href'
                                         MessageBox.Show(line + "\n\n" + line2);
                                         line2 = line2.Substring(line.IndexOf("<a href"));
                                     }
@@ -180,7 +175,6 @@ namespace ITRW211_Project
                                 }
                                 
                             }
-                           // MessageBox.Show(article);
                             article = article.Remove(article.LastIndexOf("\n\n"));
                             ArticlesDetails[i][6] = article;
                             ArticlesDetails[i][8] = "1";
@@ -190,13 +184,24 @@ namespace ITRW211_Project
                             MessageBox.Show(err.Message + "\n\n" + err.StackTrace);
                         }
                     }
+                    /* item:
+                     * 0 - Article ID
+                     * 1 = Article Link
+                     * 2 - Article Heading
+                     * 3 - Article Author
+                     * 4 - Article Abstract
+                     * 5 - Article Image Link
+                     * 6 - Article Text
+                     * 7 - Article Image Path
+                     * 8 - Article Text Processed
+                     */
                     FormReader newReader = new FormReader(newMain, "Ars Technica", ArticlesDetails[i][2], ArticlesDetails[i][3], ArticlesDetails[i][6], ArticlesDetails[i][1], loadImage(ArticlesDetails[i][7]));
                     newReader.MdiParent = newMain;
                     newReader.Show();
                 }
             }
         }
-        // Simple method to load download image
+        // Simple method to return image
         private Image loadImage(string imagePath)
         {
             try
@@ -216,25 +221,13 @@ namespace ITRW211_Project
                 return Properties.Resources.ars_sub_thumb;
             }
         }
-        
-        // Event to display information when highlighted item is changed on listbox
+        // Event to change specific details on form as user moves through browser
         private void listBoxDisplay_SelectedIndexChanged(object sender, EventArgs e)
         {
             for (int i = 0; i < ArticlesDetails.Count; i++)
             {
                 if (ArticlesDetails[i][2] == (string)listBoxDisplay.SelectedItem)
                 {
-                    /* item:
-                     * 0 - Article ID
-                     * 1 = Article Link
-                     * 2 - Article Heading
-                     * 3 - Article Author
-                     * 4 - Article Abstract
-                     * 5 - Article Image Link
-                     * 6 - Article Text
-                     * 7 - Article Image Path
-                     * 8 - Article Text Processed
-                     */
                     labelArticleInfo.Text = "Author: " + ArticlesDetails[i][3] + "\nAbstract: " + ArticlesDetails[i][4];
                     pictureBoxPreview.SizeMode = PictureBoxSizeMode.Zoom;
                     pictureBoxPreview.Image = loadImage(ArticlesDetails[i][7]);

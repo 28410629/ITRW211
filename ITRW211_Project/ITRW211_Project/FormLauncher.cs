@@ -59,7 +59,7 @@ namespace ITRW211_Project
             progressBar.Value = 0;
         }
 
-        // Method that downloads main html for latest articles
+        // Written by C Human - Method that downloads main html for latest articles
         private static string downloadHTML(string link, string path, string filename)
         {
             try
@@ -107,7 +107,7 @@ namespace ITRW211_Project
                 }
             }
         }
-        // Method that processes main html for articles
+        // Written by C Human -  Method that processes main html for information before user browse
         private void download_Ars()
         {
             Invoke(new MethodInvoker(delegate ()
