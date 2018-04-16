@@ -7,4 +7,4 @@ System requirements:
 * .Net Framework 4.6.1
 
 
-![University Logo](https://d2y36twrtb17ty.cloudfront.net/sessions/_branding/e7d024f8-eaee-43cb-a103-e0fc08e8ea47/636530903951329773_largelogo.png)
+![University Logo](https://raw.githubusercontent.com/coenraadhuman/ITRW211_Project/master/Resources/unilogo.png)
