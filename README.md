@@ -6,7 +6,7 @@ System requirements:
 * Windows 7, 8, 8.1 and 10
 * .Net Framework 4.6.1
 
-Group member:
+Group members:
 * Coenraad Human
 * Pieter Brand
 * Savannah Fritze
