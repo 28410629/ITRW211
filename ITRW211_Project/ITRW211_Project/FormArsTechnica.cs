@@ -202,11 +202,29 @@ namespace ITRW211_Project
                      * 7 - Article Image Path
                      * 8 - Article Text Processed
                      */
+                    string articleAbstract = ArticlesDetails[i][4];
+                    string articleName = ArticlesDetails[i][2];
+                    while (articleAbstract.Contains("\""))
+                    {
+                        articleAbstract = articleAbstract.Replace("\"", "");
+                    }
+                    while (articleAbstract.Contains("\'"))
+                    {
+                        articleAbstract = articleAbstract.Replace("\'", "");
+                    }
+                    while (articleName.Contains("\""))
+                    {
+                        articleName = articleName.Replace("\"", "");
+                    }
+                    while (articleName.Contains("\'"))
+                    {
+                        articleName = articleName.Replace("\'", "");
+                    }
                     using (OleDbConnection arsDB = new OleDbConnection(Properties.Settings.Default.DatabaseConnectionString))
                     {
                         arsDB.Open();
                         OleDbDataAdapter adapter = new OleDbDataAdapter(@"SELECT * FROM ARSTECHNICA", arsDB);
-                        OleDbCommand command = new OleDbCommand(String.Format(@"INSERT INTO ARSTECHNICA (LASTDATE,VIEWCOUNT,ARTICLE,AUTHOR,ABSTRACT) VALUES({0}, {1}, '{2}', '{3}', '{4}')", DateTime.Now.ToShortDateString(), 1, ArticlesDetails[i][2], ArticlesDetails[i][3], ArticlesDetails[i][4]), arsDB);
+                        OleDbCommand command = new OleDbCommand(String.Format("INSERT INTO ARSTECHNICA (LASTDATE,VIEWCOUNT,ARTICLE,AUTHOR,ABSTRACT) VALUES({0}, {1}, '{2}', '{3}', '{4}')", DateTime.Today.Date.ToString().Remove(10), 1, ArticlesDetails[i][2], ArticlesDetails[i][3], articleAbstract), arsDB);
                         adapter.InsertCommand = command;
                         adapter.InsertCommand.ExecuteNonQuery();
                         arsDB.Close();
