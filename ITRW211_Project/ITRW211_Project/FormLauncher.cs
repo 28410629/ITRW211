@@ -112,6 +112,9 @@ namespace ITRW211_Project
         {
             Invoke(new MethodInvoker(delegate ()
             {
+                buttonArsTechnica.Enabled = false;
+                buttonAppleInsider.Enabled = false;
+                buttonHackaday.Enabled = false;
                 progressBar_value += (int)Math.Round(10.00);
                 progressBar.Value = progressBar_value;
             }));

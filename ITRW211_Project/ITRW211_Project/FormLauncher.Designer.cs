@@ -49,9 +49,9 @@
             // 
             // buttonAppleInsider
             // 
-            this.buttonAppleInsider.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.buttonAppleInsider.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.buttonAppleInsider.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("buttonAppleInsider.BackgroundImage")));
-            this.buttonAppleInsider.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.buttonAppleInsider.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.buttonAppleInsider.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonAppleInsider.Location = new System.Drawing.Point(294, 12);
             this.buttonAppleInsider.Name = "buttonAppleInsider";
