@@ -12,6 +12,7 @@ namespace ITRW211_Project
 {
     public partial class FormMain : Form
     {
+        string theme = "light";
         public FormMain()
         {
             InitializeComponent();
@@ -42,5 +43,6 @@ namespace ITRW211_Project
             newLauncher.MdiParent = this;
             newLauncher.Show();
         }
+
     }
 }
