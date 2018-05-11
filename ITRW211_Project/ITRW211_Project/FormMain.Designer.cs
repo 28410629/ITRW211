@@ -31,11 +31,11 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.openLauncherToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openLauncherToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.readArticlesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.windowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.readArticlesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -69,6 +69,13 @@
             this.openLauncherToolStripMenuItem1.Text = "Open Launcher";
             this.openLauncherToolStripMenuItem1.Click += new System.EventHandler(this.openLauncherToolStripMenuItem1_Click);
             // 
+            // readArticlesToolStripMenuItem
+            // 
+            this.readArticlesToolStripMenuItem.Name = "readArticlesToolStripMenuItem";
+            this.readArticlesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.readArticlesToolStripMenuItem.Text = "View Read Count";
+            this.readArticlesToolStripMenuItem.Click += new System.EventHandler(this.readArticlesToolStripMenuItem_Click);
+            // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
@@ -92,16 +99,9 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
-            // 
-            // readArticlesToolStripMenuItem
-            // 
-            this.readArticlesToolStripMenuItem.Name = "readArticlesToolStripMenuItem";
-            this.readArticlesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.readArticlesToolStripMenuItem.Text = "List Read Articles";
-            this.readArticlesToolStripMenuItem.Click += new System.EventHandler(this.readArticlesToolStripMenuItem_Click);
             // 
             // FormMain
             // 

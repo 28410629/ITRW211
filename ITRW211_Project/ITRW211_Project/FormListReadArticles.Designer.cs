@@ -85,7 +85,7 @@
             this.MinimumSize = new System.Drawing.Size(880, 178);
             this.Name = "FormListReadArticles";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Choose a site to view read articles:";
+            this.Text = "Choose a site to view read count:";
             this.ResumeLayout(false);
 
         }
