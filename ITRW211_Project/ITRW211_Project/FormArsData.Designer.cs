@@ -180,6 +180,7 @@
             this.MaximizeBox = false;
             this.Name = "FormArsData";
             this.Text = "FormArsData";
+            this.Load += new System.EventHandler(this.FormArsData_Load);
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator)).EndInit();
             this.bindingNavigator.ResumeLayout(false);
             this.bindingNavigator.PerformLayout();

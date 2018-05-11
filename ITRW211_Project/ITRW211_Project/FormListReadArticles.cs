@@ -25,6 +25,7 @@ namespace ITRW211_Project
             FormArsData newForm = new FormArsData();
             newForm.MdiParent = mainForm;
             newForm.Show();
+            Close();
         }
 
         private void buttonHackaday_Click(object sender, EventArgs e)
@@ -32,6 +33,7 @@ namespace ITRW211_Project
             FormHackData newForm = new FormHackData();
             newForm.MdiParent = mainForm;
             newForm.Show();
+            Close();
         }
 
         private void buttonAppleInsider_Click(object sender, EventArgs e)
@@ -39,6 +41,7 @@ namespace ITRW211_Project
             FormAppleData newForm = new FormAppleData();
             newForm.MdiParent = mainForm;
             newForm.Show();
+            Close();
         }
     }
 }

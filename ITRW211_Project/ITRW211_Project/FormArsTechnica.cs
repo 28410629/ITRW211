@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Data.OleDb;
 
 // This class was created by Coenraad Human 28410629
 
@@ -186,7 +187,7 @@ namespace ITRW211_Project
                     }
                     /* item:
                      * 0 - Article ID
-                     * 1 = Article Link
+                     * 1 - Article Link
                      * 2 - Article Heading
                      * 3 - Article Author
                      * 4 - Article Abstract
@@ -195,12 +196,23 @@ namespace ITRW211_Project
                      * 7 - Article Image Path
                      * 8 - Article Text Processed
                      */
+                    using (OleDbConnection arsDB = new OleDbConnection(Properties.Settings.Default.DatabaseConnectionString))
+                    {
+                        arsDB.Open();
+                        OleDbDataAdapter adapter = new OleDbDataAdapter(@"SELECT * FROM ARSTECHNICA", arsDB);
+                        OleDbCommand command = new OleDbCommand(String.Format("INSERT INTO ARSTECHNICA (LASTDATE,VIEWCOUNT,ARTICLE,AUTHOR,ABSTRACT) VALUES({0}, {1}, '{2}', '{3}', '{4}')", DateTime.Today.Date.ToString().Remove(10), 1, ArticlesDetails[i][2], ArticlesDetails[i][3], ArticlesDetails[i][4]), arsDB);
+                        adapter.InsertCommand = command;
+                        adapter.InsertCommand.ExecuteNonQuery();
+                        arsDB.Close();
+
+                    }
                     FormReader newReader = new FormReader(newMain, "Ars Technica", ArticlesDetails[i][2], ArticlesDetails[i][3], ArticlesDetails[i][6], ArticlesDetails[i][1], loadImage(ArticlesDetails[i][7]));
                     newReader.MdiParent = newMain;
                     newReader.Show();
                 }
             }
         }
+
         // Simple method to return image
         private Image loadImage(string imagePath)
         {
