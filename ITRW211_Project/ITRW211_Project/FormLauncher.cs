@@ -19,7 +19,7 @@ namespace ITRW211_Project
         private static List<string[]> ArticlesDetails_Ars = new List<string[]>();
         // Main form
         private Form newMain;
-        // Progressbar current value
+        // Progress bar current value
         int progressBar_value = 0;
 
         public FormLauncher(Form newMain)
@@ -107,7 +107,7 @@ namespace ITRW211_Project
                 }
             }
         }
-        //
+        // Written by C Human - Method that disables button after site is selected, since progress can only be used for one thread!
         private void disableButtons()
         {
             buttonArsTechnica.Enabled = false;
