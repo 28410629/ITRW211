@@ -107,14 +107,19 @@ namespace ITRW211_Project
                 }
             }
         }
+        //
+        private void disableButtons()
+        {
+            buttonArsTechnica.Enabled = false;
+            buttonAppleInsider.Enabled = false;
+            buttonHackaday.Enabled = false;
+        }
         // Written by C Human -  Method that processes main html for information before user browse
         private void download_Ars()
         {
             Invoke(new MethodInvoker(delegate ()
             {
-                buttonArsTechnica.Enabled = false;
-                buttonAppleInsider.Enabled = false;
-                buttonHackaday.Enabled = false;
+                disableButtons();
                 progressBar_value += (int)Math.Round(10.00);
                 progressBar.Value = progressBar_value;
             }));
