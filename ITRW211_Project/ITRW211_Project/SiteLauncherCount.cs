@@ -10,11 +10,11 @@ using System.Windows.Forms;
 
 namespace ITRW211_Project
 {
-    public partial class FormListReadArticles : Form
+    public partial class SiteLauncherCount : Form
     {
         private Form mainForm;
 
-        public FormListReadArticles(Form mainForm)
+        public SiteLauncherCount(Form mainForm)
         {
             InitializeComponent();
             this.mainForm = mainForm;
@@ -22,7 +22,7 @@ namespace ITRW211_Project
 
         private void buttonArsTechnica_Click(object sender, EventArgs e)
         {
-            FormArsData newForm = new FormArsData();
+            ViewReadCount newForm = new ViewReadCount();
             newForm.MdiParent = mainForm;
             newForm.Show();
             Close();

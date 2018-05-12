@@ -72,29 +72,23 @@
     <Compile Include="FormAppleData.Designer.cs">
       <DependentUpon>FormAppleData.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormArsData.cs">
+    <Compile Include="ViewReadCount.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormArsData.Designer.cs">
-      <DependentUpon>FormArsData.cs</DependentUpon>
+    <Compile Include="ViewReadCount.Designer.cs">
+      <DependentUpon>ViewReadCount.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormHackData.cs">
+    <Compile Include="SiteLauncher.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormHackData.Designer.cs">
-      <DependentUpon>FormHackData.cs</DependentUpon>
+    <Compile Include="SiteLauncher.Designer.cs">
+      <DependentUpon>SiteLauncher.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormLauncher.cs">
+    <Compile Include="ArticleBrowser.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormLauncher.Designer.cs">
-      <DependentUpon>FormLauncher.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormArsTechnica.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormArsTechnica.Designer.cs">
-      <DependentUpon>FormArsTechnica.cs</DependentUpon>
+    <Compile Include="ArticleBrowser.Designer.cs">
+      <DependentUpon>ArticleBrowser.cs</DependentUpon>
     </Compile>
     <Compile Include="FormAppleInsider.cs">
       <SubType>Form</SubType>
@@ -102,17 +96,11 @@
     <Compile Include="FormAppleInsider.Designer.cs">
       <DependentUpon>FormAppleInsider.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormHackaday.cs">
+    <Compile Include="SiteLauncherCount.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormHackaday.Designer.cs">
-      <DependentUpon>FormHackaday.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormListReadArticles.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormListReadArticles.Designer.cs">
-      <DependentUpon>FormListReadArticles.cs</DependentUpon>
+    <Compile Include="SiteLauncherCount.Designer.cs">
+      <DependentUpon>SiteLauncherCount.cs</DependentUpon>
     </Compile>
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
@@ -131,26 +119,20 @@
     <EmbeddedResource Include="FormAppleData.resx">
       <DependentUpon>FormAppleData.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormArsData.resx">
-      <DependentUpon>FormArsData.cs</DependentUpon>
+    <EmbeddedResource Include="ViewReadCount.resx">
+      <DependentUpon>ViewReadCount.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormHackData.resx">
-      <DependentUpon>FormHackData.cs</DependentUpon>
+    <EmbeddedResource Include="SiteLauncher.resx">
+      <DependentUpon>SiteLauncher.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormLauncher.resx">
-      <DependentUpon>FormLauncher.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormArsTechnica.resx">
-      <DependentUpon>FormArsTechnica.cs</DependentUpon>
+    <EmbeddedResource Include="ArticleBrowser.resx">
+      <DependentUpon>ArticleBrowser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormAppleInsider.resx">
       <DependentUpon>FormAppleInsider.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormHackaday.resx">
-      <DependentUpon>FormHackaday.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormListReadArticles.resx">
-      <DependentUpon>FormListReadArticles.cs</DependentUpon>
+    <EmbeddedResource Include="SiteLauncherCount.resx">
+      <DependentUpon>SiteLauncherCount.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
