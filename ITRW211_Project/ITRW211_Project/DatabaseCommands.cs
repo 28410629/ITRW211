@@ -35,7 +35,7 @@ namespace ITRW211_Project
                 {
                     database.Open();
                     OleDbDataAdapter adapter = new OleDbDataAdapter(@"SELECT * FROM ARSTECHNICA", database);
-                    OleDbCommand command = new OleDbCommand(String.Format("INSERT INTO ARSTECHNICA (LASTDATE,VIEWCOUNT,ARTICLE,AUTHOR,ABSTRACT) VALUES({0}, {1}, '{2}', '{3}', '{4}')", DateTime.Today.Date.ToString().Remove(10), arr[10], arr[2], arr[3], articleAbstract), database);
+                    OleDbCommand command = new OleDbCommand(String.Format("INSERT INTO ARSTECHNICA (LASTDATE,VIEWCOUNT,ARTICLE,AUTHOR,ABSTRACT) VALUES({0}, {1}, '{2}', '{3}', '{4}')", DateTime.Today.Date.ToString().Remove(10), arr[10], articleName, arr[3], articleAbstract), database);
                     adapter.InsertCommand = command;
                     adapter.InsertCommand.ExecuteNonQuery();
                     database.Close();
@@ -44,7 +44,7 @@ namespace ITRW211_Project
                 {
                     database.Open();
                     OleDbDataAdapter adapter = new OleDbDataAdapter(@"SELECT * FROM HACKADAY", database);
-                    OleDbCommand command = new OleDbCommand(String.Format("INSERT INTO HACKADAY (LASTDATE,VIEWCOUNT,ARTICLE,AUTHOR,ABSTRACT) VALUES({0}, {1}, '{2}', '{3}', '{4}')", DateTime.Today.Date.ToString().Remove(10), arr[10], arr[2], arr[3], articleAbstract), database);
+                    OleDbCommand command = new OleDbCommand(String.Format("INSERT INTO HACKADAY (LASTDATE,VIEWCOUNT,ARTICLE,AUTHOR,ABSTRACT) VALUES({0}, {1}, '{2}', '{3}', '{4}')", DateTime.Today.Date.ToString().Remove(10), arr[10], articleName, arr[3], articleAbstract), database);
                     adapter.InsertCommand = command;
                     adapter.InsertCommand.ExecuteNonQuery();
                     database.Close();
@@ -53,7 +53,7 @@ namespace ITRW211_Project
                 {
                     database.Open();
                     OleDbDataAdapter adapter = new OleDbDataAdapter(@"SELECT * FROM APPLEINSIDER", database);
-                    OleDbCommand command = new OleDbCommand(String.Format("INSERT INTO APPLEINSIDER (LASTDATE,VIEWCOUNT,ARTICLE,AUTHOR,ABSTRACT) VALUES({0}, {1}, '{2}', '{3}', '{4}')", DateTime.Today.Date.ToString().Remove(10), arr[10], arr[2], arr[3], articleAbstract), database);
+                    OleDbCommand command = new OleDbCommand(String.Format("INSERT INTO APPLEINSIDER (LASTDATE,VIEWCOUNT,ARTICLE,AUTHOR,ABSTRACT) VALUES({0}, {1}, '{2}', '{3}', '{4}')", DateTime.Today.Date.ToString().Remove(10), arr[10], articleName, arr[3], articleAbstract), database);
                     adapter.InsertCommand = command;
                     adapter.InsertCommand.ExecuteNonQuery();
                     database.Close();

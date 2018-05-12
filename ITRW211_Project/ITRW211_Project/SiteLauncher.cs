@@ -19,7 +19,7 @@ namespace ITRW211_Project
         private static List<string[]> ArticlesDetails_Ars = new List<string[]>();
         private static List<string[]> ArticlesDetails_Hack = new List<string[]>();
         
-        /* item:
+        /* array[11] contents:
                  * 0 - Article ID
                  * 1 = Article Link
                  * 2 - Article Heading
@@ -30,6 +30,7 @@ namespace ITRW211_Project
                  * 7 - Article Image Path
                  * 8 - Article Text Processed
                  * 9 - Article Refined Text
+                 * 10 - Article Counter
                  */
 
         // Main form
@@ -217,6 +218,11 @@ namespace ITRW211_Project
                 newHack.Show();
                 Close();
             }));
+        }
+
+        private void labelExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

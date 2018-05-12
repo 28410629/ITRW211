@@ -15,7 +15,7 @@ namespace ITRW211_Project
             
             return null;
         }
-        public List<string[]> getArticleDetails(string htmlArs)
+        public List<string[]> getArticleDetails(string htmlHack)
         {
            
             return ArticlesDetails_Hack;

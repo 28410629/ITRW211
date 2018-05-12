@@ -43,5 +43,10 @@ namespace ITRW211_Project
             newForm.Show();
             Close();
         }
+
+        private void labelExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
