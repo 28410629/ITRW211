@@ -9,27 +9,74 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.OleDb;
 
+/**
+ * Coenraad Human 28410629
+ */
+
 namespace ITRW211_Project
 {
     public partial class ViewReadCount : Form
     {
-        public ViewReadCount()
+        string website;
+        public ViewReadCount(string website)
         {
             InitializeComponent();
+            if (website == "Ars Technica")
+            {
+                Text = "View count for articles of Ars Technica : ";
+            }
+            else if (website == "Hackaday")
+            {
+                Text = "View count for articles of Hackaday : ";
+            }
+            else
+            {
+                Text = "View count for articles of Apple Insider : ";
+            }
+            this.website = website;
         }
-
         private void FormArsData_Load(object sender, EventArgs e)
         {
-            using (OleDbConnection arsDB = new OleDbConnection(Properties.Settings.Default.DatabaseConnectionString))
+            if (website == "Ars Technica")
             {
-                arsDB.Open();
-                OleDbDataAdapter adapter = new OleDbDataAdapter(@"SELECT * FROM ARSTECHNICA",arsDB);
-                DataSet dataSet = new DataSet();
-                adapter.Fill(dataSet, "list");
-                dataGridView.DataSource = dataSet;
-                dataGridView.DataMember = "list";
-                arsDB.Close();
+                using (OleDbConnection database = new OleDbConnection(Properties.Settings.Default.DatabaseConnectionString))
+                {
+                    database.Open();
+                    OleDbDataAdapter adapter = new OleDbDataAdapter(@"SELECT * FROM ARSTECHNICA", database);
+                    DataSet dataSet = new DataSet();
+                    adapter.Fill(dataSet, "list");
+                    dataGridView.DataSource = dataSet;
+                    dataGridView.DataMember = "list";
+                    database.Close();
+                }
             }
+            else if (website == "Hackaday")
+            {
+                using (OleDbConnection database = new OleDbConnection(Properties.Settings.Default.DatabaseConnectionString))
+                {
+                    database.Open();
+                    OleDbDataAdapter adapter = new OleDbDataAdapter(@"SELECT * FROM HACKADAY", database);
+                    DataSet dataSet = new DataSet();
+                    adapter.Fill(dataSet, "list");
+                    dataGridView.DataSource = dataSet;
+                    dataGridView.DataMember = "list";
+                    database.Close();
+                }
+            }
+            else
+            {
+                using (OleDbConnection database = new OleDbConnection(Properties.Settings.Default.DatabaseConnectionString))
+                {
+                    database.Open();
+                    OleDbDataAdapter adapter = new OleDbDataAdapter(@"SELECT * FROM APPLEINSIDER", database);
+                    DataSet dataSet = new DataSet();
+                    adapter.Fill(dataSet, "list");
+                    dataGridView.DataSource = dataSet;
+                    dataGridView.DataMember = "list";
+                    database.Close();
+                }
+            }
+            
         }
     }
 }

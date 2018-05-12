@@ -22,7 +22,7 @@ namespace ITRW211_Project
 
         private void buttonArsTechnica_Click(object sender, EventArgs e)
         {
-            ViewReadCount newForm = new ViewReadCount();
+            ViewReadCount newForm = new ViewReadCount("Ars Technica");
             newForm.MdiParent = mainForm;
             newForm.Show();
             Close();
@@ -30,7 +30,7 @@ namespace ITRW211_Project
 
         private void buttonHackaday_Click(object sender, EventArgs e)
         {
-            FormHackData newForm = new FormHackData();
+            ViewReadCount newForm = new ViewReadCount("Hackaday");
             newForm.MdiParent = mainForm;
             newForm.Show();
             Close();
@@ -38,7 +38,7 @@ namespace ITRW211_Project
 
         private void buttonAppleInsider_Click(object sender, EventArgs e)
         {
-            FormAppleData newForm = new FormAppleData();
+            ViewReadCount newForm = new ViewReadCount("Apple Insider");
             newForm.MdiParent = mainForm;
             newForm.Show();
             Close();

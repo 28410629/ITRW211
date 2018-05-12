@@ -61,17 +61,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DatabaseCommands.cs" />
     <Compile Include="DatabaseDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DatabaseDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="FormAppleData.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormAppleData.Designer.cs">
-      <DependentUpon>FormAppleData.cs</DependentUpon>
-    </Compile>
+    <Compile Include="DownloadHTML.cs" />
+    <Compile Include="DownloadIMAGE.cs" />
+    <Compile Include="StringManipulationArs.cs" />
+    <Compile Include="StringManipulationHack.cs" />
     <Compile Include="ViewReadCount.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,9 +115,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FormAppleData.resx">
-      <DependentUpon>FormAppleData.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="ViewReadCount.resx">
       <DependentUpon>ViewReadCount.cs</DependentUpon>
     </EmbeddedResource>
