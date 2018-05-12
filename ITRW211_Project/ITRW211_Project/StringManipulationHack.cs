@@ -11,13 +11,11 @@ namespace ITRW211_Project
         private static List<string[]> ArticlesDetails_Hack = new List<string[]>();
 
         public string refineSite(string[] arr)
-        {
-            
+        { 
             return null;
         }
         public List<string[]> getArticleDetails(string htmlHack)
         {
-           
             return ArticlesDetails_Hack;
         }
         public string refineImageLink(string image_link)
