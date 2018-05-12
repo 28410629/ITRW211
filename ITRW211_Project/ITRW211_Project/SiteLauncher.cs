@@ -71,7 +71,6 @@ namespace ITRW211_Project
             progressBar.Step = 100;
             progressBar.Value = 0;
         }
-
         
         private void progressbarUpdate(double amount)
         {
