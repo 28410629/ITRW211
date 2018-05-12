@@ -189,6 +189,8 @@
     <Content Include="Database.mdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\hackadaydf.png" />
+    <None Include="Resources\apple-insider-logo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
