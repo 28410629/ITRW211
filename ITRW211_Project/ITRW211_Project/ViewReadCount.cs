@@ -81,24 +81,55 @@ namespace ITRW211_Project
             }
         }
 
-        private void refreshToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void deleteRecordsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void refreshToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void buttonRefresh_Click(object sender, EventArgs e)
         {
             FormArsData_Load(sender, e);
         }
 
-        private void deleteAllRecordsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void buttonDelete_Click(object sender, EventArgs e)
         {
-
+            if (website == "Ars Technica")
+            {
+                using (OleDbConnection database = new OleDbConnection(Properties.Settings.Default.DatabaseConnectionString))
+                {
+                    database.Open();
+                    OleDbDataAdapter adapter = new OleDbDataAdapter(@"SELECT * FROM ARSTECHNICA", database);
+                    OleDbCommand command = new OleDbCommand(String.Format("DELETE FROM ARSTECHNICA"), database);
+                    adapter.InsertCommand = command;
+                    adapter.InsertCommand.ExecuteNonQuery();
+                    database.Close();
+                    database.Open();
+                }
+            }
+            else if (website == "Hackaday")
+            {
+                using (OleDbConnection database = new OleDbConnection(Properties.Settings.Default.DatabaseConnectionString))
+                {
+                    database.Open();
+                    OleDbDataAdapter adapter = new OleDbDataAdapter(@"SELECT * FROM HACKADAY", database);
+                    DataSet dataSet = new DataSet();
+                    adapter.Fill(dataSet, "list");
+                    dataGridView.DataSource = dataSet;
+                    dataGridView.DataMember = "list";
+                    database.Close();
+                    dataGridView.AutoResizeColumns();
+                }
+            }
+            else
+            {
+                using (OleDbConnection database = new OleDbConnection(Properties.Settings.Default.DatabaseConnectionString))
+                {
+                    database.Open();
+                    OleDbDataAdapter adapter = new OleDbDataAdapter(@"SELECT * FROM APPLEINSIDER", database);
+                    DataSet dataSet = new DataSet();
+                    adapter.Fill(dataSet, "list");
+                    dataGridView.DataSource = dataSet;
+                    dataGridView.DataMember = "list";
+                    database.Close();
+                    dataGridView.AutoResizeColumns();
+                }
+            }
+            FormArsData_Load(sender, e);
         }
     }
 }

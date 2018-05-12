@@ -148,6 +148,7 @@ namespace ITRW211_Project
                     {
                         return Properties.Resources.ars_sub_thumb;
                     }
+                    return null;
                 }
             }
             catch(Exception)
@@ -158,7 +159,7 @@ namespace ITRW211_Project
                 }
                 else if (Website == "Hackaday")
                 {
-                    //return Properties.Resources;
+                    return Properties.Resources.ars_sub_thumb;
                 }
                 else
                 {
