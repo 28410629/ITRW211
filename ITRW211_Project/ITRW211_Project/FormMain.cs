@@ -44,5 +44,9 @@ namespace ITRW211_Project
             newLauncher.Show();
         }
 
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

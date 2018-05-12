@@ -10,7 +10,7 @@ namespace ITRW211_Project
     {
         private static List<string[]> ArticlesDetails_Hack = new List<string[]>();
 
-        public string refineSite(string[] arr)
+        public string[] refineSite(string[] arr)
         { 
             return null;
         }

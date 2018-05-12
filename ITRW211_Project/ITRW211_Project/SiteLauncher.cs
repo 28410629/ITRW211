@@ -16,7 +16,8 @@ namespace ITRW211_Project
         // List of latest articles for Ars Technica
         private static List<string[]> ArticlesDetails_Ars = new List<string[]>();
         private static List<string[]> ArticlesDetails_Hack = new List<string[]>();
-        
+        private static List<string[]> ArticlesDetails_Apple = new List<string[]>();
+
         /* array[11] contents:
                  * 0 - Article ID
                  * 1 - Article Link
@@ -58,10 +59,9 @@ namespace ITRW211_Project
 
         private void buttonAppleInsider_Click(object sender, EventArgs e)
         {
-            FormAppleInsider newApple = new FormAppleInsider();
-            newApple.MdiParent = newMain;
-            newApple.Show();
-            Close();
+            // Process HMTL, download article's html and download images
+            Thread thread = new Thread(new ThreadStart(download_Apple));
+            thread.Start();
         }
 
         private void FormLauncher_Load(object sender, EventArgs e)
@@ -122,6 +122,7 @@ namespace ITRW211_Project
             for (int i = 0; i < ArticlesDetails_Ars.Count; i++)
             {
                 ArticlesDetails_Ars[i][5] = arsImage.refineImageLink(ArticlesDetails_Ars[i][6]);
+                //ArticlesDetails_Appple[i] = arsImage.getImage_Author(ArticlesDetails_Apple[i])
             }
 
             // Update progressbar - html processed
@@ -198,7 +199,7 @@ namespace ITRW211_Project
             DownloadIMAGE pathImage = new DownloadIMAGE();
             for (int i = 0; i < ArticlesDetails_Hack.Count; i++)
             {
-                ArticlesDetails_Hack[i][7] = pathImage.downloadImage(Application.StartupPath + "\\" + "ArsTechnica" + "\\" + ArticlesDetails_Hack[i][0] + "\\" + ArticlesDetails_Hack[i][0], ArticlesDetails_Hack[i][5]);
+                ArticlesDetails_Hack[i][7] = pathImage.downloadImage(Application.StartupPath + "\\" + "Hackaday" + "\\" + ArticlesDetails_Hack[i][0] + "\\" + ArticlesDetails_Hack[i][0], ArticlesDetails_Hack[i][5]);
             }
 
             // Update progressbar - html processed
@@ -211,6 +212,73 @@ namespace ITRW211_Project
                 ArticleBrowser newHack = new ArticleBrowser(newMain, ArticlesDetails_Hack, "Hackaday");
                 newHack.MdiParent = newMain;
                 newHack.Show();
+                Close();
+            }));
+        }
+
+        private void download_Apple()
+        {
+            // Update progressbar - thread started
+            Invoke(new MethodInvoker(delegate () { progressbarUpdate(10.00); }));
+
+            // Download mainHTML
+            DownloadHTML html = new DownloadHTML();
+            string htmlApple = html.downloadHTML("https://appleinsider.com/", Application.StartupPath + "\\AppleInsider", "\\AppleInsider-HTML.txt");
+
+            // Update progressbar - html downloaded
+            Invoke(new MethodInvoker(delegate () { progressbarUpdate(10.00); }));
+
+            // Get individual article details from main HTML
+            if (!string.IsNullOrEmpty(htmlApple))
+            {
+                StringManipulationApple apple = new StringManipulationApple();
+                ArticlesDetails_Apple = apple.getArticleDetails(htmlApple);
+            }
+
+            // Update progressbar - html processed
+            Invoke(new MethodInvoker(delegate () { progressbarUpdate(20.00); }));
+
+            // Download individual articlesHTML
+            DownloadHTML htmlArticle = new DownloadHTML();
+            for (int i = 0; i < ArticlesDetails_Apple.Count; i++)
+            {
+                string link = ArticlesDetails_Apple[i][1];
+                string path = Application.StartupPath + "\\AppleInsider\\" + ArticlesDetails_Apple[i][0];
+                string filename = "\\" + ArticlesDetails_Apple[i][0] + "-HTML.txt";
+
+                ArticlesDetails_Apple[i][6] = htmlArticle.downloadArticleHTML(link, path, filename);
+            }
+
+            // Update progressbar - html processed
+            Invoke(new MethodInvoker(delegate () { progressbarUpdate(20.00); }));
+
+            // Refine image links
+            StringManipulationApple appleImage = new StringManipulationApple();
+            for (int i = 0; i < ArticlesDetails_Apple.Count; i++)
+            {
+                ArticlesDetails_Apple[i] = appleImage.getAuthorImage(ArticlesDetails_Apple[i]);
+            }
+
+            // Update progressbar - html processed
+            Invoke(new MethodInvoker(delegate () { progressbarUpdate(20.00); }));
+
+            // Download images and get there file path
+            DownloadIMAGE pathImage = new DownloadIMAGE();
+            for (int i = 0; i < ArticlesDetails_Apple.Count; i++)
+            {
+                ArticlesDetails_Apple[i][7] = pathImage.downloadImage(Application.StartupPath + "\\" + "AppleInsider" + "\\" + ArticlesDetails_Apple[i][0] + "\\" + ArticlesDetails_Apple[i][0], ArticlesDetails_Apple[i][5]);
+            }
+
+            // Update progressbar - html processed
+            Invoke(new MethodInvoker(delegate () { progressbarUpdate(20.00); }));
+
+            // Open Article browser
+            Invoke(new MethodInvoker(delegate ()
+            {
+                // Download completed
+                ArticleBrowser newApple = new ArticleBrowser(newMain, ArticlesDetails_Apple, "Apple Insider");
+                newApple.MdiParent = newMain;
+                newApple.Show();
                 Close();
             }));
         }

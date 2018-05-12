@@ -11,7 +11,7 @@ namespace ITRW211_Project
     {
         private static List<string[]> ArticlesDetails_Ars = new List<string[]>();
 
-        public string refineSite(string[] arr)
+        public string[] refineSite(string[] arr)
         {
             string data_copy = arr[6];
             if (!string.IsNullOrWhiteSpace(data_copy) && arr[8] == "0")
@@ -150,14 +150,15 @@ namespace ITRW211_Project
 
                     } // while loop for paragraph elements
                     article = article.Remove(article.LastIndexOf("\n\n"));
-                    return article;
+                    arr[9]  = article;
+                    return arr;
                 }
                 catch (Exception err)
                 {
                     MessageBox.Show(err.Message + "\n\n" + err.StackTrace);
                 }
             }
-            return null;
+            return arr;
         }
         public List<string[]> getArticleDetails(string htmlArs)
         {

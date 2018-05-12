@@ -69,6 +69,7 @@
     </Compile>
     <Compile Include="DownloadHTML.cs" />
     <Compile Include="DownloadIMAGE.cs" />
+    <Compile Include="StringManipulationApple.cs" />
     <Compile Include="StringManipulationArs.cs" />
     <Compile Include="StringManipulationHack.cs" />
     <Compile Include="ViewReadCount.cs">
@@ -88,12 +89,6 @@
     </Compile>
     <Compile Include="ArticleBrowser.Designer.cs">
       <DependentUpon>ArticleBrowser.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormAppleInsider.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormAppleInsider.Designer.cs">
-      <DependentUpon>FormAppleInsider.cs</DependentUpon>
     </Compile>
     <Compile Include="SiteLauncherCount.cs">
       <SubType>Form</SubType>
@@ -123,9 +118,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ArticleBrowser.resx">
       <DependentUpon>ArticleBrowser.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormAppleInsider.resx">
-      <DependentUpon>FormAppleInsider.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SiteLauncherCount.resx">
       <DependentUpon>SiteLauncherCount.cs</DependentUpon>

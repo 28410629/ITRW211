@@ -79,7 +79,26 @@ namespace ITRW211_Project
                     dataGridView.AutoResizeColumns();
                 }
             }
+        }
+
+        private void refreshToolStripMenuItem_Click(object sender, EventArgs e)
+        {
             
+        }
+
+        private void deleteRecordsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void refreshToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            FormArsData_Load(sender, e);
+        }
+
+        private void deleteAllRecordsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

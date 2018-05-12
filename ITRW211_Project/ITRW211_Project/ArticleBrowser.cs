@@ -38,7 +38,7 @@ namespace ITRW211_Project
                 listBoxDisplay.Items.Add(ArticlesDetails[i][2]);
             }
 
-            labelIntro.Text = "The following articles (" + ArticlesDetails.Count + ") are available from Ars Technica";
+            labelIntro.Text = "The following articles (" + ArticlesDetails.Count + ") are available from " + Website;
         }             
         // Event to open article in reader when item is double-clicked.
         private void listBoxDisplay_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -63,12 +63,17 @@ namespace ITRW211_Project
                     if (Website == "Ars Technica")
                     {
                         StringManipulationArs runArticle = new StringManipulationArs();
-                        ArticlesDetails[i][9] = runArticle.refineSite(ArticlesDetails[i]);
+                        ArticlesDetails[i] = runArticle.refineSite(ArticlesDetails[i]);
+                    }
+                    else if (Website == "Hackaday")
+                    {
+                        StringManipulationHack runArticle = new StringManipulationHack();
+                        ArticlesDetails[i] = runArticle.refineSite(ArticlesDetails[i]);
                     }
                     else
                     {
-                        StringManipulationHack runArticle = new StringManipulationHack();
-                        ArticlesDetails[i][9] = runArticle.refineSite(ArticlesDetails[i]);
+                        StringManipulationApple runArticle = new StringManipulationApple();
+                        ArticlesDetails[i] = runArticle.refineSite(ArticlesDetails[i]);
                     }
 
                     if (!string.IsNullOrWhiteSpace(ArticlesDetails[i][9]))
@@ -131,12 +136,34 @@ namespace ITRW211_Project
                 }
                 else
                 {
-                    return Properties.Resources.ars_sub_thumb;
+                    if (Website == "Ars Technica")
+                    {
+                        return Properties.Resources.ars_sub_thumb;
+                    }
+                    else if(Website == "Hackaday")
+                    {
+                        //return Properties.Resources;
+                    }
+                    else
+                    {
+                        return Properties.Resources.ars_sub_thumb;
+                    }
                 }
             }
             catch(Exception)
             {
-                return Properties.Resources.ars_sub_thumb;
+                if (Website == "Ars Technica")
+                {
+                    return Properties.Resources.ars_sub_thumb;
+                }
+                else if (Website == "Hackaday")
+                {
+                    //return Properties.Resources;
+                }
+                else
+                {
+                    return Properties.Resources.ars_sub_thumb;
+                }
             }
         }
         // Event to change specific details on form as user moves through browser
