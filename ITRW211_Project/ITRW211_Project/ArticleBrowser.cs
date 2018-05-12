@@ -14,14 +14,14 @@ using System.Data.OleDb;
 
 namespace ITRW211_Project
 {
-    public partial class FormArsTechnica : Form
+    public partial class ArticleBrowser : Form
     {
         // Pass main form for MDI
         Form newMain;
         //
         List<string[]> ArticlesDetails = new List<string[]>();
 
-        public FormArsTechnica(Form newMain, List<string[]> ArticlesDetails)
+        public ArticleBrowser(Form newMain, List<string[]> ArticlesDetails)
         {
             InitializeComponent();
             this.newMain = newMain;

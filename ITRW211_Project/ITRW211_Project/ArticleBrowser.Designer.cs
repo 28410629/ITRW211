@@ -1,6 +1,6 @@
 ﻿namespace ITRW211_Project
 {
-    partial class FormArsTechnica
+    partial class ArticleBrowser
     {
         /// <summary>
         /// Required designer variable.

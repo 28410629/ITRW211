@@ -13,7 +13,7 @@ using System.Threading;
 
 namespace ITRW211_Project
 {
-    public partial class FormLauncher : Form
+    public partial class SiteLauncher : Form
     {
         // List of latest articles for Ars Technica
         private static List<string[]> ArticlesDetails_Ars = new List<string[]>();
@@ -22,7 +22,7 @@ namespace ITRW211_Project
         // Progress bar current value
         int progressBar_value = 0;
 
-        public FormLauncher(Form newMain)
+        public SiteLauncher(Form newMain)
         {
             InitializeComponent();
             this.newMain = newMain;
@@ -406,7 +406,7 @@ namespace ITRW211_Project
                     progressBar_value += (int)Math.Round(20.00);
                     progressBar.Value = progressBar_value;
                     // Download completed
-                    FormArsTechnica newArs = new FormArsTechnica(newMain, ArticlesDetails_Ars);
+                    ArticleBrowser newArs = new ArticleBrowser(newMain, ArticlesDetails_Ars);
                     newArs.MdiParent = newMain;
                     newArs.Show();
                     Close();

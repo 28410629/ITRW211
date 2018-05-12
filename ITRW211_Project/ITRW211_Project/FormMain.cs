@@ -25,21 +25,21 @@ namespace ITRW211_Project
 
         private void openLauncherToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            FormLauncher newLauncher = new FormLauncher(this);
+            SiteLauncher newLauncher = new SiteLauncher(this);
             newLauncher.MdiParent = this;
             newLauncher.Show();
         }
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            FormLauncher newLauncher = new FormLauncher(this);
+            SiteLauncher newLauncher = new SiteLauncher(this);
             newLauncher.MdiParent = this;
             newLauncher.Show();
         }
 
         private void readArticlesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormListReadArticles newLauncher = new FormListReadArticles(this);
+            SiteLauncherCount newLauncher = new SiteLauncherCount(this);
             newLauncher.MdiParent = this;
             newLauncher.Show();
         }

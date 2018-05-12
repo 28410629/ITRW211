@@ -11,9 +11,9 @@ using System.Data.OleDb;
 
 namespace ITRW211_Project
 {
-    public partial class FormArsData : Form
+    public partial class ViewReadCount : Form
     {
-        public FormArsData()
+        public ViewReadCount()
         {
             InitializeComponent();
         }

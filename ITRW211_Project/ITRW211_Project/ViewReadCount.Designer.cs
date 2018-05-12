@@ -1,6 +1,6 @@
 ﻿namespace ITRW211_Project
 {
-    partial class FormArsData
+    partial class ViewReadCount
     {
         /// <summary>
         /// Required designer variable.

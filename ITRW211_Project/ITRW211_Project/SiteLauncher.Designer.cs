@@ -1,6 +1,6 @@
 ﻿namespace ITRW211_Project
 {
-    partial class FormLauncher
+    partial class SiteLauncher
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormLauncher));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SiteLauncher));
             this.buttonArsTechnica = new System.Windows.Forms.Button();
             this.buttonAppleInsider = new System.Windows.Forms.Button();
             this.buttonHackaday = new System.Windows.Forms.Button();
