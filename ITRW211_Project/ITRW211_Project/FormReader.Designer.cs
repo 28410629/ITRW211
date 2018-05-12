@@ -41,6 +41,7 @@
             // 
             this.labelSiteName.AutoSize = true;
             this.labelSiteName.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelSiteName.ForeColor = System.Drawing.SystemColors.Control;
             this.labelSiteName.Location = new System.Drawing.Point(12, 9);
             this.labelSiteName.Name = "labelSiteName";
             this.labelSiteName.Size = new System.Drawing.Size(52, 18);
@@ -68,6 +69,7 @@
             // labelAuthor
             // 
             this.labelAuthor.AutoSize = true;
+            this.labelAuthor.ForeColor = System.Drawing.SystemColors.Control;
             this.labelAuthor.Location = new System.Drawing.Point(12, 27);
             this.labelAuthor.Name = "labelAuthor";
             this.labelAuthor.Size = new System.Drawing.Size(35, 13);
@@ -84,6 +86,9 @@
             // 
             // textBoxArticle
             // 
+            this.textBoxArticle.BackColor = System.Drawing.Color.Gray;
+            this.textBoxArticle.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxArticle.ForeColor = System.Drawing.Color.White;
             this.textBoxArticle.Location = new System.Drawing.Point(658, 43);
             this.textBoxArticle.Name = "textBoxArticle";
             this.textBoxArticle.Size = new System.Drawing.Size(639, 400);
@@ -94,6 +99,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.DimGray;
             this.ClientSize = new System.Drawing.Size(1309, 482);
             this.Controls.Add(this.textBoxArticle);
             this.Controls.Add(this.labelFocus);

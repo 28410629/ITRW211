@@ -48,6 +48,7 @@ namespace ITRW211_Project
                     dataGridView.DataSource = dataSet;
                     dataGridView.DataMember = "list";
                     database.Close();
+                    dataGridView.AutoResizeColumns();
                 }
             }
             else if (website == "Hackaday")
@@ -61,6 +62,7 @@ namespace ITRW211_Project
                     dataGridView.DataSource = dataSet;
                     dataGridView.DataMember = "list";
                     database.Close();
+                    dataGridView.AutoResizeColumns();
                 }
             }
             else
@@ -74,6 +76,7 @@ namespace ITRW211_Project
                     dataGridView.DataSource = dataSet;
                     dataGridView.DataMember = "list";
                     database.Close();
+                    dataGridView.AutoResizeColumns();
                 }
             }
             

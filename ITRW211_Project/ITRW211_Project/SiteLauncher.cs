@@ -72,19 +72,16 @@ namespace ITRW211_Project
             progressBar.Value = 0;
         }
 
-        // Written by C Human - Method that disables button after site is selected, since progress can only be used for one thread!
+        
         private void progressbarUpdate(double amount)
         {
-            
                 buttonArsTechnica.Enabled = false;
                 buttonAppleInsider.Enabled = false;
                 buttonHackaday.Enabled = false;
                 progressBar_value += (int)Math.Round(amount);
                 progressBar.Value = progressBar_value;
-            
         }
 
-        // Written by C Human -  Method that processes main html for information before user browse
         private void download_Ars()
         {
             // Update progressbar - thread started
@@ -152,7 +149,6 @@ namespace ITRW211_Project
             }));
         }
 
-        // Written by C Human -  Method that processes main html for information before user browse
         private void download_Hack()
         {
             // Update progressbar - thread started

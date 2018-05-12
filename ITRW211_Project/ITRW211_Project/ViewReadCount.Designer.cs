@@ -39,17 +39,18 @@
             this.dataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView.Location = new System.Drawing.Point(0, 0);
             this.dataGridView.Name = "dataGridView";
-            this.dataGridView.Size = new System.Drawing.Size(800, 450);
+            this.dataGridView.Size = new System.Drawing.Size(1221, 576);
             this.dataGridView.TabIndex = 1;
             // 
-            // FormArsData
+            // ViewReadCount
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1221, 576);
             this.Controls.Add(this.dataGridView);
             this.MaximizeBox = false;
-            this.Name = "FormArsData";
+            this.Name = "ViewReadCount";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "View count for articles of Ars Technica : ";
             this.Load += new System.EventHandler(this.FormArsData_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
