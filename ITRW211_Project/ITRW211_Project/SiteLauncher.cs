@@ -7,8 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO;
-using System.Net;
 using System.Threading;
 
 namespace ITRW211_Project
@@ -21,7 +19,7 @@ namespace ITRW211_Project
         
         /* array[11] contents:
                  * 0 - Article ID
-                 * 1 = Article Link
+                 * 1 - Article Link
                  * 2 - Article Heading
                  * 3 - Article Author
                  * 4 - Article Abstract
@@ -53,7 +51,9 @@ namespace ITRW211_Project
 
         private void buttonHackaday_Click(object sender, EventArgs e)
         {
-
+            // Process HMTL, download article's html and download images
+            Thread thread = new Thread(new ThreadStart(download_Hack));
+            thread.Start();
         }
 
         private void buttonAppleInsider_Click(object sender, EventArgs e)
