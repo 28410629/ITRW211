@@ -35,7 +35,8 @@ namespace ITRW211_Project
             // After all articles are retrieved then add them to list box
             for (int i = 0; i < ArticlesDetails.Count; i++)
             {
-                listBoxDisplay.Items.Add(ArticlesDetails[i][2]);
+                if(!string.IsNullOrWhiteSpace(ArticlesDetails[i][2]))
+                    listBoxDisplay.Items.Add(ArticlesDetails[i][2]);
             }
 
             labelIntro.Text = "The following articles (" + ArticlesDetails.Count + ") are available from " + Website;

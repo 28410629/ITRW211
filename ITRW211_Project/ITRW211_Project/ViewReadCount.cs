@@ -37,48 +37,30 @@ namespace ITRW211_Project
         }
         private void FormArsData_Load(object sender, EventArgs e)
         {
-            if (website == "Ars Technica")
+            using (OleDbConnection database = new OleDbConnection(Properties.Settings.Default.DatabaseConnectionString))
             {
-                using (OleDbConnection database = new OleDbConnection(Properties.Settings.Default.DatabaseConnectionString))
+                database.Open();
+                string adapterString;
+                if (website == "Ars Technica")
                 {
-                    database.Open();
-                    OleDbDataAdapter adapter = new OleDbDataAdapter(@"SELECT * FROM ARSTECHNICA", database);
-                    DataSet dataSet = new DataSet();
-                    adapter.Fill(dataSet, "list");
-                    dataGridView.DataSource = dataSet;
-                    dataGridView.DataMember = "list";
-                    database.Close();
-                    dataGridView.AutoResizeColumns();
+                    adapterString = @"SELECT * FROM ARSTECHNICA";
                 }
-            }
-            else if (website == "Hackaday")
-            {
-                using (OleDbConnection database = new OleDbConnection(Properties.Settings.Default.DatabaseConnectionString))
+                else if (website == "Hackaday")
                 {
-                    database.Open();
-                    OleDbDataAdapter adapter = new OleDbDataAdapter(@"SELECT * FROM HACKADAY", database);
-                    DataSet dataSet = new DataSet();
-                    adapter.Fill(dataSet, "list");
-                    dataGridView.DataSource = dataSet;
-                    dataGridView.DataMember = "list";
-                    database.Close();
-                    dataGridView.AutoResizeColumns();
+                    adapterString = @"SELECT * FROM HACKADAY";
                 }
-            }
-            else
-            {
-                using (OleDbConnection database = new OleDbConnection(Properties.Settings.Default.DatabaseConnectionString))
+                else
                 {
-                    database.Open();
-                    OleDbDataAdapter adapter = new OleDbDataAdapter(@"SELECT * FROM APPLEINSIDER", database);
-                    DataSet dataSet = new DataSet();
-                    adapter.Fill(dataSet, "list");
-                    dataGridView.DataSource = dataSet;
-                    dataGridView.DataMember = "list";
-                    database.Close();
-                    dataGridView.AutoResizeColumns();
+                    adapterString = @"SELECT * FROM APPLEINSIDER";
                 }
-            }
+                OleDbDataAdapter adapter = new OleDbDataAdapter(adapterString, database);
+                DataSet dataSet = new DataSet();
+                adapter.Fill(dataSet, "list");
+                dataGridView.DataSource = dataSet;
+                dataGridView.DataMember = "list";
+                database.Close();
+                dataGridView.AutoResizeColumns();
+            } 
         }
 
         private void buttonRefresh_Click(object sender, EventArgs e)
@@ -88,48 +70,39 @@ namespace ITRW211_Project
 
         private void buttonDelete_Click(object sender, EventArgs e)
         {
-            if (website == "Ars Technica")
+            using (OleDbConnection database = new OleDbConnection(Properties.Settings.Default.DatabaseConnectionString))
             {
-                using (OleDbConnection database = new OleDbConnection(Properties.Settings.Default.DatabaseConnectionString))
+                database.Open();
+                string adapterString;
+                string commandString;
+                if (website == "Ars Technica")
                 {
-                    database.Open();
-                    OleDbDataAdapter adapter = new OleDbDataAdapter(@"SELECT * FROM ARSTECHNICA", database);
-                    OleDbCommand command = new OleDbCommand(String.Format("DELETE FROM ARSTECHNICA"), database);
-                    adapter.InsertCommand = command;
-                    adapter.InsertCommand.ExecuteNonQuery();
-                    database.Close();
-                    database.Open();
+                    adapterString = @"SELECT * FROM ARSTECHNICA";
+                    commandString = "DELETE FROM ARSTECHNICA";
                 }
-            }
-            else if (website == "Hackaday")
-            {
-                using (OleDbConnection database = new OleDbConnection(Properties.Settings.Default.DatabaseConnectionString))
+                else if (website == "Hackaday")
                 {
-                    database.Open();
-                    OleDbDataAdapter adapter = new OleDbDataAdapter(@"SELECT * FROM HACKADAY", database);
-                    DataSet dataSet = new DataSet();
-                    adapter.Fill(dataSet, "list");
-                    dataGridView.DataSource = dataSet;
-                    dataGridView.DataMember = "list";
-                    database.Close();
-                    dataGridView.AutoResizeColumns();
+                    adapterString = @"SELECT * FROM HACKADAY";
+                    commandString = "DELETE FROM HACKADAY";
                 }
-            }
-            else
-            {
-                using (OleDbConnection database = new OleDbConnection(Properties.Settings.Default.DatabaseConnectionString))
+                else
                 {
-                    database.Open();
-                    OleDbDataAdapter adapter = new OleDbDataAdapter(@"SELECT * FROM APPLEINSIDER", database);
-                    DataSet dataSet = new DataSet();
-                    adapter.Fill(dataSet, "list");
-                    dataGridView.DataSource = dataSet;
-                    dataGridView.DataMember = "list";
-                    database.Close();
-                    dataGridView.AutoResizeColumns();
+                    adapterString = @"SELECT * FROM APPLEINSIDER";
+                    commandString = "DELETE FROM APPLEINSIDER";
                 }
+                OleDbDataAdapter adapter = new OleDbDataAdapter(adapterString, database);
+                OleDbCommand command = new OleDbCommand(String.Format(commandString), database);
+                adapter.InsertCommand = command;
+                adapter.InsertCommand.ExecuteNonQuery();
+                database.Close();
+                database.Open();
             }
             FormArsData_Load(sender, e);
+        }
+
+        private void buttonReset_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

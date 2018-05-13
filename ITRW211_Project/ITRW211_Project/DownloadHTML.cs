@@ -13,63 +13,18 @@ namespace ITRW211_Project
     {
         public string downloadHTML(string link, string path, string filename)
         {
-            try
+            if (!string.IsNullOrWhiteSpace(link))
             {
-                if (!Directory.Exists(path))
+                try
                 {
-                    Directory.CreateDirectory(path);
-                }
-                using (var client = new WebClient())
-                {
-                    client.Encoding = Encoding.UTF8;
-                    string text_backup = client.DownloadString(link);
-                    using (FileStream str = new FileStream(path + filename, FileMode.Create, FileAccess.Write))
+                    if (!Directory.Exists(path))
                     {
-                        using (StreamWriter writer = new StreamWriter(str))
-                        {
-                            writer.WriteLine(text_backup);
-                        }
+                        Directory.CreateDirectory(path);
                     }
-                    return text_backup;
-                }
-            }
-            catch (Exception err)
-            {
-                MessageBox.Show(err.Message + "\n\n" + err.StackTrace);
-                FileInfo fileInfo = new FileInfo(path + filename);
-                if (fileInfo.Exists)
-                {
-                    using (FileStream str = new FileStream(path + filename, FileMode.Open, FileAccess.Read))
-                    {
-                        using (StreamReader reader = new StreamReader(str))
-                        {
-                            string text = "";
-                            while (!reader.EndOfStream)
-                            {
-                                text += reader.ReadLine();
-                            }
-                            return text;
-                        }
-                    }
-                }
-                else
-                {
-                    return null;
-                }
-            }
-        }
-        public string downloadArticleHTML(string link, string path, string filename)
-        {
-            try
-            {
-                if (!Directory.Exists(path))
-                {
-                    string text_backup;
-                    Directory.CreateDirectory(path);
                     using (var client = new WebClient())
                     {
                         client.Encoding = Encoding.UTF8;
-                        text_backup = client.DownloadString(link);
+                        string text_backup = client.DownloadString(link);
                         using (FileStream str = new FileStream(path + filename, FileMode.Create, FileAccess.Write))
                         {
                             using (StreamWriter writer = new StreamWriter(str))
@@ -77,33 +32,50 @@ namespace ITRW211_Project
                                 writer.WriteLine(text_backup);
                             }
                         }
+                        return text_backup;
                     }
-                    return text_backup;
                 }
-                else
+                catch (Exception err)
                 {
-                    FileInfo fileArticleHTML = new FileInfo(path + filename);
-                    string textbackup = "";
-                    if (fileArticleHTML.Exists)
+                    MessageBox.Show(err.Message + "\n\n" + err.StackTrace);
+                    FileInfo fileInfo = new FileInfo(path + filename);
+                    if (fileInfo.Exists)
                     {
                         using (FileStream str = new FileStream(path + filename, FileMode.Open, FileAccess.Read))
                         {
                             using (StreamReader reader = new StreamReader(str))
                             {
+                                string text = "";
                                 while (!reader.EndOfStream)
                                 {
-                                    textbackup += reader.ReadLine();
+                                    text += reader.ReadLine();
                                 }
+                                return text;
                             }
                         }
-                        return textbackup;
                     }
                     else
                     {
+                        return null;
+                    }
+                }
+            }
+            return null;
+        }
+        public string downloadArticleHTML(string link, string path, string filename)
+        {
+            if (!string.IsNullOrWhiteSpace(link))
+            {
+                try
+                {
+                    if (!Directory.Exists(path))
+                    {
+                        string text_backup;
+                        Directory.CreateDirectory(path);
                         using (var client = new WebClient())
                         {
                             client.Encoding = Encoding.UTF8;
-                            string text_backup = client.DownloadString(link);
+                            text_backup = client.DownloadString(link);
                             using (FileStream str = new FileStream(path + filename, FileMode.Create, FileAccess.Write))
                             {
                                 using (StreamWriter writer = new StreamWriter(str))
@@ -112,15 +84,51 @@ namespace ITRW211_Project
                                 }
                             }
                         }
-                        return textbackup;
+                        return text_backup;
+                    }
+                    else
+                    {
+                        FileInfo fileArticleHTML = new FileInfo(path + filename);
+                        string textbackup = "";
+                        if (fileArticleHTML.Exists)
+                        {
+                            using (FileStream str = new FileStream(path + filename, FileMode.Open, FileAccess.Read))
+                            {
+                                using (StreamReader reader = new StreamReader(str))
+                                {
+                                    while (!reader.EndOfStream)
+                                    {
+                                        textbackup += reader.ReadLine();
+                                    }
+                                }
+                            }
+                            return textbackup;
+                        }
+                        else
+                        {
+                            using (var client = new WebClient())
+                            {
+                                client.Encoding = Encoding.UTF8;
+                                string text_backup = client.DownloadString(link);
+                                using (FileStream str = new FileStream(path + filename, FileMode.Create, FileAccess.Write))
+                                {
+                                    using (StreamWriter writer = new StreamWriter(str))
+                                    {
+                                        writer.WriteLine(text_backup);
+                                    }
+                                }
+                            }
+                            return textbackup;
+                        }
                     }
                 }
+                catch (Exception err)
+                {
+                    MessageBox.Show("Article not downloaded" + "\n\n" + err.Message + "\n\n" + err.StackTrace);
+                    return null;
+                }
             }
-            catch (Exception err)
-            {
-                MessageBox.Show("Article not downloaded" + "\n\n" + err.Message + "\n\n" + err.StackTrace);
-                return null;
-            }
+            return null;
         }
     }
 }

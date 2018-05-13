@@ -79,19 +79,19 @@
             this.pictureBoxPreview.TabIndex = 3;
             this.pictureBoxPreview.TabStop = false;
             // 
-            // FormArsTechnica
+            // ArticleBrowser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DimGray;
-            this.ClientSize = new System.Drawing.Size(1309, 477);
+            this.ClientSize = new System.Drawing.Size(1309, 478);
             this.Controls.Add(this.pictureBoxPreview);
             this.Controls.Add(this.labelArticleInfo);
             this.Controls.Add(this.labelIntro);
             this.Controls.Add(this.listBoxDisplay);
             this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(682, 510);
-            this.Name = "FormArsTechnica";
+            this.Name = "ArticleBrowser";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ArsTechnica Article Browser";
             this.Load += new System.EventHandler(this.FormArsTechnica_Load);
