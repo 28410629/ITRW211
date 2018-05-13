@@ -102,7 +102,34 @@ namespace ITRW211_Project
 
         private void buttonReset_Click(object sender, EventArgs e)
         {
-
+            using (OleDbConnection database = new OleDbConnection(Properties.Settings.Default.DatabaseConnectionString))
+            {
+                database.Open();
+                string adapterString;
+                string commandString;
+                if (website == "Ars Technica")
+                {
+                    adapterString = @"SELECT * FROM ARSTECHNICA";
+                    commandString = "UPDATE ARSTECHNICA SET VIEWCOUNT = '0'";
+                }
+                else if (website == "Hackaday")
+                {
+                    adapterString = @"SELECT * FROM HACKADAY";
+                    commandString = "UPDATE HACKADAY SET VIEWCOUNT = '0'";
+                }
+                else
+                {
+                    adapterString = @"SELECT * FROM APPLEINSIDER";
+                    commandString = "UPDATE APPLEINSIDER SET VIEWCOUNT = '0'";
+                }
+                OleDbDataAdapter adapter = new OleDbDataAdapter(adapterString, database);
+                OleDbCommand command = new OleDbCommand(String.Format(commandString), database);
+                adapter.InsertCommand = command;
+                adapter.InsertCommand.ExecuteNonQuery();
+                database.Close();
+                database.Open();
+            }
+            FormArsData_Load(sender, e);
         }
     }
 }
