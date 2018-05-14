@@ -17,7 +17,7 @@ namespace ITRW211_Project
         public string Hash(string password)
         {
             var bytes = new UTF8Encoding().GetBytes(password);
-            var hashBytes = System.Security.Cryptography.SHA1.Create().ComputeHash(bytes);
+            var hashBytes = System.Security.Cryptography.MD5.Create().ComputeHash(bytes);
             return Convert.ToBase64String(hashBytes);
         }
 
@@ -143,7 +143,7 @@ namespace ITRW211_Project
                 using (OleDbConnection database = new OleDbConnection(Properties.Settings.Default.AccountsConnectionString))
                 {
                     database.Open();
-                    OleDbDataAdapter adapter = new OleDbDataAdapter(String.Format("SELECT * FROM LOGINDETAILS WHERE USER = '{0}'", user), database);
+                    OleDbDataAdapter adapter = new OleDbDataAdapter(String.Format("SELECT * FROM LOGINDETAILS WHERE [USER] = '{0}'", user), database);
                     DataSet dataSet = new DataSet();
                     adapter.Fill(dataSet, "list");
                     database.Close();
@@ -156,22 +156,82 @@ namespace ITRW211_Project
             }
         }
 
+        public int checkEmail(string email)
+        {
+            try
+            {
+                using (OleDbConnection database = new OleDbConnection(Properties.Settings.Default.AccountsConnectionString))
+                {
+                    database.Open();
+                    OleDbDataAdapter adapter = new OleDbDataAdapter(String.Format("SELECT * FROM LOGINDETAILS WHERE [EMAIL] = '{0}'", email), database);
+                    DataSet dataSet = new DataSet();
+                    adapter.Fill(dataSet, "list");
+                    database.Close();
+                    return dataSet.Tables[0].Rows.Count;
+                }
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
+        }
+
+        public string insertPass(string email, string pass)
+        {
+            try
+            {
+                using (OleDbConnection database = new OleDbConnection(Properties.Settings.Default.AccountsConnectionString))
+                {
+                    database.Open();
+                    OleDbDataAdapter adapter = new OleDbDataAdapter(@"SELECT * FROM LOGINDETAILS", database);
+                    OleDbCommand command = new OleDbCommand(String.Format("UPDATE LOGINDETAILS SET PASS = '{0}' WHERE EMAIL = '{1}'", Hash(pass), email), database);
+                    adapter.InsertCommand = command;
+                    adapter.InsertCommand.ExecuteNonQuery();
+                    database.Close();
+                }
+                return "Updated successfully password.";
+            }
+            catch (Exception)
+            {
+                return "There was an error updating new password.";
+            }
+        }
+
+        public string insertUser(string email, string user)
+        {
+            try
+            {
+                using (OleDbConnection database = new OleDbConnection(Properties.Settings.Default.AccountsConnectionString))
+                {
+                    database.Open();
+                    OleDbDataAdapter adapter = new OleDbDataAdapter(@"SELECT * FROM LOGINDETAILS", database);
+                    OleDbCommand command = new OleDbCommand(String.Format("UPDATE LOGINDETAILS SET [USER] = '{0}' WHERE EMAIL = '{1}'", user, email), database);
+                    adapter.InsertCommand = command;
+                    adapter.InsertCommand.ExecuteNonQuery();
+                    database.Close();
+                }
+                return "Updated successfully username.";
+            }
+            catch (Exception)
+            {
+                return "There was an error updating new username.";
+            }
+        }
+
         public string newUser(string email, string user, string pass)
         {
             try
             {
                 using (OleDbConnection database = new OleDbConnection(Properties.Settings.Default.AccountsConnectionString))
                 {
-                    adapterS = @"SELECT * FROM LOGINDETAILS";
-                    commandS = String.Format("INSERT INTO LOGINDETAILS (USER,PASS,EMAIL) VALUES('{0}', '{1}', '{2}')", user, Hash(pass),email);
                     database.Open();
-                    OleDbDataAdapter adapter = new OleDbDataAdapter(adapterS, database);
-                    OleDbCommand command = new OleDbCommand(commandS, database);
+                    OleDbDataAdapter adapter = new OleDbDataAdapter(@"SELECT * FROM LOGINDETAILS", database);
+                    OleDbCommand command = new OleDbCommand(String.Format("INSERT INTO LOGINDETAILS ([USER] , PASS , EMAIL) VALUES ('{0}', '{1}', '{2}')", user, Hash(pass), email), database);
                     adapter.InsertCommand = command;
                     adapter.InsertCommand.ExecuteNonQuery();
                     database.Close();
-                    return "User account created successfully.";
                 }
+                return "User account created successfully.";
             }
             catch (Exception)
             {

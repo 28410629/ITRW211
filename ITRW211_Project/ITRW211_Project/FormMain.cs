@@ -51,12 +51,13 @@ namespace ITRW211_Project
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             main.Show();
-            this.Close();
+
+            Close();
         }
 
         private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Application.Exit();
+            main.Show();
         }
     }
 }

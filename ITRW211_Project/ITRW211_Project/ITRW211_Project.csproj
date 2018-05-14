@@ -61,10 +61,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccountsDataSet1.Designer.cs">
+    <Compile Include="AccountsDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>AccountsDataSet1.xsd</DependentUpon>
+      <DependentUpon>AccountsDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="DatabaseCommands.cs" />
     <Compile Include="DatabaseDataSet.Designer.cs">
@@ -170,16 +170,16 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="AccountsDataSet1.xsc">
-      <DependentUpon>AccountsDataSet1.xsd</DependentUpon>
+    <None Include="AccountsDataSet.xsc">
+      <DependentUpon>AccountsDataSet.xsd</DependentUpon>
     </None>
-    <None Include="AccountsDataSet1.xsd">
+    <None Include="AccountsDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>AccountsDataSet1.Designer.cs</LastGenOutput>
+      <LastGenOutput>AccountsDataSet.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="AccountsDataSet1.xss">
-      <DependentUpon>AccountsDataSet1.xsd</DependentUpon>
+    <None Include="AccountsDataSet.xss">
+      <DependentUpon>AccountsDataSet.xsd</DependentUpon>
     </None>
     <None Include="DatabaseDataSet.xsc">
       <DependentUpon>DatabaseDataSet.xsd</DependentUpon>

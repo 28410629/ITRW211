@@ -27,33 +27,15 @@ namespace ITRW211_Project
 
         private void buttonForgotU_Click(object sender, EventArgs e)
         {
-            /*string passT = textBoxPass.Text;
-            string userT = textBoxUser.Text;
-            if (!string.IsNullOrWhiteSpace(userT))
+            DatabaseCommands databaseCommands = new DatabaseCommands();
+            if (databaseCommands.checkEmail(textBoxEmail.Text) == 0)
             {
-                if (!string.IsNullOrWhiteSpace(passT))
-                {
-                    DatabaseCommands commands = new DatabaseCommands();
-                    if (commands.checkUser(userT, Hash(passT)) == 0)
-                    {
-                        labelInfo.Text = "Login failed";
-                    }
-                    else
-                    {
-                        FormMain formMain = new FormMain(this, userT);
-                        this.Hide();
-                        formMain.Show();
-                    }
-                }
-                else
-                {
-                    labelInfo.Text = "Please enter a password.";
-                }
+                labelResult.Text = "Email does not exist in database.";
             }
             else
             {
-                labelInfo.Text = "Please enter a username.";
-            }*/
+                labelResult.Text = databaseCommands.insertUser(textBoxEmail.Text, textBoxUser.Text);
+            }
         }
 
         private void FormForgot_FormClosing(object sender, FormClosingEventArgs e)
@@ -69,33 +51,15 @@ namespace ITRW211_Project
 
         private void buttonForgotP_Click(object sender, EventArgs e)
         {
-            /*string passT = textBoxPass.Text;
-            string userT = textBoxUser.Text;
-            if (!string.IsNullOrWhiteSpace(userT))
+            DatabaseCommands databaseCommands = new DatabaseCommands();
+            if(databaseCommands.checkEmail(textBoxEmail.Text) == 0)
             {
-                if (!string.IsNullOrWhiteSpace(passT))
-                {
-                    DatabaseCommands commands = new DatabaseCommands();
-                    if (commands.checkUser(userT, Hash(passT)) == 0)
-                    {
-                        labelInfo.Text = "Login failed";
-                    }
-                    else
-                    {
-                        FormMain formMain = new FormMain(this, userT);
-                        this.Hide();
-                        formMain.Show();
-                    }
-                }
-                else
-                {
-                    labelInfo.Text = "Please enter a password.";
-                }
+                labelResult.Text = "Email does not exist in database.";
             }
             else
             {
-                labelInfo.Text = "Please enter a username.";
-            }*/
+                labelResult.Text = databaseCommands.insertPass(textBoxEmail.Text, textBoxPass.Text);
+            }
         }
 
         private void buttonBack_Click(object sender, EventArgs e)

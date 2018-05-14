@@ -34,9 +34,9 @@
             this.buttonForgotU = new System.Windows.Forms.Button();
             this.buttonForgotP = new System.Windows.Forms.Button();
             this.textBoxPass = new System.Windows.Forms.TextBox();
-            this.textBoxUser = new System.Windows.Forms.TextBox();
+            this.textBoxEmail = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBoxUser = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.buttonBoth = new System.Windows.Forms.Button();
             this.labelResult = new System.Windows.Forms.Label();
@@ -98,12 +98,12 @@
             this.textBoxPass.Size = new System.Drawing.Size(232, 20);
             this.textBoxPass.TabIndex = 10;
             // 
-            // textBoxUser
+            // textBoxEmail
             // 
-            this.textBoxUser.Location = new System.Drawing.Point(151, 32);
-            this.textBoxUser.Name = "textBoxUser";
-            this.textBoxUser.Size = new System.Drawing.Size(232, 20);
-            this.textBoxUser.TabIndex = 9;
+            this.textBoxEmail.Location = new System.Drawing.Point(151, 32);
+            this.textBoxEmail.Name = "textBoxEmail";
+            this.textBoxEmail.Size = new System.Drawing.Size(232, 20);
+            this.textBoxEmail.TabIndex = 9;
             // 
             // label3
             // 
@@ -117,12 +117,12 @@
             this.label3.TabIndex = 16;
             this.label3.Text = "Username:";
             // 
-            // textBox1
+            // textBoxUser
             // 
-            this.textBox1.Location = new System.Drawing.Point(151, 60);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(232, 20);
-            this.textBox1.TabIndex = 15;
+            this.textBoxUser.Location = new System.Drawing.Point(151, 60);
+            this.textBoxUser.Name = "textBoxUser";
+            this.textBoxUser.Size = new System.Drawing.Size(232, 20);
+            this.textBoxUser.TabIndex = 15;
             // 
             // label4
             // 
@@ -181,13 +181,13 @@
             this.Controls.Add(this.buttonBoth);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.textBoxUser);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonForgotU);
             this.Controls.Add(this.buttonForgotP);
             this.Controls.Add(this.textBoxPass);
-            this.Controls.Add(this.textBoxUser);
+            this.Controls.Add(this.textBoxEmail);
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(479, 386);
             this.MinimumSize = new System.Drawing.Size(479, 386);
@@ -208,9 +208,9 @@
         private System.Windows.Forms.Button buttonForgotU;
         private System.Windows.Forms.Button buttonForgotP;
         private System.Windows.Forms.TextBox textBoxPass;
-        private System.Windows.Forms.TextBox textBoxUser;
+        private System.Windows.Forms.TextBox textBoxEmail;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBoxUser;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button buttonBoth;
         private System.Windows.Forms.Label labelResult;
