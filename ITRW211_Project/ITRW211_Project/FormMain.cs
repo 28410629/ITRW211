@@ -12,10 +12,14 @@ namespace ITRW211_Project
 {
     public partial class FormMain : Form
     {
-        string theme = "light";
-        public FormMain()
+        Form main;
+        string user;
+
+        public FormMain(Form main, string user)
         {
             InitializeComponent();
+            this.main = main;
+            this.user = user;
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -46,7 +50,8 @@ namespace ITRW211_Project
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Close();
+            main.Show();
+            this.Close();
         }
     }
 }

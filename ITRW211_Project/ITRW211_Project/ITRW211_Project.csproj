@@ -61,6 +61,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountsDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AccountsDataSet1.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DatabaseCommands.cs" />
     <Compile Include="DatabaseDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -69,6 +74,12 @@
     </Compile>
     <Compile Include="DownloadHTML.cs" />
     <Compile Include="DownloadIMAGE.cs" />
+    <Compile Include="FormLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormLogin.Designer.cs">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </Compile>
     <Compile Include="StringManipulationApple.cs" />
     <Compile Include="StringManipulationArs.cs" />
     <Compile Include="StringManipulationHack.cs" />
@@ -110,6 +121,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormLogin.resx">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ViewReadCount.resx">
       <DependentUpon>ViewReadCount.cs</DependentUpon>
     </EmbeddedResource>
@@ -138,6 +152,17 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="AccountsDataSet1.xsc">
+      <DependentUpon>AccountsDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="AccountsDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>AccountsDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="AccountsDataSet1.xss">
+      <DependentUpon>AccountsDataSet1.xsd</DependentUpon>
+    </None>
     <None Include="DatabaseDataSet.xsc">
       <DependentUpon>DatabaseDataSet.xsd</DependentUpon>
     </None>
@@ -178,6 +203,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Accounts.mdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Database.mdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
