@@ -28,13 +28,90 @@ namespace ITRW211_Project
                  * 9 - Article Refined Text  !   (store your refined paragraphs here)
                  * 10 - Article Counter !   (this needs 0)
                  */
-            if(arr[8] == "0")
+            if (!string.IsNullOrWhiteSpace(arr[6]))
             {
                 string datacopy = arr[6];
                 datacopy = datacopy.Substring(datacopy.IndexOf("article, BEGIN"));
                 datacopy = datacopy.Remove(datacopy.IndexOf("article, END"));
+                datacopy = datacopy.Substring(datacopy.IndexOf("article-leader"));
+                //MessageBox.Show(datacopy);
+                string firstP = datacopy.Remove(datacopy.IndexOf("img src"));
+                datacopy = datacopy.Replace(firstP, "");
+                //MessageBox.Show(datacopy);
+                string header = datacopy.Remove(datacopy.IndexOf("<br>") + 3);
+                datacopy = datacopy.Replace(header, "");
+                //MessageBox.Show(datacopy);
+                string leftOver = datacopy.Remove(datacopy.IndexOf("<br>") + 8);
+                datacopy = datacopy.Replace(leftOver, "");
+                //MessageBox.Show(datacopy);
 
+                string article = "";
+                while (datacopy.Contains("<br>"))
+                {
+                    string paragraph = datacopy;
+                    paragraph = paragraph.Remove(paragraph.IndexOf("<br>") + 8);
+                    //MessageBox.Show(paragraph);
+                    //MessageBox.Show("" + paragraph.Length);
+                    datacopy = datacopy.Replace(paragraph, "");
+                    paragraph = paragraph.Remove(paragraph.IndexOf("<br>"));
+                    while (paragraph.Contains("h2"))
+                        paragraph = "";
 
+                    while (paragraph.Contains("img src"))
+                    {
+                        paragraph = paragraph.Substring(paragraph.IndexOf("<br") + 3);
+                    }
+                    //<em>
+                    while (paragraph.Contains("href"))
+                    {
+                        string refLink = paragraph.Substring(paragraph.IndexOf("<a"));
+                        refLink = refLink.Remove(refLink.IndexOf(">") + 1);
+                        paragraph = paragraph.Replace(refLink, "");
+                        paragraph = paragraph.Replace("</a>", "");
+                    }
+
+                    while (paragraph.Contains("minor2 small gray"))
+                        paragraph = "";
+
+                    while (paragraph.Contains("</div>"))
+                        paragraph = "";
+
+                    while (paragraph.Contains("<em>") && paragraph.Contains("</em>"))
+                    {
+                        paragraph = paragraph.Replace("<em>", "");
+                        paragraph = paragraph.Replace("</em>", "");
+                    }
+
+                    while (paragraph.Contains("<strong>") && paragraph.Contains("</strong>"))
+                    {
+                        paragraph = paragraph.Replace("<strong>", "");
+                        paragraph = paragraph.Replace("</strong>", "");
+                    }
+
+                    while (paragraph.Contains("&amp;"))
+                        paragraph = paragraph.Replace("&amp;", "&");
+
+                    while (paragraph.Contains("<li>"))
+                        paragraph = paragraph.Replace("<li>", "");
+
+                    while (paragraph.Contains("</li>"))
+                        paragraph = paragraph.Replace("</li>", "");
+
+                    while (paragraph.Contains("<ul>"))
+                        paragraph = paragraph.Replace("<ul>", "");
+
+                    while (paragraph.Contains("</ul>"))
+                        paragraph = paragraph.Replace("</ul>", "");
+
+                    while (paragraph.Contains("&gt;"))
+                        paragraph = paragraph.Replace("&gt;", "");
+
+                    if (!string.IsNullOrWhiteSpace(paragraph))
+                        article += paragraph + "\n\n";
+                    //MessageBox.Show(datacopy);
+                }
+                arr[9] = article;
+                //MessageBox.Show(article);
             }
             return arr;
         }
