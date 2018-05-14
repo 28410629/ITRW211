@@ -74,11 +74,23 @@
     </Compile>
     <Compile Include="DownloadHTML.cs" />
     <Compile Include="DownloadIMAGE.cs" />
+    <Compile Include="FormForgot.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormForgot.Designer.cs">
+      <DependentUpon>FormForgot.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormLogin.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormLogin.Designer.cs">
       <DependentUpon>FormLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormRegister.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRegister.Designer.cs">
+      <DependentUpon>FormRegister.cs</DependentUpon>
     </Compile>
     <Compile Include="StringManipulationApple.cs" />
     <Compile Include="StringManipulationArs.cs" />
@@ -121,8 +133,14 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormForgot.resx">
+      <DependentUpon>FormForgot.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRegister.resx">
+      <DependentUpon>FormRegister.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ViewReadCount.resx">
       <DependentUpon>ViewReadCount.cs</DependentUpon>

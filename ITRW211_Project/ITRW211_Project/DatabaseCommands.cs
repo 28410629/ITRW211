@@ -4,51 +4,57 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.OleDb;
+using System.Data;
+using System.Windows.Forms;
 
 namespace ITRW211_Project
 {
     public class DatabaseCommands
     {
+        string adapterS;
+        string commandS;
+
+        public string Hash(string password)
+        {
+            var bytes = new UTF8Encoding().GetBytes(password);
+            var hashBytes = System.Security.Cryptography.SHA1.Create().ComputeHash(bytes);
+            return Convert.ToBase64String(hashBytes);
+        }
+
         public string[] check(string[] arr)
         {
-            string articleAbstract = arr[4];
-            string articleName = arr[2];
-            string author = arr[3];
-            while (articleAbstract.Contains("\""))
+            while (arr[4].Contains("\""))
             {
-                articleAbstract = articleAbstract.Replace("\"", "");
+                arr[4] = arr[4].Replace("\"", "");
             }
-            while (articleAbstract.Contains("\'"))
+            while (arr[4].Contains("\'"))
             {
-                articleAbstract = articleAbstract.Replace("\'", "");
+                arr[4] = arr[4].Replace("\'", "");
             }
-            while (articleName.Contains("\""))
+            while (arr[2].Contains("\""))
             {
-                articleName = articleName.Replace("\"", "");
+                arr[2] = arr[2].Replace("\"", "");
             }
-            while (articleName.Contains("\'"))
+            while (arr[2].Contains("\'"))
             {
-                articleName = articleName.Replace("\'", "");
+                arr[2] = arr[2].Replace("\'", "");
             }
-            while (articleName.Contains(":"))
+            while (arr[2].Contains(":"))
             {
-                articleName = articleName.Replace(":", "");
+                arr[2] = arr[2].Replace(":", "");
             }
-            while (articleAbstract.Contains(":"))
+            while (arr[4].Contains(":"))
             {
-                articleAbstract = articleAbstract.Replace(":", "");
+                arr[4] = arr[4].Replace(":", "");
             }
-            while (author.Contains("\""))
+            while (arr[3].Contains("\""))
             {
-                author = author.Replace("\"", "");
+                arr[3] = arr[3].Replace("\"", "");
             }
-            while (author.Contains("\'"))
+            while (arr[3].Contains("\'"))
             {
-                author = author.Replace("\'", "");
+                arr[3] = arr[3].Replace("\'", "");
             }
-            arr[4] = articleAbstract;
-            arr[2] = articleName;
-            arr[3] = author;
             return arr;
         }
 
@@ -59,31 +65,26 @@ namespace ITRW211_Project
             {
                 if (website == "Ars Technica")
                 {
-                    database.Open();
-                    OleDbDataAdapter adapter = new OleDbDataAdapter(@"SELECT * FROM ARSTECHNICA", database);
-                    OleDbCommand command = new OleDbCommand(String.Format("INSERT INTO ARSTECHNICA (FIRSTDATE,VIEWCOUNT,ARTICLE,AUTHOR,ABSTRACT) VALUES('{0}', '{1}', '{2}', '{3}', '{4}')", DateTime.Today.Date.ToString().Remove(10), arr[10], arr[2], arr[3], arr[4]), database);
-                    adapter.InsertCommand = command;
-                    adapter.InsertCommand.ExecuteNonQuery();
-                    database.Close();
+                    adapterS = @"SELECT * FROM ARSTECHNICA";
+                    commandS = String.Format("INSERT INTO ARSTECHNICA (FIRSTDATE,VIEWCOUNT,ARTICLE,AUTHOR,ABSTRACT) VALUES('{0}', '{1}', '{2}', '{3}', '{4}')", DateTime.Today.Date.ToString().Remove(10), arr[10], arr[2], arr[3], arr[4]);
+                    
                 }
                 else if (website == "Hackaday")
                 {
-                    database.Open();
-                    OleDbDataAdapter adapter = new OleDbDataAdapter(@"SELECT * FROM HACKADAY", database);
-                    OleDbCommand command = new OleDbCommand(String.Format("INSERT INTO HACKADAY (FISRTDATE,VIEWCOUNT,ARTICLE,AUTHOR,ABSTRACT) VALUES('{0}', '{1}', '{2}', '{3}', '{4}')", DateTime.Today.Date.ToString().Remove(10), arr[10], arr[2], arr[3], arr[4]), database);
-                    adapter.InsertCommand = command;
-                    adapter.InsertCommand.ExecuteNonQuery();
-                    database.Close();
+                    adapterS = @"SELECT * FROM HACKADAY";
+                    commandS = String.Format("INSERT INTO HACKADAY (FISRTDATE,VIEWCOUNT,ARTICLE,AUTHOR,ABSTRACT) VALUES('{0}', '{1}', '{2}', '{3}', '{4}')", DateTime.Today.Date.ToString().Remove(10), arr[10], arr[2], arr[3], arr[4]);
                 }
                 else
                 {
-                    database.Open();
-                    OleDbDataAdapter adapter = new OleDbDataAdapter(@"SELECT * FROM APPLEINSIDER", database);
-                    OleDbCommand command = new OleDbCommand(String.Format("INSERT INTO APPLEINSIDER (FIRSTDATE,VIEWCOUNT,ARTICLE,AUTHOR,ABSTRACT) VALUES('{0}', '{1}', '{2}', '{3}', '{4}')", DateTime.Today.Date.ToString().Remove(10), arr[10], arr[2], arr[3], arr[4]), database);
-                    adapter.InsertCommand = command;
-                    adapter.InsertCommand.ExecuteNonQuery();
-                    database.Close();
+                    adapterS = @"SELECT * FROM APPLEINSIDER";
+                    commandS = String.Format("INSERT INTO APPLEINSIDER (FIRSTDATE,VIEWCOUNT,ARTICLE,AUTHOR,ABSTRACT) VALUES('{0}', '{1}', '{2}', '{3}', '{4}')", DateTime.Today.Date.ToString().Remove(10), arr[10], arr[2], arr[3], arr[4]);
                 }
+                database.Open();
+                OleDbDataAdapter adapter = new OleDbDataAdapter(adapterS, database);
+                OleDbCommand command = new OleDbCommand(commandS, database);
+                adapter.InsertCommand = command;
+                adapter.InsertCommand.ExecuteNonQuery();
+                database.Close();
             }
         }
         public void update(string[] arr, string website)
@@ -93,31 +94,88 @@ namespace ITRW211_Project
             {
                 if (website == "Ars Technica")
                 {
-                    database.Open();
-                    OleDbDataAdapter adapter = new OleDbDataAdapter(@"SELECT * FROM ARSTECHNICA", database);
-                    OleDbCommand command = new OleDbCommand(String.Format("UPDATE ARSTECHNICA SET VIEWCOUNT = {0} WHERE ARTICLE = '{1}'", arr[10], arr[2]), database);
-                    adapter.InsertCommand = command;
-                    adapter.InsertCommand.ExecuteNonQuery();
-                    database.Close();
+                    adapterS = @"SELECT * FROM ARSTECHNICA";
+                    commandS = String.Format("UPDATE ARSTECHNICA SET VIEWCOUNT = {0} WHERE ARTICLE = '{1}'", arr[10], arr[2]);
                 }
                 else if (website == "Hackaday")
                 {
-                    database.Open();
-                    OleDbDataAdapter adapter = new OleDbDataAdapter(@"SELECT * FROM HACKADAY", database);
-                    OleDbCommand command = new OleDbCommand(String.Format("UPDATE HACKADAY SET VIEWCOUNT = {0} WHERE ARTICLE = '{1}'", arr[10], arr[2]), database);
-                    adapter.InsertCommand = command;
-                    adapter.InsertCommand.ExecuteNonQuery();
-                    database.Close();
+                    adapterS = @"SELECT * FROM HACKADAY";
+                    commandS = String.Format("UPDATE HACKADAY SET VIEWCOUNT = {0} WHERE ARTICLE = '{1}'", arr[10], arr[2]);
                 }
                 else
                 {
+                    adapterS = @"SELECT * FROM APPLEINSIDER";
+                    commandS = String.Format("UPDATE APPLEINSIDER SET VIEWCOUNT = {0} WHERE ARTICLE = '{1}'", arr[10], arr[2]);
+                }
+                database.Open();
+                OleDbDataAdapter adapter = new OleDbDataAdapter(adapterS, database);
+                OleDbCommand command = new OleDbCommand(commandS, database);
+                adapter.InsertCommand = command;
+                adapter.InsertCommand.ExecuteNonQuery();
+                database.Close();
+            }
+        }
+
+        public int checkLogin(string user, string pass)
+        {
+            try
+            {
+                using (OleDbConnection database = new OleDbConnection(Properties.Settings.Default.AccountsConnectionString))
+                {
                     database.Open();
-                    OleDbDataAdapter adapter = new OleDbDataAdapter(@"SELECT * FROM APPLEINSIDER", database);
-                    OleDbCommand command = new OleDbCommand(String.Format("UPDATE APPLEINSIDER SET VIEWCOUNT = {0} WHERE ARTICLE = '{1}'", arr[10], arr[2]), database);
+                    OleDbDataAdapter adapter = new OleDbDataAdapter(String.Format("SELECT * FROM LOGINDETAILS WHERE USER = '{0}' AND PASS = '{1}'",user,Hash(pass)), database);
+                    DataSet dataSet = new DataSet();
+                    adapter.Fill(dataSet, "list");
+                    database.Close();
+                    return dataSet.Tables[0].Rows.Count;
+                }
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
+        }
+
+        public int checkUser(string user)
+        {
+            try
+            {
+                using (OleDbConnection database = new OleDbConnection(Properties.Settings.Default.AccountsConnectionString))
+                {
+                    database.Open();
+                    OleDbDataAdapter adapter = new OleDbDataAdapter(String.Format("SELECT * FROM LOGINDETAILS WHERE USER = '{0}'", user), database);
+                    DataSet dataSet = new DataSet();
+                    adapter.Fill(dataSet, "list");
+                    database.Close();
+                    return dataSet.Tables[0].Rows.Count;
+                }
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
+        }
+
+        public string newUser(string email, string user, string pass)
+        {
+            try
+            {
+                using (OleDbConnection database = new OleDbConnection(Properties.Settings.Default.AccountsConnectionString))
+                {
+                    adapterS = @"SELECT * FROM LOGINDETAILS";
+                    commandS = String.Format("INSERT INTO LOGINDETAILS (USER,PASS,EMAIL) VALUES('{0}', '{1}', '{2}')", user, Hash(pass),email);
+                    database.Open();
+                    OleDbDataAdapter adapter = new OleDbDataAdapter(adapterS, database);
+                    OleDbCommand command = new OleDbCommand(commandS, database);
                     adapter.InsertCommand = command;
                     adapter.InsertCommand.ExecuteNonQuery();
                     database.Close();
+                    return "User account created successfully.";
                 }
+            }
+            catch (Exception)
+            {
+                return "There was an error registering new account.";
             }
         }
     }

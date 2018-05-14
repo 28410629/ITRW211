@@ -35,9 +35,9 @@
             this.buttonExit = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.labelForgot = new System.Windows.Forms.Label();
             this.labelRegister = new System.Windows.Forms.Label();
+            this.labelInfo = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // textBoxUser
@@ -51,6 +51,7 @@
             // 
             this.textBoxPass.Location = new System.Drawing.Point(149, 97);
             this.textBoxPass.Name = "textBoxPass";
+            this.textBoxPass.PasswordChar = '*';
             this.textBoxPass.Size = new System.Drawing.Size(232, 20);
             this.textBoxPass.TabIndex = 3;
             // 
@@ -76,6 +77,7 @@
             this.buttonExit.TabIndex = 6;
             this.buttonExit.Text = "Exit";
             this.buttonExit.UseVisualStyleBackColor = false;
+            this.buttonExit.Click += new System.EventHandler(this.buttonExit_Click);
             // 
             // label1
             // 
@@ -101,18 +103,6 @@
             this.label2.TabIndex = 8;
             this.label2.Text = "Password: ";
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label3.Location = new System.Drawing.Point(9, 9);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(321, 31);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "Article Reader - Group 49";
-            // 
             // labelForgot
             // 
             this.labelForgot.AutoSize = true;
@@ -124,6 +114,7 @@
             this.labelForgot.Size = new System.Drawing.Size(88, 15);
             this.labelForgot.TabIndex = 10;
             this.labelForgot.Text = "Forgot details?";
+            this.labelForgot.Click += new System.EventHandler(this.labelForgot_Click);
             // 
             // labelRegister
             // 
@@ -136,6 +127,18 @@
             this.labelRegister.Size = new System.Drawing.Size(53, 15);
             this.labelRegister.TabIndex = 11;
             this.labelRegister.Text = "Register";
+            this.labelRegister.Click += new System.EventHandler(this.labelRegister_Click);
+            // 
+            // labelInfo
+            // 
+            this.labelInfo.AutoSize = true;
+            this.labelInfo.BackColor = System.Drawing.Color.Transparent;
+            this.labelInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelInfo.ForeColor = System.Drawing.Color.White;
+            this.labelInfo.Location = new System.Drawing.Point(12, 298);
+            this.labelInfo.Name = "labelInfo";
+            this.labelInfo.Size = new System.Drawing.Size(0, 15);
+            this.labelInfo.TabIndex = 12;
             // 
             // FormLogin
             // 
@@ -143,9 +146,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(463, 347);
+            this.Controls.Add(this.labelInfo);
             this.Controls.Add(this.labelRegister);
             this.Controls.Add(this.labelForgot);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonExit);
@@ -153,7 +156,11 @@
             this.Controls.Add(this.textBoxPass);
             this.Controls.Add(this.textBoxUser);
             this.DoubleBuffered = true;
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(479, 386);
+            this.MinimumSize = new System.Drawing.Size(479, 386);
             this.Name = "FormLogin";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Article Reader - Login";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -167,8 +174,8 @@
         private System.Windows.Forms.Button buttonExit;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label labelForgot;
         private System.Windows.Forms.Label labelRegister;
+        private System.Windows.Forms.Label labelInfo;
     }
 }

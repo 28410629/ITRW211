@@ -65,21 +65,21 @@
             // openLauncherToolStripMenuItem1
             // 
             this.openLauncherToolStripMenuItem1.Name = "openLauncherToolStripMenuItem1";
-            this.openLauncherToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.openLauncherToolStripMenuItem1.Size = new System.Drawing.Size(174, 22);
             this.openLauncherToolStripMenuItem1.Text = "Open Launcher";
             this.openLauncherToolStripMenuItem1.Click += new System.EventHandler(this.openLauncherToolStripMenuItem1_Click);
             // 
             // readArticlesToolStripMenuItem
             // 
             this.readArticlesToolStripMenuItem.Name = "readArticlesToolStripMenuItem";
-            this.readArticlesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.readArticlesToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.readArticlesToolStripMenuItem.Text = "View Read Counter";
             this.readArticlesToolStripMenuItem.Click += new System.EventHandler(this.readArticlesToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.exitToolStripMenuItem.Text = "Logout";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -100,7 +100,7 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -115,6 +115,7 @@
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Article Reader";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMain_FormClosing);
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

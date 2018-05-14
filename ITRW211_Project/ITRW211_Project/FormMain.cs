@@ -53,5 +53,10 @@ namespace ITRW211_Project
             main.Show();
             this.Close();
         }
+
+        private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

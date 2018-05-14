@@ -17,30 +17,54 @@ namespace ITRW211_Project
             InitializeComponent();
         }
 
-        public string Hash(string password)
-        {
-            var bytes = new UTF8Encoding().GetBytes(password);
-            var hashBytes = System.Security.Cryptography.SHA1.Create().ComputeHash(bytes);
-            return Convert.ToBase64String(hashBytes);
-        }
-
         private void buttonLogin_Click(object sender, EventArgs e)
         {
-            bool found = false;
-            for (int i = 0; i < length; i++)
+            string passT = textBoxPass.Text;
+            string userT = textBoxUser.Text;
+            if (!string.IsNullOrWhiteSpace(userT))
             {
-                
-            }
-            if (found)
-            {
-                string dbPassword = "";
-                if (Hash(textBoxPass.Text) == dbPassword)
+                if (!string.IsNullOrWhiteSpace(passT))
                 {
-                    FormMain formMain = new FormMain(this, textBoxUser.Text);
-                    this.Hide();
-                    formMain.Show();
+                    DatabaseCommands commands = new DatabaseCommands();
+                    if (commands.checkLogin(userT, passT) == 0)
+                    {
+                        labelInfo.Text = "Login failed";
+                    }
+                    else
+                    {
+                        FormMain formMain = new FormMain(this,userT);
+                        this.Hide();
+                        formMain.Show();
+                    }
+                }
+                else
+                {
+                    labelInfo.Text = "Please enter a password.";
                 }
             }
+            else
+            {
+                labelInfo.Text = "Please enter a username.";
+            }
+        }
+
+        private void buttonExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void labelRegister_Click(object sender, EventArgs e)
+        {
+            FormRegister formMain = new FormRegister(this);
+            this.Hide();
+            formMain.Show();
+        }
+
+        private void labelForgot_Click(object sender, EventArgs e)
+        {
+            FormForgot formMain = new FormForgot(this);
+            this.Hide();
+            formMain.Show();
         }
     }
 }
