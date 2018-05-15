@@ -43,6 +43,7 @@
             this.labelQuestion = new System.Windows.Forms.Label();
             this.textBoxAnswer = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.labelShowHidePass = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label2
@@ -51,7 +52,7 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Teal;
-            this.label2.Location = new System.Drawing.Point(74, 92);
+            this.label2.Location = new System.Drawing.Point(67, 91);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(67, 15);
             this.label2.TabIndex = 14;
@@ -63,7 +64,7 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Teal;
-            this.label1.Location = new System.Drawing.Point(96, 38);
+            this.label1.Location = new System.Drawing.Point(89, 37);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(42, 15);
             this.label1.TabIndex = 13;
@@ -73,7 +74,7 @@
             // 
             this.buttonForgotU.BackColor = System.Drawing.Color.White;
             this.buttonForgotU.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonForgotU.Location = new System.Drawing.Point(77, 132);
+            this.buttonForgotU.Location = new System.Drawing.Point(70, 131);
             this.buttonForgotU.Name = "buttonForgotU";
             this.buttonForgotU.Size = new System.Drawing.Size(145, 23);
             this.buttonForgotU.TabIndex = 6;
@@ -85,7 +86,7 @@
             // 
             this.buttonForgotP.BackColor = System.Drawing.Color.White;
             this.buttonForgotP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonForgotP.Location = new System.Drawing.Point(228, 132);
+            this.buttonForgotP.Location = new System.Drawing.Point(221, 131);
             this.buttonForgotP.Name = "buttonForgotP";
             this.buttonForgotP.Size = new System.Drawing.Size(145, 23);
             this.buttonForgotP.TabIndex = 7;
@@ -95,14 +96,15 @@
             // 
             // textBoxPass
             // 
-            this.textBoxPass.Location = new System.Drawing.Point(141, 91);
+            this.textBoxPass.Location = new System.Drawing.Point(134, 90);
             this.textBoxPass.Name = "textBoxPass";
+            this.textBoxPass.PasswordChar = '*';
             this.textBoxPass.Size = new System.Drawing.Size(232, 20);
             this.textBoxPass.TabIndex = 2;
             // 
             // textBoxEmail
             // 
-            this.textBoxEmail.Location = new System.Drawing.Point(141, 37);
+            this.textBoxEmail.Location = new System.Drawing.Point(134, 36);
             this.textBoxEmail.Name = "textBoxEmail";
             this.textBoxEmail.Size = new System.Drawing.Size(232, 20);
             this.textBoxEmail.TabIndex = 0;
@@ -114,7 +116,7 @@
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Teal;
-            this.label3.Location = new System.Drawing.Point(68, 66);
+            this.label3.Location = new System.Drawing.Point(61, 65);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(68, 15);
             this.label3.TabIndex = 16;
@@ -122,7 +124,7 @@
             // 
             // textBoxUser
             // 
-            this.textBoxUser.Location = new System.Drawing.Point(141, 65);
+            this.textBoxUser.Location = new System.Drawing.Point(134, 64);
             this.textBoxUser.Name = "textBoxUser";
             this.textBoxUser.Size = new System.Drawing.Size(232, 20);
             this.textBoxUser.TabIndex = 1;
@@ -177,7 +179,7 @@
             // 
             this.textBoxAnswer.Location = new System.Drawing.Point(134, 224);
             this.textBoxAnswer.Name = "textBoxAnswer";
-            this.textBoxAnswer.Size = new System.Drawing.Size(249, 20);
+            this.textBoxAnswer.Size = new System.Drawing.Size(232, 20);
             this.textBoxAnswer.TabIndex = 4;
             // 
             // label5
@@ -192,12 +194,26 @@
             this.label5.TabIndex = 38;
             this.label5.Text = "Answer:";
             // 
+            // labelShowHidePass
+            // 
+            this.labelShowHidePass.AutoSize = true;
+            this.labelShowHidePass.BackColor = System.Drawing.Color.Transparent;
+            this.labelShowHidePass.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelShowHidePass.ForeColor = System.Drawing.Color.Teal;
+            this.labelShowHidePass.Location = new System.Drawing.Point(372, 91);
+            this.labelShowHidePass.Name = "labelShowHidePass";
+            this.labelShowHidePass.Size = new System.Drawing.Size(38, 15);
+            this.labelShowHidePass.TabIndex = 39;
+            this.labelShowHidePass.Text = "Show";
+            this.labelShowHidePass.Click += new System.EventHandler(this.labelShowHidePass_Click);
+            // 
             // FormForgot
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(463, 347);
+            this.Controls.Add(this.labelShowHidePass);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.textBoxAnswer);
             this.Controls.Add(this.labelQuestion);
@@ -241,5 +257,6 @@
         private System.Windows.Forms.Label labelQuestion;
         private System.Windows.Forms.TextBox textBoxAnswer;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label labelShowHidePass;
     }
 }

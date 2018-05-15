@@ -63,9 +63,9 @@ namespace ITRW211_Project.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap ars_sub_thumb {
+        internal static System.Drawing.Bitmap apple_firstview {
             get {
-                object obj = ResourceManager.GetObject("ars_sub_thumb", resourceCulture);
+                object obj = ResourceManager.GetObject("apple_firstview", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,19 @@ namespace ITRW211_Project.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap hackadaydf {
+        internal static System.Drawing.Bitmap ars_firstview {
             get {
-                object obj = ResourceManager.GetObject("hackadaydf", resourceCulture);
+                object obj = ResourceManager.GetObject("ars_firstview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ars_sub_thumb {
+            get {
+                object obj = ResourceManager.GetObject("ars_sub_thumb", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

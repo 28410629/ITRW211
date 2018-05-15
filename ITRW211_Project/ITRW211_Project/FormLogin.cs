@@ -32,10 +32,12 @@ namespace ITRW211_Project
                     }
                     else
                     {
+                        textBoxUser.Focus();
                         FormMain formMain = new FormMain(this,userT);
                         this.Hide();
                         textBoxPass.Text = "";
                         textBoxUser.Text = "";
+                        labelInfo.Text = "";
                         formMain.Show();
                     }
                 }
@@ -57,25 +59,48 @@ namespace ITRW211_Project
 
         private void labelRegister_Click(object sender, EventArgs e)
         {
+            textBoxUser.Focus();
             FormRegister formMain = new FormRegister(this);
             this.Hide();
             textBoxPass.Text = "";
             textBoxUser.Text = "";
+            labelInfo.Text = "";
             formMain.Show();
         }
 
         private void labelForgot_Click(object sender, EventArgs e)
         {
+            textBoxUser.Focus();
             FormForgot formMain = new FormForgot(this);
             this.Hide();
             textBoxPass.Text = "";
             textBoxUser.Text = "";
+            labelInfo.Text = "";
             formMain.Show();
         }
 
         private void FormLogin_Load(object sender, EventArgs e)
         {
             textBoxUser.Focus();
+        }
+
+        private void FormLogin_Shown(object sender, EventArgs e)
+        {
+            textBoxUser.Focus();
+        }
+
+        private void labelShowHidePass_Click(object sender, EventArgs e)
+        {
+            if (labelShowHidePass.Text == "Show")
+            {
+                labelShowHidePass.Text = "Hide";
+                textBoxPass.PasswordChar = '\0';
+            }
+            else
+            {
+                labelShowHidePass.Text = "Show";
+                textBoxPass.PasswordChar = '*';
+            }
         }
     }
 }

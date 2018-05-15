@@ -30,6 +30,16 @@ namespace ITRW211_Project
             this.Website = Website;
             this.username = username;
             Text = Website + " Article Reader";
+            if (Website == "Ars Technica")
+            {
+                pictureBoxPreview.SizeMode = PictureBoxSizeMode.Zoom;
+                pictureBoxPreview.Image = Properties.Resources.ars_firstview;
+            }
+            else
+            {
+                pictureBoxPreview.SizeMode = PictureBoxSizeMode.Zoom;
+                pictureBoxPreview.Image = Properties.Resources.apple_firstview;
+            }
         }
 
         // Event for when form loads to process all new articles

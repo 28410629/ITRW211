@@ -37,20 +37,27 @@ namespace ITRW211_Project
             }
             else
             {
-                if (textBoxEmail.Text == textBoxEmailCheck.Text && textBoxEmail.Text.Contains("@") && textBoxEmail.Text.Contains("."))
+                if (textBoxEmail.Text == textBoxEmailCheck.Text && textBoxEmail.Text.Contains("@") && textBoxEmail.Text.Contains(".") && !string.IsNullOrWhiteSpace(textBoxEmail.Text))
                 {
-                    if (textBoxPass.Text == textBoxPassCheck.Text)
+                    if (textBoxPass.Text == textBoxPassCheck.Text && !string.IsNullOrWhiteSpace(textBoxPass.Text))
                     {
                         DatabaseCommands databaseCommands = new DatabaseCommands();
                         if (databaseCommands.checkUser(textBoxUser.Text) == 0)
                         {
-                            if (textBoxQuestion.Text.Length < 47)
+                            if (!string.IsNullOrWhiteSpace(textBoxUser.Text))
                             {
-                                labelResult.Text = databaseCommands.newUser(textBoxEmail.Text, textBoxUser.Text, textBoxPass.Text, textBoxQuestion.Text, textBoxAnswer.Text);
+                                if (textBoxQuestion.Text.Length < 47)
+                                {
+                                    labelResult.Text = databaseCommands.newUser(textBoxEmail.Text, textBoxUser.Text, textBoxPass.Text, textBoxQuestion.Text, textBoxAnswer.Text);
+                                }
+                                else
+                                {
+                                    labelResult.Text = "Please make security question shorter.";
+                                }
                             }
                             else
                             {
-                                labelResult.Text = "Please make security question shorter.";
+                                labelResult.Text = "Username is whitespace/null, please enter username.";
                             }
                         }
                         else
@@ -60,13 +67,29 @@ namespace ITRW211_Project
                     }
                     else
                     {
-                        labelResult.Text = "Passwords do not match.";
+                        labelResult.Text = "Passwords do not match or is whitespace/null.";
                     }
                 }
                 else
                 {
                     labelResult.Text = "Invalid email.";
                 }
+            }
+        }
+
+        private void labelShowHidePass_Click(object sender, EventArgs e)
+        {
+            if (labelShowHidePass.Text == "Show")
+            {
+                labelShowHidePass.Text = "Hide";
+                textBoxPass.PasswordChar = '\0';
+                textBoxPassCheck.PasswordChar = '\0';
+            }
+            else
+            {
+                labelShowHidePass.Text = "Show";
+                textBoxPass.PasswordChar = '*';
+                textBoxPassCheck.PasswordChar = '*';
             }
         }
     }

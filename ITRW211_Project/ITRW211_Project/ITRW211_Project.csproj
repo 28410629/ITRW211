@@ -252,6 +252,8 @@
     <None Include="Resources\apple-insider-logo.png" />
     <None Include="Resources\opengraph-default.png" />
     <None Include="Resources\hackadaydf.png" />
+    <None Include="Resources\ars-firstview.jpg" />
+    <None Include="Resources\apple-firstview.jpg" />
     <Content Include="seo-article-icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

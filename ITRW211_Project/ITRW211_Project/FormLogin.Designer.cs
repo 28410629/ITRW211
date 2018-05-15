@@ -38,18 +38,19 @@
             this.labelForgot = new System.Windows.Forms.Label();
             this.labelRegister = new System.Windows.Forms.Label();
             this.labelInfo = new System.Windows.Forms.Label();
+            this.labelShowHidePass = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // textBoxUser
             // 
-            this.textBoxUser.Location = new System.Drawing.Point(149, 67);
+            this.textBoxUser.Location = new System.Drawing.Point(140, 65);
             this.textBoxUser.Name = "textBoxUser";
             this.textBoxUser.Size = new System.Drawing.Size(232, 20);
             this.textBoxUser.TabIndex = 0;
             // 
             // textBoxPass
             // 
-            this.textBoxPass.Location = new System.Drawing.Point(149, 93);
+            this.textBoxPass.Location = new System.Drawing.Point(140, 91);
             this.textBoxPass.Name = "textBoxPass";
             this.textBoxPass.PasswordChar = '*';
             this.textBoxPass.Size = new System.Drawing.Size(232, 20);
@@ -59,7 +60,7 @@
             // 
             this.buttonLogin.BackColor = System.Drawing.Color.White;
             this.buttonLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonLogin.Location = new System.Drawing.Point(236, 131);
+            this.buttonLogin.Location = new System.Drawing.Point(227, 129);
             this.buttonLogin.Name = "buttonLogin";
             this.buttonLogin.Size = new System.Drawing.Size(145, 23);
             this.buttonLogin.TabIndex = 2;
@@ -71,7 +72,7 @@
             // 
             this.buttonExit.BackColor = System.Drawing.Color.White;
             this.buttonExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonExit.Location = new System.Drawing.Point(85, 131);
+            this.buttonExit.Location = new System.Drawing.Point(76, 129);
             this.buttonExit.Name = "buttonExit";
             this.buttonExit.Size = new System.Drawing.Size(145, 23);
             this.buttonExit.TabIndex = 3;
@@ -85,7 +86,7 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Teal;
-            this.label1.Location = new System.Drawing.Point(72, 68);
+            this.label1.Location = new System.Drawing.Point(63, 66);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(71, 15);
             this.label1.TabIndex = 7;
@@ -97,7 +98,7 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Teal;
-            this.label2.Location = new System.Drawing.Point(76, 94);
+            this.label2.Location = new System.Drawing.Point(67, 92);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(67, 15);
             this.label2.TabIndex = 8;
@@ -140,12 +141,26 @@
             this.labelInfo.Size = new System.Drawing.Size(0, 15);
             this.labelInfo.TabIndex = 12;
             // 
+            // labelShowHidePass
+            // 
+            this.labelShowHidePass.AutoSize = true;
+            this.labelShowHidePass.BackColor = System.Drawing.Color.Transparent;
+            this.labelShowHidePass.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelShowHidePass.ForeColor = System.Drawing.Color.Teal;
+            this.labelShowHidePass.Location = new System.Drawing.Point(378, 92);
+            this.labelShowHidePass.Name = "labelShowHidePass";
+            this.labelShowHidePass.Size = new System.Drawing.Size(38, 15);
+            this.labelShowHidePass.TabIndex = 13;
+            this.labelShowHidePass.Text = "Show";
+            this.labelShowHidePass.Click += new System.EventHandler(this.labelShowHidePass_Click);
+            // 
             // FormLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(463, 347);
+            this.Controls.Add(this.labelShowHidePass);
             this.Controls.Add(this.labelInfo);
             this.Controls.Add(this.labelRegister);
             this.Controls.Add(this.labelForgot);
@@ -164,6 +179,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Article Reader - Login";
             this.Load += new System.EventHandler(this.FormLogin_Load);
+            this.Shown += new System.EventHandler(this.FormLogin_Shown);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -179,5 +195,6 @@
         private System.Windows.Forms.Label labelForgot;
         private System.Windows.Forms.Label labelRegister;
         private System.Windows.Forms.Label labelInfo;
+        private System.Windows.Forms.Label labelShowHidePass;
     }
 }

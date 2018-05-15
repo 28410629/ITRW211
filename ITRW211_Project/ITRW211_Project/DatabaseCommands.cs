@@ -179,7 +179,7 @@ namespace ITRW211_Project
                     adapter.InsertCommand.ExecuteNonQuery();
                     database.Close();
                 }
-                return "Updated successfully password.";
+                return "Successfully updated password.";
             }
             catch (Exception)
             {
@@ -200,7 +200,7 @@ namespace ITRW211_Project
                     adapter.InsertCommand.ExecuteNonQuery();
                     database.Close();
                 }
-                return "Updated successfully username.";
+                return "Successfully updated username.";
             }
             catch (Exception)
             {

@@ -47,6 +47,7 @@
             this.textBoxAnswer = new System.Windows.Forms.TextBox();
             this.labelQuestion = new System.Windows.Forms.Label();
             this.textBoxQuestion = new System.Windows.Forms.TextBox();
+            this.labelShowHidePass = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // buttonRegister
@@ -231,12 +232,26 @@
             this.textBoxQuestion.Size = new System.Drawing.Size(236, 20);
             this.textBoxQuestion.TabIndex = 5;
             // 
+            // labelShowHidePass
+            // 
+            this.labelShowHidePass.AutoSize = true;
+            this.labelShowHidePass.BackColor = System.Drawing.Color.Transparent;
+            this.labelShowHidePass.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelShowHidePass.ForeColor = System.Drawing.Color.Teal;
+            this.labelShowHidePass.Location = new System.Drawing.Point(380, 106);
+            this.labelShowHidePass.Name = "labelShowHidePass";
+            this.labelShowHidePass.Size = new System.Drawing.Size(38, 15);
+            this.labelShowHidePass.TabIndex = 42;
+            this.labelShowHidePass.Text = "Show";
+            this.labelShowHidePass.Click += new System.EventHandler(this.labelShowHidePass_Click);
+            // 
             // FormRegister
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(463, 347);
+            this.Controls.Add(this.labelShowHidePass);
             this.Controls.Add(this.textBoxQuestion);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.textBoxAnswer);
@@ -288,5 +303,6 @@
         private System.Windows.Forms.TextBox textBoxAnswer;
         private System.Windows.Forms.Label labelQuestion;
         private System.Windows.Forms.TextBox textBoxQuestion;
+        private System.Windows.Forms.Label labelShowHidePass;
     }
 }

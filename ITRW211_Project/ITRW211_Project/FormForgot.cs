@@ -29,13 +29,20 @@ namespace ITRW211_Project
             }
             else
             {
-                if (databaseCommands.checkQuestion(textBoxEmail.Text,textBoxAnswer.Text) == 0)
+                if (databaseCommands.checkUser(textBoxUser.Text) == 0)
                 {
-                    labelResult.Text = "Incorrect security answer.";
+                    if (databaseCommands.checkQuestion(textBoxEmail.Text, textBoxAnswer.Text) == 0)
+                    {
+                        labelResult.Text = "Incorrect security answer.";
+                    }
+                    else
+                    {
+                        labelResult.Text = databaseCommands.insertUser(textBoxEmail.Text, textBoxUser.Text);
+                    }
                 }
                 else
                 {
-                    labelResult.Text = databaseCommands.insertUser(textBoxEmail.Text, textBoxUser.Text);
+                    labelResult.Text = "Username exists, please use another.";
                 }
             }
         }
@@ -74,6 +81,20 @@ namespace ITRW211_Project
         {
             DatabaseCommands commands = new DatabaseCommands();
             labelQuestion.Text = commands.getQuestion(textBoxEmail.Text);
+        }
+
+        private void labelShowHidePass_Click(object sender, EventArgs e)
+        {
+            if (labelShowHidePass.Text == "Show")
+            {
+                labelShowHidePass.Text = "Hide";
+                textBoxPass.PasswordChar = '\0';
+            }
+            else
+            {
+                labelShowHidePass.Text = "Show";
+                textBoxPass.PasswordChar = '*';
+            }
         }
     }
 }
