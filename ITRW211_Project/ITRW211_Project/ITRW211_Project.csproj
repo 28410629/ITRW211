@@ -116,7 +116,6 @@
     </Compile>
     <Compile Include="StringManipulationApple.cs" />
     <Compile Include="StringManipulationArs.cs" />
-    <Compile Include="StringManipulationHack.cs" />
     <Compile Include="ViewReadCount.cs">
       <SubType>Form</SubType>
     </Compile>

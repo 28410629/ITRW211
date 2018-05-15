@@ -77,7 +77,7 @@
             this.buttonForgotU.Location = new System.Drawing.Point(87, 130);
             this.buttonForgotU.Name = "buttonForgotU";
             this.buttonForgotU.Size = new System.Drawing.Size(145, 23);
-            this.buttonForgotU.TabIndex = 12;
+            this.buttonForgotU.TabIndex = 6;
             this.buttonForgotU.Text = "Reset Username";
             this.buttonForgotU.UseVisualStyleBackColor = false;
             this.buttonForgotU.Click += new System.EventHandler(this.buttonForgotU_Click);
@@ -89,7 +89,7 @@
             this.buttonForgotP.Location = new System.Drawing.Point(238, 130);
             this.buttonForgotP.Name = "buttonForgotP";
             this.buttonForgotP.Size = new System.Drawing.Size(145, 23);
-            this.buttonForgotP.TabIndex = 11;
+            this.buttonForgotP.TabIndex = 7;
             this.buttonForgotP.Text = "Reset Password";
             this.buttonForgotP.UseVisualStyleBackColor = false;
             this.buttonForgotP.Click += new System.EventHandler(this.buttonForgotP_Click);
@@ -99,14 +99,14 @@
             this.textBoxPass.Location = new System.Drawing.Point(151, 86);
             this.textBoxPass.Name = "textBoxPass";
             this.textBoxPass.Size = new System.Drawing.Size(232, 20);
-            this.textBoxPass.TabIndex = 10;
+            this.textBoxPass.TabIndex = 2;
             // 
             // textBoxEmail
             // 
             this.textBoxEmail.Location = new System.Drawing.Point(151, 32);
             this.textBoxEmail.Name = "textBoxEmail";
             this.textBoxEmail.Size = new System.Drawing.Size(232, 20);
-            this.textBoxEmail.TabIndex = 9;
+            this.textBoxEmail.TabIndex = 0;
             this.textBoxEmail.TextChanged += new System.EventHandler(this.textBoxEmail_TextChanged);
             // 
             // label3
@@ -126,7 +126,7 @@
             this.textBoxUser.Location = new System.Drawing.Point(151, 60);
             this.textBoxUser.Name = "textBoxUser";
             this.textBoxUser.Size = new System.Drawing.Size(232, 20);
-            this.textBoxUser.TabIndex = 15;
+            this.textBoxUser.TabIndex = 1;
             // 
             // label4
             // 
@@ -146,7 +146,7 @@
             this.buttonBoth.Location = new System.Drawing.Point(87, 159);
             this.buttonBoth.Name = "buttonBoth";
             this.buttonBoth.Size = new System.Drawing.Size(296, 23);
-            this.buttonBoth.TabIndex = 18;
+            this.buttonBoth.TabIndex = 5;
             this.buttonBoth.Text = "Reset Both";
             this.buttonBoth.UseVisualStyleBackColor = false;
             this.buttonBoth.Click += new System.EventHandler(this.buttonBoth_Click);
@@ -169,7 +169,7 @@
             this.buttonBack.Location = new System.Drawing.Point(379, 312);
             this.buttonBack.Name = "buttonBack";
             this.buttonBack.Size = new System.Drawing.Size(72, 23);
-            this.buttonBack.TabIndex = 35;
+            this.buttonBack.TabIndex = 8;
             this.buttonBack.Text = "Back";
             this.buttonBack.UseVisualStyleBackColor = false;
             this.buttonBack.Click += new System.EventHandler(this.buttonBack_Click);
@@ -191,7 +191,7 @@
             this.textBoxAnswer.Location = new System.Drawing.Point(134, 212);
             this.textBoxAnswer.Name = "textBoxAnswer";
             this.textBoxAnswer.Size = new System.Drawing.Size(249, 20);
-            this.textBoxAnswer.TabIndex = 37;
+            this.textBoxAnswer.TabIndex = 4;
             // 
             // label5
             // 

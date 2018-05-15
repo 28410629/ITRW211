@@ -31,10 +31,10 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SiteLauncher));
             this.buttonArsTechnica = new System.Windows.Forms.Button();
             this.buttonAppleInsider = new System.Windows.Forms.Button();
-            this.buttonHackaday = new System.Windows.Forms.Button();
             this.progressBar = new System.Windows.Forms.ProgressBar();
             this.labelWindow = new System.Windows.Forms.Label();
             this.labelExit = new System.Windows.Forms.Label();
+            this.labelProgress = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // buttonArsTechnica
@@ -62,23 +62,11 @@
             this.buttonAppleInsider.UseVisualStyleBackColor = false;
             this.buttonAppleInsider.Click += new System.EventHandler(this.buttonAppleInsider_Click);
             // 
-            // buttonHackaday
-            // 
-            this.buttonHackaday.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("buttonHackaday.BackgroundImage")));
-            this.buttonHackaday.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonHackaday.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.buttonHackaday.Location = new System.Drawing.Point(585, 43);
-            this.buttonHackaday.Name = "buttonHackaday";
-            this.buttonHackaday.Size = new System.Drawing.Size(276, 114);
-            this.buttonHackaday.TabIndex = 2;
-            this.buttonHackaday.UseVisualStyleBackColor = true;
-            this.buttonHackaday.Click += new System.EventHandler(this.buttonHackaday_Click);
-            // 
             // progressBar
             // 
             this.progressBar.Location = new System.Drawing.Point(21, 172);
             this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(840, 23);
+            this.progressBar.Size = new System.Drawing.Size(558, 23);
             this.progressBar.TabIndex = 3;
             // 
             // labelWindow
@@ -97,28 +85,39 @@
             this.labelExit.AutoSize = true;
             this.labelExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelExit.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.labelExit.Location = new System.Drawing.Point(841, 9);
+            this.labelExit.Location = new System.Drawing.Point(559, 9);
             this.labelExit.Name = "labelExit";
             this.labelExit.Size = new System.Drawing.Size(20, 20);
             this.labelExit.TabIndex = 5;
             this.labelExit.Text = "X";
             this.labelExit.Click += new System.EventHandler(this.labelExit_Click);
             // 
+            // labelProgress
+            // 
+            this.labelProgress.AutoSize = true;
+            this.labelProgress.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelProgress.ForeColor = System.Drawing.Color.White;
+            this.labelProgress.Location = new System.Drawing.Point(19, 212);
+            this.labelProgress.Name = "labelProgress";
+            this.labelProgress.Size = new System.Drawing.Size(0, 15);
+            this.labelProgress.TabIndex = 6;
+            this.labelProgress.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // SiteLauncher
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(880, 219);
+            this.ClientSize = new System.Drawing.Size(600, 236);
+            this.Controls.Add(this.labelProgress);
             this.Controls.Add(this.labelExit);
             this.Controls.Add(this.labelWindow);
             this.Controls.Add(this.progressBar);
-            this.Controls.Add(this.buttonHackaday);
             this.Controls.Add(this.buttonAppleInsider);
             this.Controls.Add(this.buttonArsTechnica);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.MaximumSize = new System.Drawing.Size(880, 219);
-            this.MinimumSize = new System.Drawing.Size(880, 219);
+            this.MaximumSize = new System.Drawing.Size(600, 236);
+            this.MinimumSize = new System.Drawing.Size(600, 236);
             this.Name = "SiteLauncher";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Choose a site:";
@@ -132,10 +131,10 @@
 
         private System.Windows.Forms.Button buttonArsTechnica;
         private System.Windows.Forms.Button buttonAppleInsider;
-        private System.Windows.Forms.Button buttonHackaday;
         private System.Windows.Forms.ProgressBar progressBar;
         private System.Windows.Forms.Label labelWindow;
         private System.Windows.Forms.Label labelExit;
+        private System.Windows.Forms.Label labelProgress;
     }
 }
 

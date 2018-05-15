@@ -13,8 +13,6 @@ namespace ITRW211_Project
 
         public string[] refineSite(string[] arr)
         {
-            // This is where detail with '!' is manipulated:
-
             /* array[11] contents:
                  * 0 - Article ID
                  * 1 - Article Link
@@ -24,9 +22,9 @@ namespace ITRW211_Project
                  * 5 - Article Image Link 
                  * 6 - Article articleHTML
                  * 7 - Article Image Path 
-                 * 8 - Article Text Processed  ! (this is your boolean to check if you manipulated for the paragraphs before)
-                 * 9 - Article Refined Text  !   (store your refined paragraphs here)
-                 * 10 - Article Counter !   (this needs 0)
+                 * 8 - Article Text Processed 
+                 * 9 - Article Refined Text 
+                 * 10 - Article Counter
                  */
             if (!string.IsNullOrWhiteSpace(arr[6]))
             {
@@ -34,24 +32,18 @@ namespace ITRW211_Project
                 datacopy = datacopy.Substring(datacopy.IndexOf("article, BEGIN"));
                 datacopy = datacopy.Remove(datacopy.IndexOf("article, END"));
                 datacopy = datacopy.Substring(datacopy.IndexOf("article-leader"));
-                //MessageBox.Show(datacopy);
                 string firstP = datacopy.Remove(datacopy.IndexOf("img src"));
                 datacopy = datacopy.Replace(firstP, "");
-                //MessageBox.Show(datacopy);
                 string header = datacopy.Remove(datacopy.IndexOf("<br>") + 3);
                 datacopy = datacopy.Replace(header, "");
-                //MessageBox.Show(datacopy);
                 string leftOver = datacopy.Remove(datacopy.IndexOf("<br>") + 8);
                 datacopy = datacopy.Replace(leftOver, "");
-                //MessageBox.Show(datacopy);
 
                 string article = "";
                 while (datacopy.Contains("<br>"))
                 {
                     string paragraph = datacopy;
                     paragraph = paragraph.Remove(paragraph.IndexOf("<br>") + 8);
-                    //MessageBox.Show(paragraph);
-                    //MessageBox.Show("" + paragraph.Length);
                     datacopy = datacopy.Replace(paragraph, "");
                     paragraph = paragraph.Remove(paragraph.IndexOf("<br>"));
                     while (paragraph.Contains("h2"))
@@ -61,7 +53,6 @@ namespace ITRW211_Project
                     {
                         paragraph = paragraph.Substring(paragraph.IndexOf("<br") + 3);
                     }
-                    //<em>
                     while (paragraph.Contains("href"))
                     {
                         string refLink = paragraph.Substring(paragraph.IndexOf("<a"));
@@ -106,10 +97,18 @@ namespace ITRW211_Project
                     while (paragraph.Contains("&gt;"))
                         paragraph = paragraph.Replace("&gt;", "");
 
+                    while(paragraph.Contains("<iframe"))
+                    {
+                        string refLink = paragraph.Substring(paragraph.IndexOf("<iframe"));
+                        refLink = refLink.Remove(refLink.IndexOf("/iframe>") + 8);
+                        paragraph = paragraph.Replace(refLink, "");
+                    }
+
                     if (!string.IsNullOrWhiteSpace(paragraph))
                         article += paragraph + "\n\n";
                     //MessageBox.Show(datacopy);
                 }
+                arr[8] = "1";
                 arr[9] = article;
                 //MessageBox.Show(article);
             }

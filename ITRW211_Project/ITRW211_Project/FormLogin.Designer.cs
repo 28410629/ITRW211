@@ -45,7 +45,7 @@
             this.textBoxUser.Location = new System.Drawing.Point(149, 71);
             this.textBoxUser.Name = "textBoxUser";
             this.textBoxUser.Size = new System.Drawing.Size(232, 20);
-            this.textBoxUser.TabIndex = 2;
+            this.textBoxUser.TabIndex = 0;
             // 
             // textBoxPass
             // 
@@ -53,7 +53,7 @@
             this.textBoxPass.Name = "textBoxPass";
             this.textBoxPass.PasswordChar = '*';
             this.textBoxPass.Size = new System.Drawing.Size(232, 20);
-            this.textBoxPass.TabIndex = 3;
+            this.textBoxPass.TabIndex = 1;
             // 
             // buttonLogin
             // 
@@ -62,7 +62,7 @@
             this.buttonLogin.Location = new System.Drawing.Point(236, 141);
             this.buttonLogin.Name = "buttonLogin";
             this.buttonLogin.Size = new System.Drawing.Size(145, 23);
-            this.buttonLogin.TabIndex = 5;
+            this.buttonLogin.TabIndex = 2;
             this.buttonLogin.Text = "Login";
             this.buttonLogin.UseVisualStyleBackColor = false;
             this.buttonLogin.Click += new System.EventHandler(this.buttonLogin_Click);
@@ -74,7 +74,7 @@
             this.buttonExit.Location = new System.Drawing.Point(85, 141);
             this.buttonExit.Name = "buttonExit";
             this.buttonExit.Size = new System.Drawing.Size(145, 23);
-            this.buttonExit.TabIndex = 6;
+            this.buttonExit.TabIndex = 3;
             this.buttonExit.Text = "Exit";
             this.buttonExit.UseVisualStyleBackColor = false;
             this.buttonExit.Click += new System.EventHandler(this.buttonExit_Click);

@@ -29,6 +29,7 @@ namespace ITRW211_Project
             this.ArticlesDetails = ArticlesDetails;
             this.Website = Website;
             this.username = username;
+            Text = Website + " Article Reader";
         }
 
         // Event for when form loads to process all new articles
@@ -66,11 +67,6 @@ namespace ITRW211_Project
                     if (Website == "Ars Technica")
                     {
                         StringManipulationArs runArticle = new StringManipulationArs();
-                        ArticlesDetails[i] = runArticle.refineSite(ArticlesDetails[i]);
-                    }
-                    else if (Website == "Hackaday")
-                    {
-                        StringManipulationHack runArticle = new StringManipulationHack();
                         ArticlesDetails[i] = runArticle.refineSite(ArticlesDetails[i]);
                     }
                     else
@@ -145,10 +141,6 @@ namespace ITRW211_Project
                     {
                         return Properties.Resources.ars_sub_thumb;
                     }
-                    else if (Website == "Hackaday")
-                    {
-                        return Properties.Resources.hackadaydf;
-                    }
                     else
                     {
                         return Properties.Resources.opengraph_default;
@@ -160,10 +152,6 @@ namespace ITRW211_Project
                 if (Website == "Ars Technica")
                 {
                     return Properties.Resources.ars_sub_thumb;
-                }
-                else if (Website == "Hackaday")
-                {
-                    return Properties.Resources.hackadaydf;
                 }
                 else
                 {

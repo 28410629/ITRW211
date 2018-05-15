@@ -30,14 +30,6 @@ namespace ITRW211_Project
             Close();
         }
 
-        private void buttonHackaday_Click(object sender, EventArgs e)
-        {
-            ViewReadCount newForm = new ViewReadCount("Hackaday",username);
-            newForm.MdiParent = mainForm;
-            newForm.Show();
-            Close();
-        }
-
         private void buttonAppleInsider_Click(object sender, EventArgs e)
         {
             ViewReadCount newForm = new ViewReadCount("Apple Insider",username);

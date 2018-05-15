@@ -13,9 +13,7 @@ namespace ITRW211_Project
 {
     public partial class SiteLauncher : Form
     {
-        // List of latest articles for Ars Technica
         private static List<string[]> ArticlesDetails_Ars = new List<string[]>();
-        private static List<string[]> ArticlesDetails_Hack = new List<string[]>();
         private static List<string[]> ArticlesDetails_Apple = new List<string[]>();
 
         /* array[11] contents:
@@ -32,9 +30,7 @@ namespace ITRW211_Project
                  * 10 - Article Counter
                  */
 
-        // Main form
         private Form newMain;
-        // Progress bar current value
         int progressBar_value = 0;
         string username;
 
@@ -47,21 +43,12 @@ namespace ITRW211_Project
 
         private void ArsTechnicaClick(object sender, EventArgs e)
         {
-            // Process HMTL, download article's html and download images
             Thread thread = new Thread(new ThreadStart(download_Ars));
-            thread.Start();
-        }
-
-        private void buttonHackaday_Click(object sender, EventArgs e)
-        {
-            // Process HMTL, download article's html and download images
-            Thread thread = new Thread(new ThreadStart(download_Hack));
             thread.Start();
         }
 
         private void buttonAppleInsider_Click(object sender, EventArgs e)
         {
-            // Process HMTL, download article's html and download images
             Thread thread = new Thread(new ThreadStart(download_Apple));
             thread.Start();
         }
@@ -78,14 +65,16 @@ namespace ITRW211_Project
         {
                 buttonArsTechnica.Enabled = false;
                 buttonAppleInsider.Enabled = false;
-                buttonHackaday.Enabled = false;
                 progressBar_value += (int)Math.Round(amount);
                 progressBar.Value = progressBar_value;
         }
 
         private void download_Ars()
         {
+            ArticlesDetails_Ars.Clear();
+
             // Update progressbar - thread started
+            Invoke(new MethodInvoker(delegate () { labelProgress.Text = "Main HTML - downloaded started."; }));
             Invoke(new MethodInvoker(delegate () { progressbarUpdate(10.00); }));
 
             // Download HTML
@@ -93,6 +82,7 @@ namespace ITRW211_Project
             string htmlArs = html.downloadHTML("https://arstechnica.com/", Application.StartupPath + "\\ArsTechnica", "\\ArsTechnica-HTML.txt");
 
             // Update progressbar - html downloaded
+            Invoke(new MethodInvoker(delegate () { labelProgress.Text = "Main HTML - downloaded completed."; }));
             Invoke(new MethodInvoker(delegate () { progressbarUpdate(10.00); }));
 
             // Get individual article details from main HTML
@@ -103,6 +93,7 @@ namespace ITRW211_Project
             }
 
             // Update progressbar - html processed
+            Invoke(new MethodInvoker(delegate () { labelProgress.Text = "Article HTML - downloadeds started (if cached, HTML will be loaded)."; }));
             Invoke(new MethodInvoker(delegate () { progressbarUpdate(20.00); }));
 
             // Download individual articles
@@ -112,35 +103,15 @@ namespace ITRW211_Project
                 string link = ArticlesDetails_Ars[i][1];
                 string path = Application.StartupPath + "\\ArsTechnica\\" + ArticlesDetails_Ars[i][0];
                 string filename = "\\" + ArticlesDetails_Ars[i][0] + "-HTML.txt";
-
                 ArticlesDetails_Ars[i][6] = htmlArticle.downloadArticleHTML(link, path, filename);
+                Invoke(new MethodInvoker(delegate () { labelProgress.Text = "Article HTML - " + (i+1) + "/" + ArticlesDetails_Ars.Count; }));
             }
 
             // Update progressbar - html processed
+            Invoke(new MethodInvoker(delegate () { labelProgress.Text = "Article HTML - downloadeds completed."; }));
             Invoke(new MethodInvoker(delegate () { progressbarUpdate(20.00); }));
 
-            // Refine image links
-            StringManipulationArs arsImage = new StringManipulationArs();
-            for (int i = 0; i < ArticlesDetails_Ars.Count; i++)
-            {
-                ArticlesDetails_Ars[i][5] = arsImage.refineImageLink(ArticlesDetails_Ars[i][6]);
-                //ArticlesDetails_Appple[i] = arsImage.getImage_Author(ArticlesDetails_Apple[i])
-            }
-
-            // Update progressbar - html processed
-            Invoke(new MethodInvoker(delegate () { progressbarUpdate(20.00); }));
-
-            // Download images and get there file path
-            DownloadIMAGE pathImage = new DownloadIMAGE();
-            for (int i = 0; i < ArticlesDetails_Ars.Count; i++)
-            {
-                ArticlesDetails_Ars[i][7] = pathImage.downloadImage(Application.StartupPath + "\\" + "ArsTechnica" + "\\" + ArticlesDetails_Ars[i][0] + "\\" + ArticlesDetails_Ars[i][0], ArticlesDetails_Ars[i][5]);
-            }
-
-            // Update progressbar - html processed
-            Invoke(new MethodInvoker(delegate () { progressbarUpdate(20.00); }));
-
-            // Refine image links
+            // Process sites
             StringManipulationArs arsRefine = new StringManipulationArs();
             for (int i = 0; i < ArticlesDetails_Ars.Count; i++)
             {
@@ -149,13 +120,48 @@ namespace ITRW211_Project
                     ArticlesDetails_Ars[i] = arsRefine.refineSite(ArticlesDetails_Ars[i]);
                     //ArticlesDetails_Appple[i] = arsImage.getImage_Author(ArticlesDetails_Apple[i])
                 }
-                catch(Exception)
+                catch (Exception)
                 {
                     string[] arr = new string[11];
                     ArticlesDetails_Ars[i] = arr;
                 }
-
             }
+
+            //Removes unneccessary items
+            for (int i = 0; i < ArticlesDetails_Ars.Count; i++)
+            {
+                if (string.IsNullOrWhiteSpace(ArticlesDetails_Ars[i][0]))
+                {
+                    ArticlesDetails_Ars.RemoveAt(i);
+                }
+            }
+
+            // Refine image links
+            StringManipulationArs arsImage = new StringManipulationArs();
+            for (int i = 0; i < ArticlesDetails_Ars.Count; i++)
+            {
+                if (!string.IsNullOrWhiteSpace(ArticlesDetails_Ars[i][6]))
+                {
+                    ArticlesDetails_Ars[i][5] = arsImage.refineImageLink(ArticlesDetails_Ars[i][6]);
+                }
+            }
+
+            // Update progressbar - html processed
+            Invoke(new MethodInvoker(delegate () { labelProgress.Text = "Article Images - downloadeds started (if cached, image will be loaded)."; }));
+            Invoke(new MethodInvoker(delegate () { progressbarUpdate(20.00); }));
+
+            // Download images and get there file path
+            DownloadIMAGE pathImage = new DownloadIMAGE();
+            for (int i = 0; i < ArticlesDetails_Ars.Count; i++)
+            {
+                ArticlesDetails_Ars[i][7] = pathImage.downloadImage(Application.StartupPath + "\\" + "ArsTechnica" + "\\" + ArticlesDetails_Ars[i][0] + "\\" + ArticlesDetails_Ars[i][0], ArticlesDetails_Ars[i][5]);
+                Invoke(new MethodInvoker(delegate () { labelProgress.Text = "Article Images - " + (i + 1) + "/" + ArticlesDetails_Ars.Count; }));
+            }
+
+            // Update progressbar - html processed
+            Invoke(new MethodInvoker(delegate () { labelProgress.Text = "Article Images - downloadeds completed."; }));
+            Invoke(new MethodInvoker(delegate () { progressbarUpdate(20.00); }));
+
             // Open Article browser
             Invoke(new MethodInvoker(delegate ()
             {
@@ -167,76 +173,12 @@ namespace ITRW211_Project
             }));
         }
 
-        private void download_Hack()
-        {
-            // Update progressbar - thread started
-            Invoke(new MethodInvoker(delegate () { progressbarUpdate(10.00); }));
-
-            // Download HTML
-            DownloadHTML html = new DownloadHTML();
-            string htmlHack = html.downloadHTML("https://hackaday.com/", Application.StartupPath + "\\Hackaday", "\\Hackaday-HTML.txt");
-
-            // Update progressbar - html downloaded
-            Invoke(new MethodInvoker(delegate () { progressbarUpdate(10.00); }));
-
-            // Get individual article details from main HTML
-            if (!string.IsNullOrEmpty(htmlHack))
-            {
-                StringManipulationHack hack = new StringManipulationHack();
-                ArticlesDetails_Hack = hack.getArticleDetails(htmlHack);
-            }
-
-            // Update progressbar - html processed
-            Invoke(new MethodInvoker(delegate () { progressbarUpdate(20.00); }));
-
-            // Download individual articles
-            DownloadHTML htmlArticle = new DownloadHTML();
-            for (int i = 0; i < ArticlesDetails_Hack.Count; i++)
-            {
-                string link = ArticlesDetails_Hack[i][1];
-                string path = Application.StartupPath + "\\Hackaday\\" + ArticlesDetails_Hack[i][0];
-                string filename = "\\" + ArticlesDetails_Hack[i][0] + "-HTML.txt";
-
-                ArticlesDetails_Hack[i][6] = htmlArticle.downloadArticleHTML(link, path, filename);
-            }
-
-            // Update progressbar - html processed
-            Invoke(new MethodInvoker(delegate () { progressbarUpdate(20.00); }));
-
-            // Refine image links
-            StringManipulationHack hackImage = new StringManipulationHack();
-            for (int i = 0; i < ArticlesDetails_Hack.Count; i++)
-            {
-                ArticlesDetails_Hack[i][5] = hackImage.refineImageLink(ArticlesDetails_Hack[i][6]);
-            }
-
-            // Update progressbar - html processed
-            Invoke(new MethodInvoker(delegate () { progressbarUpdate(20.00); }));
-
-            // Download images and get there file path
-            DownloadIMAGE pathImage = new DownloadIMAGE();
-            for (int i = 0; i < ArticlesDetails_Hack.Count; i++)
-            {
-                ArticlesDetails_Hack[i][7] = pathImage.downloadImage(Application.StartupPath + "\\" + "Hackaday" + "\\" + ArticlesDetails_Hack[i][0] + "\\" + ArticlesDetails_Hack[i][0], ArticlesDetails_Hack[i][5]);
-            }
-
-            // Update progressbar - html processed
-            Invoke(new MethodInvoker(delegate () { progressbarUpdate(20.00); }));
-
-            // Open Article browser
-            Invoke(new MethodInvoker(delegate ()
-            {
-                // Download completed
-                ArticleBrowser newHack = new ArticleBrowser(newMain, ArticlesDetails_Hack, "Hackaday", username);
-                newHack.MdiParent = newMain;
-                newHack.Show();
-                Close();
-            }));
-        }
-
         private void download_Apple()
         {
+            ArticlesDetails_Apple.Clear();
+
             // Update progressbar - thread started
+            Invoke(new MethodInvoker(delegate () { labelProgress.Text = "Main HTML - downloaded started."; }));
             Invoke(new MethodInvoker(delegate () { progressbarUpdate(10.00); }));
 
             // Download mainHTML
@@ -244,6 +186,7 @@ namespace ITRW211_Project
             string htmlApple = html.downloadHTML("https://appleinsider.com/", Application.StartupPath + "\\AppleInsider", "\\AppleInsider-HTML.txt");
 
             // Update progressbar - html downloaded
+            Invoke(new MethodInvoker(delegate () { labelProgress.Text = "Main HTML - downloaded completed."; }));
             Invoke(new MethodInvoker(delegate () { progressbarUpdate(10.00); }));
 
             // Get individual article details from main HTML
@@ -253,7 +196,17 @@ namespace ITRW211_Project
                 ArticlesDetails_Apple = apple.getArticleDetails(htmlApple);
             }
 
+            //Removes unneccessary items
+            for (int i = 0; i < ArticlesDetails_Apple.Count; i++)
+            {
+                if (string.IsNullOrWhiteSpace(ArticlesDetails_Apple[i][0]))
+                {
+                    ArticlesDetails_Apple.RemoveAt(i);
+                }
+            }
+
             // Update progressbar - html processed
+            Invoke(new MethodInvoker(delegate () { labelProgress.Text = "Article HTML - downloadeds started (if cached, HTML will be loaded)."; }));
             Invoke(new MethodInvoker(delegate () { progressbarUpdate(20.00); }));
 
             // Download individual articlesHTML
@@ -263,21 +216,26 @@ namespace ITRW211_Project
                 string link = ArticlesDetails_Apple[i][1];
                 string path = Application.StartupPath + "\\AppleInsider\\" + ArticlesDetails_Apple[i][0];
                 string filename = "\\" + ArticlesDetails_Apple[i][0] + "-HTML.txt";
-
                 ArticlesDetails_Apple[i][6] = htmlArticle.downloadArticleHTML(link, path, filename);
+                Invoke(new MethodInvoker(delegate () { labelProgress.Text = "Article HTML - " + (i + 1) + "/" + ArticlesDetails_Apple.Count; }));
             }
 
             // Update progressbar - html processed
+            Invoke(new MethodInvoker(delegate () { labelProgress.Text = "Article HTML - downloadeds completed."; }));
             Invoke(new MethodInvoker(delegate () { progressbarUpdate(20.00); }));
 
             // Refine image links
             StringManipulationApple appleImage = new StringManipulationApple();
             for (int i = 0; i < ArticlesDetails_Apple.Count; i++)
             {
-                ArticlesDetails_Apple[i] = appleImage.getAuthorImage(ArticlesDetails_Apple[i]);
+                if (!string.IsNullOrWhiteSpace(ArticlesDetails_Apple[i][0]))
+                {
+                    ArticlesDetails_Apple[i] = appleImage.getAuthorImage(ArticlesDetails_Apple[i]);
+                }
             }
 
             // Update progressbar - html processed
+            Invoke(new MethodInvoker(delegate () { labelProgress.Text = "Article Images - downloadeds started (if cached, image will be loaded)."; }));
             Invoke(new MethodInvoker(delegate () { progressbarUpdate(20.00); }));
 
             // Download images and get there file path
@@ -285,9 +243,11 @@ namespace ITRW211_Project
             for (int i = 0; i < ArticlesDetails_Apple.Count; i++)
             {
                 ArticlesDetails_Apple[i][7] = pathImage.downloadImage(Application.StartupPath + "\\" + "AppleInsider" + "\\" + ArticlesDetails_Apple[i][0] + "\\" + ArticlesDetails_Apple[i][0], ArticlesDetails_Apple[i][5]);
+                Invoke(new MethodInvoker(delegate () { labelProgress.Text = "Article Images - " + (i + 1) + "/" + ArticlesDetails_Apple.Count; }));
             }
 
             // Update progressbar - html processed
+            Invoke(new MethodInvoker(delegate () { labelProgress.Text = "Article Images - downloadeds completed."; }));
             Invoke(new MethodInvoker(delegate () { progressbarUpdate(20.00); }));
 
             // Open Article browser

@@ -13,141 +13,152 @@ namespace ITRW211_Project
 
         public string[] refineSite(string[] arr)
         {
-            string data_copy = arr[6];
-            if (!string.IsNullOrWhiteSpace(data_copy) && arr[8] == "0")
+            try
             {
-                arr[8] = "1";
-
-                data_copy = data_copy.Substring(data_copy.IndexOf("headline"));
-
-                string article = "";
-                string line = "";
-
-                while (data_copy.Contains("<p>"))
+                string data_copy = arr[6];
+                if (!string.IsNullOrWhiteSpace(data_copy) && arr[8] == "0")
                 {
-                    line = data_copy;
-                    line = line.Substring(line.IndexOf("<p>"));
-                    line = line.Remove(line.IndexOf("</p>") + 4);
-                    data_copy = data_copy.Replace(line, "");
-                    line = line.Substring(line.IndexOf("<p>") + 3);
-                    line = line.Remove(line.IndexOf("</p>"));
+                    arr[8] = "1";
 
-                    if (line.Contains("Join the Ars"))
+                    data_copy = data_copy.Substring(data_copy.IndexOf("headline"));
+
+                    string article = "";
+                    string line = "";
+
+                    while (data_copy.Contains("<p>"))
                     {
-                        line = "";
-                    }
+                        line = data_copy;
+                        line = line.Substring(line.IndexOf("<p>"));
+                        line = line.Remove(line.IndexOf("</p>") + 4);
+                        data_copy = data_copy.Replace(line, "");
+                        line = line.Substring(line.IndexOf("<p>") + 3);
+                        line = line.Remove(line.IndexOf("</p>"));
 
-                    while (line.Contains("<a href"))
-                    {
-                        string line2 = line;
-
-                        line2 = line2.Remove(line.IndexOf("</a>") + 4);
-                        line2 = line2.Substring(line.IndexOf("<a href"));
-
-                        if (line2.Contains(".jpg") || line2.Contains(".jpeg") || line2.Contains(".png"))
+                        if (line.Contains("Join the Ars"))
                         {
-                            line = line.Replace(line2, "");
+                            line = "";
                         }
-                        else
+
+                        while (line.Contains("<a href"))
                         {
-                            line = line.Replace(line2, "new_string_will_be_inserted");
+                            string line2 = line;
+
+                            line2 = line2.Remove(line.IndexOf("</a>") + 4);
+                            line2 = line2.Substring(line.IndexOf("<a href"));
+
+                            if (line2.Contains(".jpg") || line2.Contains(".jpeg") || line2.Contains(".png"))
+                            {
+                                line = line.Replace(line2, "");
+                            }
+                            else
+                            {
+                                line = line.Replace(line2, "new_string_will_be_inserted");
+                                try
+                                {
+                                    line2 = line2.Remove(line2.IndexOf("</a>"));
+                                    line2 = line2.Substring(line2.LastIndexOf(">") + 1);
+                                }
+                                catch (ArgumentOutOfRangeException)
+                                {
+                                    line2 = line2.Substring(line2.LastIndexOf(">") + 1);
+                                }
+                                line = line.Replace("new_string_will_be_inserted", line2);
+                            }
+                        }
+                        while (line.Contains("<h3>"))
+                        {
+                            string line2 = line;
                             try
                             {
-                                line2 = line2.Remove(line2.IndexOf("</a>"));
-                                line2 = line2.Substring(line2.LastIndexOf(">") + 1);
+                                line2 = line2.Remove(line.IndexOf("</h3>") + 5);
+                                line2 = line2.Substring(line.IndexOf("<h3>"));
                             }
                             catch (ArgumentOutOfRangeException)
                             {
-                                line2 = line2.Substring(line2.LastIndexOf(">") + 1);
+                                line2 = line2.Substring(line.IndexOf("<h3>"));
                             }
-                            line = line.Replace("new_string_will_be_inserted", line2);
+                            if (line2.Contains("Further Reading"))
+                            {
+                                string line3 = line;
+                                try
+                                {
+                                    line3 = line3.Remove(line3.IndexOf("</aside>") + 8);
+                                    line3 = line3.Substring(line3.IndexOf("<h3>"));
+                                }
+                                catch (Exception)
+                                {
+                                    line3 = line3.Substring(line3.IndexOf("<h3>"));
+                                }
+                                line = line.Replace(line3, "");
+                            }
+                            else
+                            {
+                                line = line.Replace(line2, "new_string_will_be_inserted");
+                                try
+                                {
+                                    line2 = line2.Remove(line2.IndexOf("</h3>"));
+                                    line2 = line2.Substring(line2.LastIndexOf(">") + 1);
+                                }
+                                catch (ArgumentOutOfRangeException)
+                                {
+                                    line2 = line2.Substring(line2.LastIndexOf(">") + 1);
+                                }
+                                line2 = line2 + "\n\n";
+                                line = line.Replace("new_string_will_be_inserted", line2);
+                            }
                         }
-                    }
-                    while (line.Contains("<h3>"))
-                    {
-                        string line2 = line;
-                        try
+                        while (line.Contains("<"))
                         {
-                            line2 = line2.Remove(line.IndexOf("</h3>") + 5);
-                            line2 = line2.Substring(line.IndexOf("<h3>"));
-                        }
-                        catch (ArgumentOutOfRangeException)
-                        {
-                            line2 = line2.Substring(line.IndexOf("<h3>"));
-                        }
-                        if (line2.Contains("Further Reading"))
-                        {
-                            string line3 = line;
+                            string line2 = line;
                             try
                             {
-                                line3 = line3.Remove(line3.IndexOf("</aside>") + 8);
-                                line3 = line3.Substring(line3.IndexOf("<h3>"));
-                            }
-                            catch (Exception)
-                            {
-                                line3 = line3.Substring(line3.IndexOf("<h3>"));
-                            }
-                            line = line.Replace(line3, "");
-                        }
-                        else
-                        {
-                            line = line.Replace(line2, "new_string_will_be_inserted");
-                            try
-                            {
-                                line2 = line2.Remove(line2.IndexOf("</h3>"));
-                                line2 = line2.Substring(line2.LastIndexOf(">") + 1);
+                                line2 = line2.Remove(line.IndexOf(">") + 1);
+                                line2 = line2.Substring(line.IndexOf("<"));
                             }
                             catch (ArgumentOutOfRangeException)
                             {
-                                line2 = line2.Substring(line2.LastIndexOf(">") + 1);
+                                line2 = line2.Substring(line.IndexOf("<"));
                             }
-                            line2 = line2 + "\n\n";
-                            line = line.Replace("new_string_will_be_inserted", line2);
+                            if (line2.Contains("/aside"))
+                            {
+                                line = line.Replace(line2, ". ");
+                            }
+                            else
+                            {
+                                line = line.Replace(line2, "");
+                            }
                         }
-                    }
-                    while (line.Contains("<"))
-                    {
-                        string line2 = line;
-                        try
+                        while (line.Contains("&amp;"))
                         {
-                            line2 = line2.Remove(line.IndexOf(">") + 1);
-                            line2 = line2.Substring(line.IndexOf("<"));
+
+                            line = line.Replace("&amp;", "&");
+
                         }
-                        catch (ArgumentOutOfRangeException)
+                        if (line.Contains("h2>"))
                         {
-                            line2 = line2.Substring(line.IndexOf("<"));
+
                         }
-                        if (line2.Contains("/aside"))
+                        if (!string.IsNullOrEmpty(line))
                         {
-                            line = line.Replace(line2, ". ");
+                            article += (line + "\n\n");
                         }
-                        else
-                        {
-                            line = line.Replace(line2, "");
-                        }
-                    }
-                    while (line.Contains("&amp;"))
-                    {
 
-                        line = line.Replace("&amp;", "&");
-
-                    }
-                    if (line.Contains("h2>"))
-                    {
-
-                    }
-                    if (!string.IsNullOrEmpty(line))
-                    {
-                        article += (line + "\n\n");
-                    }
-
-                } // while loop for paragraph elements
-                article = article.Remove(article.LastIndexOf("\n\n"));
-                arr[9] = article;
+                    } // while loop for paragraph elements
+                    arr[8] = "1";
+                    article = article.Remove(article.LastIndexOf("\n\n"));
+                    arr[9] = article;
+                    return arr;
+                }
                 return arr;
             }
-            return arr;
+            catch (Exception)
+            {
+                string[] arr2 = new string[11];
+                return arr2;
+            }
+            
         }
+
         public List<string[]> getArticleDetails(string htmlArs)
         {
             string articleItem;

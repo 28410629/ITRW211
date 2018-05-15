@@ -56,7 +56,7 @@
             this.buttonRegister.Location = new System.Drawing.Point(379, 286);
             this.buttonRegister.Name = "buttonRegister";
             this.buttonRegister.Size = new System.Drawing.Size(72, 23);
-            this.buttonRegister.TabIndex = 27;
+            this.buttonRegister.TabIndex = 8;
             this.buttonRegister.Text = "Register";
             this.buttonRegister.UseVisualStyleBackColor = false;
             this.buttonRegister.Click += new System.EventHandler(this.buttonRegister_Click);
@@ -78,7 +78,7 @@
             this.textBoxUser.Location = new System.Drawing.Point(138, 64);
             this.textBoxUser.Name = "textBoxUser";
             this.textBoxUser.Size = new System.Drawing.Size(261, 20);
-            this.textBoxUser.TabIndex = 25;
+            this.textBoxUser.TabIndex = 2;
             // 
             // label4
             // 
@@ -110,14 +110,14 @@
             this.textBoxPass.Name = "textBoxPass";
             this.textBoxPass.PasswordChar = '*';
             this.textBoxPass.Size = new System.Drawing.Size(261, 20);
-            this.textBoxPass.TabIndex = 20;
+            this.textBoxPass.TabIndex = 3;
             // 
             // textBoxEmail
             // 
             this.textBoxEmail.Location = new System.Drawing.Point(138, 12);
             this.textBoxEmail.Name = "textBoxEmail";
             this.textBoxEmail.Size = new System.Drawing.Size(261, 20);
-            this.textBoxEmail.TabIndex = 19;
+            this.textBoxEmail.TabIndex = 0;
             // 
             // label1
             // 
@@ -137,7 +137,7 @@
             this.textBoxPassCheck.Name = "textBoxPassCheck";
             this.textBoxPassCheck.PasswordChar = '*';
             this.textBoxPassCheck.Size = new System.Drawing.Size(261, 20);
-            this.textBoxPassCheck.TabIndex = 28;
+            this.textBoxPassCheck.TabIndex = 4;
             // 
             // label2
             // 
@@ -156,7 +156,7 @@
             this.textBoxEmailCheck.Location = new System.Drawing.Point(138, 38);
             this.textBoxEmailCheck.Name = "textBoxEmailCheck";
             this.textBoxEmailCheck.Size = new System.Drawing.Size(261, 20);
-            this.textBoxEmailCheck.TabIndex = 30;
+            this.textBoxEmailCheck.TabIndex = 1;
             // 
             // label6
             // 
@@ -188,7 +188,7 @@
             this.buttonBack.Location = new System.Drawing.Point(379, 315);
             this.buttonBack.Name = "buttonBack";
             this.buttonBack.Size = new System.Drawing.Size(72, 23);
-            this.buttonBack.TabIndex = 34;
+            this.buttonBack.TabIndex = 9;
             this.buttonBack.Text = "Back";
             this.buttonBack.UseVisualStyleBackColor = false;
             this.buttonBack.Click += new System.EventHandler(this.buttonBack_Click);
@@ -210,7 +210,7 @@
             this.textBoxAnswer.Location = new System.Drawing.Point(150, 168);
             this.textBoxAnswer.Name = "textBoxAnswer";
             this.textBoxAnswer.Size = new System.Drawing.Size(249, 20);
-            this.textBoxAnswer.TabIndex = 40;
+            this.textBoxAnswer.TabIndex = 6;
             // 
             // labelQuestion
             // 
@@ -229,7 +229,7 @@
             this.textBoxQuestion.Location = new System.Drawing.Point(150, 142);
             this.textBoxQuestion.Name = "textBoxQuestion";
             this.textBoxQuestion.Size = new System.Drawing.Size(249, 20);
-            this.textBoxQuestion.TabIndex = 42;
+            this.textBoxQuestion.TabIndex = 5;
             // 
             // FormRegister
             // 
