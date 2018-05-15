@@ -8,7 +8,7 @@ System requirements:
 
 Group members:
 * Coenraad Human
-* Pieter Brand
+
 * Savannah Fritze
 
 ![University Logo](https://raw.githubusercontent.com/coenraadhuman/ITRW211_Project/master/Resources/unilogo.png)
