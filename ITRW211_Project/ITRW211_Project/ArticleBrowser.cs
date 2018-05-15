@@ -20,13 +20,15 @@ namespace ITRW211_Project
         Form newMain;
         string Website;
         List<string[]> ArticlesDetails = new List<string[]>();
+        string username;
 
-        public ArticleBrowser(Form newMain, List<string[]> ArticlesDetails, string Website)
+        public ArticleBrowser(Form newMain, List<string[]> ArticlesDetails, string Website, string username)
         {
             InitializeComponent();
             this.newMain = newMain;
             this.ArticlesDetails = ArticlesDetails;
             this.Website = Website;
+            this.username = username;
         }
 
         // Event for when form loads to process all new articles
@@ -39,7 +41,7 @@ namespace ITRW211_Project
                     listBoxDisplay.Items.Add(ArticlesDetails[i][2]);
             }
 
-            labelIntro.Text = "The following articles (" + ArticlesDetails.Count + ") are available from " + Website;
+            labelIntro.Text = "The following articles (" + listBoxDisplay.Items.Count + ") are available from " + Website;
         }             
         // Event to open article in reader when item is double-clicked.
         private void listBoxDisplay_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -88,7 +90,7 @@ namespace ITRW211_Project
                                 counter++;
                                 ArticlesDetails[i][10] = Convert.ToString(counter);
                                 DatabaseCommands command = new DatabaseCommands();
-                                command.add(ArticlesDetails[i], Website);
+                                command.add(ArticlesDetails[i], Website, username);
                             }
                             catch (Exception)
                             {
@@ -104,7 +106,7 @@ namespace ITRW211_Project
                                 counter++;
                                 ArticlesDetails[i][10] = Convert.ToString(counter);
                                 DatabaseCommands command = new DatabaseCommands();
-                                command.update(ArticlesDetails[i], Website);
+                                command.update(ArticlesDetails[i], Website, username);
                             }
                             catch (Exception)
                             {

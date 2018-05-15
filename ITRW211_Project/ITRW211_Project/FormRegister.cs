@@ -44,7 +44,14 @@ namespace ITRW211_Project
                         DatabaseCommands databaseCommands = new DatabaseCommands();
                         if (databaseCommands.checkUser(textBoxUser.Text) == 0)
                         {
-                            labelResult.Text = databaseCommands.newUser(textBoxEmail.Text, textBoxUser.Text, textBoxPass.Text);
+                            if (textBoxQuestion.Text.Length < 47)
+                            {
+                                labelResult.Text = databaseCommands.newUser(textBoxEmail.Text, textBoxUser.Text, textBoxPass.Text, textBoxQuestion.Text, textBoxAnswer.Text);
+                            }
+                            else
+                            {
+                                labelResult.Text = "Please make security question shorter.";
+                            }
                         }
                         else
                         {

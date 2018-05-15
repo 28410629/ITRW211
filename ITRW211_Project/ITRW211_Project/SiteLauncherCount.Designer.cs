@@ -101,11 +101,11 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(864, 139);
+            this.ClientSize = new System.Drawing.Size(880, 178);
+            this.Controls.Add(this.buttonAppleInsider);
             this.Controls.Add(this.labelExit);
             this.Controls.Add(this.labelWindow);
             this.Controls.Add(this.buttonHackaday);
-            this.Controls.Add(this.buttonAppleInsider);
             this.Controls.Add(this.buttonArsTechnica);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximumSize = new System.Drawing.Size(880, 178);

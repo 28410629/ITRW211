@@ -20,11 +20,6 @@ namespace ITRW211_Project
             this.label4.Text = "Please provide email address upon registration,\nto reset either password or username.";
         }
 
-        private void FormForgot_Load(object sender, EventArgs e)
-        {
-           
-        }
-
         private void buttonForgotU_Click(object sender, EventArgs e)
         {
             DatabaseCommands databaseCommands = new DatabaseCommands();
@@ -34,7 +29,14 @@ namespace ITRW211_Project
             }
             else
             {
-                labelResult.Text = databaseCommands.insertUser(textBoxEmail.Text, textBoxUser.Text);
+                if (databaseCommands.checkQuestion(textBoxEmail.Text,textBoxAnswer.Text) == 0)
+                {
+                    labelResult.Text = "Incorrect security answer.";
+                }
+                else
+                {
+                    labelResult.Text = databaseCommands.insertUser(textBoxEmail.Text, textBoxUser.Text);
+                }
             }
         }
 
@@ -52,19 +54,32 @@ namespace ITRW211_Project
         private void buttonForgotP_Click(object sender, EventArgs e)
         {
             DatabaseCommands databaseCommands = new DatabaseCommands();
-            if(databaseCommands.checkEmail(textBoxEmail.Text) == 0)
+            if (databaseCommands.checkEmail(textBoxEmail.Text) == 0)
             {
                 labelResult.Text = "Email does not exist in database.";
             }
             else
             {
-                labelResult.Text = databaseCommands.insertPass(textBoxEmail.Text, textBoxPass.Text);
+                if (databaseCommands.checkQuestion(textBoxEmail.Text, textBoxAnswer.Text) == 0)
+                {
+                    labelResult.Text = "Incorrect security answer.";
+                }
+                else
+                {
+                    labelResult.Text = databaseCommands.insertPass(textBoxEmail.Text, textBoxPass.Text);
+                }
             }
         }
 
         private void buttonBack_Click(object sender, EventArgs e)
         {
             main.Show();
+        }
+
+        private void textBoxEmail_TextChanged(object sender, EventArgs e)
+        {
+            DatabaseCommands commands = new DatabaseCommands();
+            labelQuestion.Text = commands.getQuestion(textBoxEmail.Text);
         }
     }
 }

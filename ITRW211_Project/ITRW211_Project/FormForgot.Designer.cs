@@ -41,6 +41,9 @@
             this.buttonBoth = new System.Windows.Forms.Button();
             this.labelResult = new System.Windows.Forms.Label();
             this.buttonBack = new System.Windows.Forms.Button();
+            this.labelQuestion = new System.Windows.Forms.Label();
+            this.textBoxAnswer = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label2
@@ -104,6 +107,7 @@
             this.textBoxEmail.Name = "textBoxEmail";
             this.textBoxEmail.Size = new System.Drawing.Size(232, 20);
             this.textBoxEmail.TabIndex = 9;
+            this.textBoxEmail.TextChanged += new System.EventHandler(this.textBoxEmail_TextChanged);
             // 
             // label3
             // 
@@ -170,12 +174,46 @@
             this.buttonBack.UseVisualStyleBackColor = false;
             this.buttonBack.Click += new System.EventHandler(this.buttonBack_Click);
             // 
+            // labelQuestion
+            // 
+            this.labelQuestion.AutoSize = true;
+            this.labelQuestion.BackColor = System.Drawing.Color.Transparent;
+            this.labelQuestion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelQuestion.ForeColor = System.Drawing.Color.White;
+            this.labelQuestion.Location = new System.Drawing.Point(21, 194);
+            this.labelQuestion.Name = "labelQuestion";
+            this.labelQuestion.Size = new System.Drawing.Size(235, 15);
+            this.labelQuestion.TabIndex = 36;
+            this.labelQuestion.Text = "Security Question:    Please provide email.";
+            // 
+            // textBoxAnswer
+            // 
+            this.textBoxAnswer.Location = new System.Drawing.Point(134, 212);
+            this.textBoxAnswer.Name = "textBoxAnswer";
+            this.textBoxAnswer.Size = new System.Drawing.Size(249, 20);
+            this.textBoxAnswer.TabIndex = 37;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.Transparent;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.LightPink;
+            this.label5.Location = new System.Drawing.Point(74, 213);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(50, 15);
+            this.label5.TabIndex = 38;
+            this.label5.Text = "Answer:";
+            // 
             // FormForgot
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(463, 347);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.textBoxAnswer);
+            this.Controls.Add(this.labelQuestion);
             this.Controls.Add(this.buttonBack);
             this.Controls.Add(this.labelResult);
             this.Controls.Add(this.buttonBoth);
@@ -188,6 +226,7 @@
             this.Controls.Add(this.buttonForgotP);
             this.Controls.Add(this.textBoxPass);
             this.Controls.Add(this.textBoxEmail);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(479, 386);
             this.MinimumSize = new System.Drawing.Size(479, 386);
@@ -195,7 +234,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Article Reader - Forgot Details";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormForgot_FormClosing);
-            this.Load += new System.EventHandler(this.FormForgot_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -215,5 +253,8 @@
         private System.Windows.Forms.Button buttonBoth;
         private System.Windows.Forms.Label labelResult;
         private System.Windows.Forms.Button buttonBack;
+        private System.Windows.Forms.Label labelQuestion;
+        private System.Windows.Forms.TextBox textBoxAnswer;
+        private System.Windows.Forms.Label label5;
     }
 }

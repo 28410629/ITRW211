@@ -351,7 +351,9 @@ namespace ITRW211_Project {
             
             private global::System.Data.DataColumn columnACCESSID;
             
-            private global::System.Data.DataColumn columnLASTDATE;
+            private global::System.Data.DataColumn columnUSER;
+            
+            private global::System.Data.DataColumn columnFIRSTDATE;
             
             private global::System.Data.DataColumn columnVIEWCOUNT;
             
@@ -404,9 +406,17 @@ namespace ITRW211_Project {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn LASTDATEColumn {
+            public global::System.Data.DataColumn USERColumn {
                 get {
-                    return this.columnLASTDATE;
+                    return this.columnUSER;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn FIRSTDATEColumn {
+                get {
+                    return this.columnFIRSTDATE;
                 }
             }
             
@@ -479,11 +489,12 @@ namespace ITRW211_Project {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public APPLEINSIDERRow AddAPPLEINSIDERRow(System.DateTime LASTDATE, int VIEWCOUNT, string ARTICLE, string AUTHOR, string ABSTRACT) {
+            public APPLEINSIDERRow AddAPPLEINSIDERRow(string USER, string FIRSTDATE, int VIEWCOUNT, string ARTICLE, string AUTHOR, string ABSTRACT) {
                 APPLEINSIDERRow rowAPPLEINSIDERRow = ((APPLEINSIDERRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
-                        LASTDATE,
+                        USER,
+                        FIRSTDATE,
                         VIEWCOUNT,
                         ARTICLE,
                         AUTHOR,
@@ -518,7 +529,8 @@ namespace ITRW211_Project {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             internal void InitVars() {
                 this.columnACCESSID = base.Columns["ACCESSID"];
-                this.columnLASTDATE = base.Columns["LASTDATE"];
+                this.columnUSER = base.Columns["USER"];
+                this.columnFIRSTDATE = base.Columns["FIRSTDATE"];
                 this.columnVIEWCOUNT = base.Columns["VIEWCOUNT"];
                 this.columnARTICLE = base.Columns["ARTICLE"];
                 this.columnAUTHOR = base.Columns["AUTHOR"];
@@ -530,8 +542,10 @@ namespace ITRW211_Project {
             private void InitClass() {
                 this.columnACCESSID = new global::System.Data.DataColumn("ACCESSID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnACCESSID);
-                this.columnLASTDATE = new global::System.Data.DataColumn("LASTDATE", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnLASTDATE);
+                this.columnUSER = new global::System.Data.DataColumn("USER", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnUSER);
+                this.columnFIRSTDATE = new global::System.Data.DataColumn("FIRSTDATE", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFIRSTDATE);
                 this.columnVIEWCOUNT = new global::System.Data.DataColumn("VIEWCOUNT", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnVIEWCOUNT);
                 this.columnARTICLE = new global::System.Data.DataColumn("ARTICLE", typeof(string), null, global::System.Data.MappingType.Element);
@@ -547,6 +561,8 @@ namespace ITRW211_Project {
                 this.columnACCESSID.AutoIncrementStep = -1;
                 this.columnACCESSID.AllowDBNull = false;
                 this.columnACCESSID.Unique = true;
+                this.columnUSER.MaxLength = 536870910;
+                this.columnFIRSTDATE.MaxLength = 255;
                 this.columnARTICLE.MaxLength = 536870910;
                 this.columnAUTHOR.MaxLength = 255;
                 this.columnABSTRACT.MaxLength = 536870910;
@@ -685,7 +701,9 @@ namespace ITRW211_Project {
             
             private global::System.Data.DataColumn columnACCESSID;
             
-            private global::System.Data.DataColumn columnLASTDATE;
+            private global::System.Data.DataColumn columnUSER;
+            
+            private global::System.Data.DataColumn columnFIRSTDATE;
             
             private global::System.Data.DataColumn columnVIEWCOUNT;
             
@@ -738,9 +756,17 @@ namespace ITRW211_Project {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn LASTDATEColumn {
+            public global::System.Data.DataColumn USERColumn {
                 get {
-                    return this.columnLASTDATE;
+                    return this.columnUSER;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn FIRSTDATEColumn {
+                get {
+                    return this.columnFIRSTDATE;
                 }
             }
             
@@ -813,11 +839,12 @@ namespace ITRW211_Project {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public ARSTECHNICARow AddARSTECHNICARow(System.DateTime LASTDATE, int VIEWCOUNT, string ARTICLE, string AUTHOR, string ABSTRACT) {
+            public ARSTECHNICARow AddARSTECHNICARow(string USER, string FIRSTDATE, int VIEWCOUNT, string ARTICLE, string AUTHOR, string ABSTRACT) {
                 ARSTECHNICARow rowARSTECHNICARow = ((ARSTECHNICARow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
-                        LASTDATE,
+                        USER,
+                        FIRSTDATE,
                         VIEWCOUNT,
                         ARTICLE,
                         AUTHOR,
@@ -852,7 +879,8 @@ namespace ITRW211_Project {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             internal void InitVars() {
                 this.columnACCESSID = base.Columns["ACCESSID"];
-                this.columnLASTDATE = base.Columns["LASTDATE"];
+                this.columnUSER = base.Columns["USER"];
+                this.columnFIRSTDATE = base.Columns["FIRSTDATE"];
                 this.columnVIEWCOUNT = base.Columns["VIEWCOUNT"];
                 this.columnARTICLE = base.Columns["ARTICLE"];
                 this.columnAUTHOR = base.Columns["AUTHOR"];
@@ -864,8 +892,10 @@ namespace ITRW211_Project {
             private void InitClass() {
                 this.columnACCESSID = new global::System.Data.DataColumn("ACCESSID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnACCESSID);
-                this.columnLASTDATE = new global::System.Data.DataColumn("LASTDATE", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnLASTDATE);
+                this.columnUSER = new global::System.Data.DataColumn("USER", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnUSER);
+                this.columnFIRSTDATE = new global::System.Data.DataColumn("FIRSTDATE", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFIRSTDATE);
                 this.columnVIEWCOUNT = new global::System.Data.DataColumn("VIEWCOUNT", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnVIEWCOUNT);
                 this.columnARTICLE = new global::System.Data.DataColumn("ARTICLE", typeof(string), null, global::System.Data.MappingType.Element);
@@ -881,6 +911,8 @@ namespace ITRW211_Project {
                 this.columnACCESSID.AutoIncrementStep = -1;
                 this.columnACCESSID.AllowDBNull = false;
                 this.columnACCESSID.Unique = true;
+                this.columnUSER.MaxLength = 536870910;
+                this.columnFIRSTDATE.MaxLength = 255;
                 this.columnARTICLE.MaxLength = 536870910;
                 this.columnAUTHOR.MaxLength = 255;
                 this.columnABSTRACT.MaxLength = 536870910;
@@ -1019,7 +1051,9 @@ namespace ITRW211_Project {
             
             private global::System.Data.DataColumn columnACCESSID;
             
-            private global::System.Data.DataColumn columnLASTDATE;
+            private global::System.Data.DataColumn columnUSER;
+            
+            private global::System.Data.DataColumn columnFIRSTDATE;
             
             private global::System.Data.DataColumn columnVIEWCOUNT;
             
@@ -1072,9 +1106,17 @@ namespace ITRW211_Project {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn LASTDATEColumn {
+            public global::System.Data.DataColumn USERColumn {
                 get {
-                    return this.columnLASTDATE;
+                    return this.columnUSER;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn FIRSTDATEColumn {
+                get {
+                    return this.columnFIRSTDATE;
                 }
             }
             
@@ -1147,11 +1189,12 @@ namespace ITRW211_Project {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public HACKADAYRow AddHACKADAYRow(System.DateTime LASTDATE, int VIEWCOUNT, string ARTICLE, string AUTHOR, string ABSTRACT) {
+            public HACKADAYRow AddHACKADAYRow(string USER, string FIRSTDATE, int VIEWCOUNT, string ARTICLE, string AUTHOR, string ABSTRACT) {
                 HACKADAYRow rowHACKADAYRow = ((HACKADAYRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
-                        LASTDATE,
+                        USER,
+                        FIRSTDATE,
                         VIEWCOUNT,
                         ARTICLE,
                         AUTHOR,
@@ -1186,7 +1229,8 @@ namespace ITRW211_Project {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             internal void InitVars() {
                 this.columnACCESSID = base.Columns["ACCESSID"];
-                this.columnLASTDATE = base.Columns["LASTDATE"];
+                this.columnUSER = base.Columns["USER"];
+                this.columnFIRSTDATE = base.Columns["FIRSTDATE"];
                 this.columnVIEWCOUNT = base.Columns["VIEWCOUNT"];
                 this.columnARTICLE = base.Columns["ARTICLE"];
                 this.columnAUTHOR = base.Columns["AUTHOR"];
@@ -1198,8 +1242,10 @@ namespace ITRW211_Project {
             private void InitClass() {
                 this.columnACCESSID = new global::System.Data.DataColumn("ACCESSID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnACCESSID);
-                this.columnLASTDATE = new global::System.Data.DataColumn("LASTDATE", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnLASTDATE);
+                this.columnUSER = new global::System.Data.DataColumn("USER", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnUSER);
+                this.columnFIRSTDATE = new global::System.Data.DataColumn("FIRSTDATE", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFIRSTDATE);
                 this.columnVIEWCOUNT = new global::System.Data.DataColumn("VIEWCOUNT", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnVIEWCOUNT);
                 this.columnARTICLE = new global::System.Data.DataColumn("ARTICLE", typeof(string), null, global::System.Data.MappingType.Element);
@@ -1215,6 +1261,8 @@ namespace ITRW211_Project {
                 this.columnACCESSID.AutoIncrementStep = -1;
                 this.columnACCESSID.AllowDBNull = false;
                 this.columnACCESSID.Unique = true;
+                this.columnUSER.MaxLength = 536870910;
+                this.columnFIRSTDATE.MaxLength = 255;
                 this.columnARTICLE.MaxLength = 536870910;
                 this.columnAUTHOR.MaxLength = 255;
                 this.columnABSTRACT.MaxLength = 536870910;
@@ -1371,17 +1419,33 @@ namespace ITRW211_Project {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.DateTime LASTDATE {
+            public string USER {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableAPPLEINSIDER.LASTDATEColumn]));
+                        return ((string)(this[this.tableAPPLEINSIDER.USERColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'LASTDATE\' in table \'APPLEINSIDER\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'USER\' in table \'APPLEINSIDER\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableAPPLEINSIDER.LASTDATEColumn] = value;
+                    this[this.tableAPPLEINSIDER.USERColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string FIRSTDATE {
+                get {
+                    try {
+                        return ((string)(this[this.tableAPPLEINSIDER.FIRSTDATEColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'FIRSTDATE\' in table \'APPLEINSIDER\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableAPPLEINSIDER.FIRSTDATEColumn] = value;
                 }
             }
             
@@ -1451,14 +1515,26 @@ namespace ITRW211_Project {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsLASTDATENull() {
-                return this.IsNull(this.tableAPPLEINSIDER.LASTDATEColumn);
+            public bool IsUSERNull() {
+                return this.IsNull(this.tableAPPLEINSIDER.USERColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetLASTDATENull() {
-                this[this.tableAPPLEINSIDER.LASTDATEColumn] = global::System.Convert.DBNull;
+            public void SetUSERNull() {
+                this[this.tableAPPLEINSIDER.USERColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsFIRSTDATENull() {
+                return this.IsNull(this.tableAPPLEINSIDER.FIRSTDATEColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetFIRSTDATENull() {
+                this[this.tableAPPLEINSIDER.FIRSTDATEColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1537,17 +1613,33 @@ namespace ITRW211_Project {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.DateTime LASTDATE {
+            public string USER {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableARSTECHNICA.LASTDATEColumn]));
+                        return ((string)(this[this.tableARSTECHNICA.USERColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'LASTDATE\' in table \'ARSTECHNICA\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'USER\' in table \'ARSTECHNICA\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableARSTECHNICA.LASTDATEColumn] = value;
+                    this[this.tableARSTECHNICA.USERColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string FIRSTDATE {
+                get {
+                    try {
+                        return ((string)(this[this.tableARSTECHNICA.FIRSTDATEColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'FIRSTDATE\' in table \'ARSTECHNICA\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableARSTECHNICA.FIRSTDATEColumn] = value;
                 }
             }
             
@@ -1617,14 +1709,26 @@ namespace ITRW211_Project {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsLASTDATENull() {
-                return this.IsNull(this.tableARSTECHNICA.LASTDATEColumn);
+            public bool IsUSERNull() {
+                return this.IsNull(this.tableARSTECHNICA.USERColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetLASTDATENull() {
-                this[this.tableARSTECHNICA.LASTDATEColumn] = global::System.Convert.DBNull;
+            public void SetUSERNull() {
+                this[this.tableARSTECHNICA.USERColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsFIRSTDATENull() {
+                return this.IsNull(this.tableARSTECHNICA.FIRSTDATEColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetFIRSTDATENull() {
+                this[this.tableARSTECHNICA.FIRSTDATEColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1703,17 +1807,33 @@ namespace ITRW211_Project {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.DateTime LASTDATE {
+            public string USER {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableHACKADAY.LASTDATEColumn]));
+                        return ((string)(this[this.tableHACKADAY.USERColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'LASTDATE\' in table \'HACKADAY\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'USER\' in table \'HACKADAY\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableHACKADAY.LASTDATEColumn] = value;
+                    this[this.tableHACKADAY.USERColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string FIRSTDATE {
+                get {
+                    try {
+                        return ((string)(this[this.tableHACKADAY.FIRSTDATEColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'FIRSTDATE\' in table \'HACKADAY\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableHACKADAY.FIRSTDATEColumn] = value;
                 }
             }
             
@@ -1783,14 +1903,26 @@ namespace ITRW211_Project {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsLASTDATENull() {
-                return this.IsNull(this.tableHACKADAY.LASTDATEColumn);
+            public bool IsUSERNull() {
+                return this.IsNull(this.tableHACKADAY.USERColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetLASTDATENull() {
-                this[this.tableHACKADAY.LASTDATEColumn] = global::System.Convert.DBNull;
+            public void SetUSERNull() {
+                this[this.tableHACKADAY.USERColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsFIRSTDATENull() {
+                return this.IsNull(this.tableHACKADAY.FIRSTDATEColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetFIRSTDATENull() {
+                this[this.tableHACKADAY.FIRSTDATEColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2070,7 +2202,8 @@ namespace ITRW211_Project.DatabaseDataSetTableAdapters {
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "APPLEINSIDER";
             tableMapping.ColumnMappings.Add("ACCESSID", "ACCESSID");
-            tableMapping.ColumnMappings.Add("LASTDATE", "LASTDATE");
+            tableMapping.ColumnMappings.Add("USER", "USER");
+            tableMapping.ColumnMappings.Add("FIRSTDATE", "FIRSTDATE");
             tableMapping.ColumnMappings.Add("VIEWCOUNT", "VIEWCOUNT");
             tableMapping.ColumnMappings.Add("ARTICLE", "ARTICLE");
             tableMapping.ColumnMappings.Add("AUTHOR", "AUTHOR");
@@ -2078,39 +2211,41 @@ namespace ITRW211_Project.DatabaseDataSetTableAdapters {
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM `APPLEINSIDER` WHERE ((`ACCESSID` = ?) AND ((? = 1 AND `LASTDATE` IS " +
-                "NULL) OR (`LASTDATE` = ?)) AND ((? = 1 AND `VIEWCOUNT` IS NULL) OR (`VIEWCOUNT` " +
-                "= ?)) AND ((? = 1 AND `AUTHOR` IS NULL) OR (`AUTHOR` = ?)))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM `APPLEINSIDER` WHERE ((`ACCESSID` = ?) AND ((? = 1 AND `FIRSTDATE` IS" +
+                " NULL) OR (`FIRSTDATE` = ?)) AND ((? = 1 AND `VIEWCOUNT` IS NULL) OR (`VIEWCOUNT" +
+                "` = ?)) AND ((? = 1 AND `AUTHOR` IS NULL) OR (`AUTHOR` = ?)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_ACCESSID", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ACCESSID", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_LASTDATE", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "LASTDATE", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_LASTDATE", global::System.Data.OleDb.OleDbType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "LASTDATE", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_FIRSTDATE", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "FIRSTDATE", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_FIRSTDATE", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "FIRSTDATE", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_VIEWCOUNT", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "VIEWCOUNT", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_VIEWCOUNT", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "VIEWCOUNT", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_AUTHOR", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "AUTHOR", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_AUTHOR", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "AUTHOR", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.InsertCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO `APPLEINSIDER` (`LASTDATE`, `VIEWCOUNT`, `ARTICLE`, `AUTHOR`, `ABSTRA" +
-                "CT`) VALUES (?, ?, ?, ?, ?)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO `APPLEINSIDER` (`USER`, `FIRSTDATE`, `VIEWCOUNT`, `ARTICLE`, `AUTHOR`" +
+                ", `ABSTRACT`) VALUES (?, ?, ?, ?, ?, ?)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("LASTDATE", global::System.Data.OleDb.OleDbType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "LASTDATE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("USER", global::System.Data.OleDb.OleDbType.LongVarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "USER", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("FIRSTDATE", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "FIRSTDATE", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("VIEWCOUNT", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "VIEWCOUNT", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("ARTICLE", global::System.Data.OleDb.OleDbType.LongVarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ARTICLE", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("AUTHOR", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "AUTHOR", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("ABSTRACT", global::System.Data.OleDb.OleDbType.LongVarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ABSTRACT", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE `APPLEINSIDER` SET `LASTDATE` = ?, `VIEWCOUNT` = ?, `ARTICLE` = ?, `AUTHOR` = ?, `ABSTRACT` = ? WHERE ((`ACCESSID` = ?) AND ((? = 1 AND `LASTDATE` IS NULL) OR (`LASTDATE` = ?)) AND ((? = 1 AND `VIEWCOUNT` IS NULL) OR (`VIEWCOUNT` = ?)) AND ((? = 1 AND `AUTHOR` IS NULL) OR (`AUTHOR` = ?)))";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE `APPLEINSIDER` SET `USER` = ?, `FIRSTDATE` = ?, `VIEWCOUNT` = ?, `ARTICLE` = ?, `AUTHOR` = ?, `ABSTRACT` = ? WHERE ((`ACCESSID` = ?) AND ((? = 1 AND `FIRSTDATE` IS NULL) OR (`FIRSTDATE` = ?)) AND ((? = 1 AND `VIEWCOUNT` IS NULL) OR (`VIEWCOUNT` = ?)) AND ((? = 1 AND `AUTHOR` IS NULL) OR (`AUTHOR` = ?)))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("LASTDATE", global::System.Data.OleDb.OleDbType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "LASTDATE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("USER", global::System.Data.OleDb.OleDbType.LongVarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "USER", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("FIRSTDATE", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "FIRSTDATE", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("VIEWCOUNT", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "VIEWCOUNT", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("ARTICLE", global::System.Data.OleDb.OleDbType.LongVarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ARTICLE", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("AUTHOR", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "AUTHOR", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("ABSTRACT", global::System.Data.OleDb.OleDbType.LongVarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ABSTRACT", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_ACCESSID", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ACCESSID", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_LASTDATE", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "LASTDATE", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_LASTDATE", global::System.Data.OleDb.OleDbType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "LASTDATE", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_FIRSTDATE", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "FIRSTDATE", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_FIRSTDATE", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "FIRSTDATE", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_VIEWCOUNT", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "VIEWCOUNT", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_VIEWCOUNT", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "VIEWCOUNT", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_AUTHOR", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "AUTHOR", global::System.Data.DataRowVersion.Original, true, null));
@@ -2130,8 +2265,8 @@ namespace ITRW211_Project.DatabaseDataSetTableAdapters {
             this._commandCollection = new global::System.Data.OleDb.OleDbCommand[1];
             this._commandCollection[0] = new global::System.Data.OleDb.OleDbCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT ACCESSID, LASTDATE, VIEWCOUNT, ARTICLE, AUTHOR, ABSTRACT FROM APPLEINSIDER" +
-                "";
+            this._commandCollection[0].CommandText = "SELECT ACCESSID, [USER], FIRSTDATE, VIEWCOUNT, ARTICLE, AUTHOR, ABSTRACT FROM APP" +
+                "LEINSIDER";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -2192,15 +2327,15 @@ namespace ITRW211_Project.DatabaseDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_ACCESSID, global::System.Nullable<global::System.DateTime> Original_LASTDATE, global::System.Nullable<int> Original_VIEWCOUNT, string Original_AUTHOR) {
+        public virtual int Delete(int Original_ACCESSID, string Original_FIRSTDATE, global::System.Nullable<int> Original_VIEWCOUNT, string Original_AUTHOR) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_ACCESSID));
-            if ((Original_LASTDATE.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[2].Value = ((System.DateTime)(Original_LASTDATE.Value));
-            }
-            else {
+            if ((Original_FIRSTDATE == null)) {
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[2].Value = ((string)(Original_FIRSTDATE));
             }
             if ((Original_VIEWCOUNT.HasValue == true)) {
                 this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
@@ -2238,36 +2373,42 @@ namespace ITRW211_Project.DatabaseDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(global::System.Nullable<global::System.DateTime> LASTDATE, global::System.Nullable<int> VIEWCOUNT, string ARTICLE, string AUTHOR, string ABSTRACT) {
-            if ((LASTDATE.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[0].Value = ((System.DateTime)(LASTDATE.Value));
-            }
-            else {
+        public virtual int Insert(string USER, string FIRSTDATE, global::System.Nullable<int> VIEWCOUNT, string ARTICLE, string AUTHOR, string ABSTRACT) {
+            if ((USER == null)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
-            if ((VIEWCOUNT.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((int)(VIEWCOUNT.Value));
-            }
             else {
+                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(USER));
+            }
+            if ((FIRSTDATE == null)) {
                 this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
-            if ((ARTICLE == null)) {
-                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
+            else {
+                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(FIRSTDATE));
+            }
+            if ((VIEWCOUNT.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[2].Value = ((int)(VIEWCOUNT.Value));
             }
             else {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(ARTICLE));
+                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
-            if ((AUTHOR == null)) {
+            if ((ARTICLE == null)) {
                 this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(AUTHOR));
+                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(ARTICLE));
             }
-            if ((ABSTRACT == null)) {
+            if ((AUTHOR == null)) {
                 this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[4].Value = ((string)(ABSTRACT));
+                this.Adapter.InsertCommand.Parameters[4].Value = ((string)(AUTHOR));
+            }
+            if ((ABSTRACT == null)) {
+                this.Adapter.InsertCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[5].Value = ((string)(ABSTRACT));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -2289,61 +2430,67 @@ namespace ITRW211_Project.DatabaseDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(global::System.Nullable<global::System.DateTime> LASTDATE, global::System.Nullable<int> VIEWCOUNT, string ARTICLE, string AUTHOR, string ABSTRACT, int Original_ACCESSID, global::System.Nullable<global::System.DateTime> Original_LASTDATE, global::System.Nullable<int> Original_VIEWCOUNT, string Original_AUTHOR) {
-            if ((LASTDATE.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[0].Value = ((System.DateTime)(LASTDATE.Value));
-            }
-            else {
+        public virtual int Update(string USER, string FIRSTDATE, global::System.Nullable<int> VIEWCOUNT, string ARTICLE, string AUTHOR, string ABSTRACT, int Original_ACCESSID, string Original_FIRSTDATE, global::System.Nullable<int> Original_VIEWCOUNT, string Original_AUTHOR) {
+            if ((USER == null)) {
                 this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
-            if ((VIEWCOUNT.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(VIEWCOUNT.Value));
-            }
             else {
+                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(USER));
+            }
+            if ((FIRSTDATE == null)) {
                 this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
-            if ((ARTICLE == null)) {
-                this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
+            else {
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(FIRSTDATE));
+            }
+            if ((VIEWCOUNT.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(VIEWCOUNT.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(ARTICLE));
+                this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
-            if ((AUTHOR == null)) {
+            if ((ARTICLE == null)) {
                 this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(AUTHOR));
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(ARTICLE));
             }
-            if ((ABSTRACT == null)) {
+            if ((AUTHOR == null)) {
                 this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(ABSTRACT));
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(AUTHOR));
             }
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_ACCESSID));
-            if ((Original_LASTDATE.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((System.DateTime)(Original_LASTDATE.Value));
+            if ((ABSTRACT == null)) {
+                this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(ABSTRACT));
+            }
+            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Original_ACCESSID));
+            if ((Original_FIRSTDATE == null)) {
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Original_FIRSTDATE));
             }
             if ((Original_VIEWCOUNT.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(Original_VIEWCOUNT.Value));
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(Original_VIEWCOUNT.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
             }
             if ((Original_AUTHOR == null)) {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(Original_AUTHOR));
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(Original_AUTHOR));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -2484,7 +2631,8 @@ namespace ITRW211_Project.DatabaseDataSetTableAdapters {
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "ARSTECHNICA";
             tableMapping.ColumnMappings.Add("ACCESSID", "ACCESSID");
-            tableMapping.ColumnMappings.Add("LASTDATE", "LASTDATE");
+            tableMapping.ColumnMappings.Add("USER", "USER");
+            tableMapping.ColumnMappings.Add("FIRSTDATE", "FIRSTDATE");
             tableMapping.ColumnMappings.Add("VIEWCOUNT", "VIEWCOUNT");
             tableMapping.ColumnMappings.Add("ARTICLE", "ARTICLE");
             tableMapping.ColumnMappings.Add("AUTHOR", "AUTHOR");
@@ -2492,39 +2640,41 @@ namespace ITRW211_Project.DatabaseDataSetTableAdapters {
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM `ARSTECHNICA` WHERE ((`ACCESSID` = ?) AND ((? = 1 AND `LASTDATE` IS N" +
-                "ULL) OR (`LASTDATE` = ?)) AND ((? = 1 AND `VIEWCOUNT` IS NULL) OR (`VIEWCOUNT` =" +
-                " ?)) AND ((? = 1 AND `AUTHOR` IS NULL) OR (`AUTHOR` = ?)))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM `ARSTECHNICA` WHERE ((`ACCESSID` = ?) AND ((? = 1 AND `FIRSTDATE` IS " +
+                "NULL) OR (`FIRSTDATE` = ?)) AND ((? = 1 AND `VIEWCOUNT` IS NULL) OR (`VIEWCOUNT`" +
+                " = ?)) AND ((? = 1 AND `AUTHOR` IS NULL) OR (`AUTHOR` = ?)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_ACCESSID", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ACCESSID", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_LASTDATE", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "LASTDATE", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_LASTDATE", global::System.Data.OleDb.OleDbType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "LASTDATE", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_FIRSTDATE", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "FIRSTDATE", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_FIRSTDATE", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "FIRSTDATE", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_VIEWCOUNT", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "VIEWCOUNT", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_VIEWCOUNT", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "VIEWCOUNT", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_AUTHOR", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "AUTHOR", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_AUTHOR", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "AUTHOR", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.InsertCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO `ARSTECHNICA` (`LASTDATE`, `VIEWCOUNT`, `ARTICLE`, `AUTHOR`, `ABSTRAC" +
-                "T`) VALUES (?, ?, ?, ?, ?)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO `ARSTECHNICA` (`USER`, `FIRSTDATE`, `VIEWCOUNT`, `ARTICLE`, `AUTHOR`," +
+                " `ABSTRACT`) VALUES (?, ?, ?, ?, ?, ?)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("LASTDATE", global::System.Data.OleDb.OleDbType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "LASTDATE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("USER", global::System.Data.OleDb.OleDbType.LongVarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "USER", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("FIRSTDATE", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "FIRSTDATE", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("VIEWCOUNT", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "VIEWCOUNT", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("ARTICLE", global::System.Data.OleDb.OleDbType.LongVarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ARTICLE", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("AUTHOR", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "AUTHOR", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("ABSTRACT", global::System.Data.OleDb.OleDbType.LongVarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ABSTRACT", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE `ARSTECHNICA` SET `LASTDATE` = ?, `VIEWCOUNT` = ?, `ARTICLE` = ?, `AUTHOR` = ?, `ABSTRACT` = ? WHERE ((`ACCESSID` = ?) AND ((? = 1 AND `LASTDATE` IS NULL) OR (`LASTDATE` = ?)) AND ((? = 1 AND `VIEWCOUNT` IS NULL) OR (`VIEWCOUNT` = ?)) AND ((? = 1 AND `AUTHOR` IS NULL) OR (`AUTHOR` = ?)))";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE `ARSTECHNICA` SET `USER` = ?, `FIRSTDATE` = ?, `VIEWCOUNT` = ?, `ARTICLE` = ?, `AUTHOR` = ?, `ABSTRACT` = ? WHERE ((`ACCESSID` = ?) AND ((? = 1 AND `FIRSTDATE` IS NULL) OR (`FIRSTDATE` = ?)) AND ((? = 1 AND `VIEWCOUNT` IS NULL) OR (`VIEWCOUNT` = ?)) AND ((? = 1 AND `AUTHOR` IS NULL) OR (`AUTHOR` = ?)))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("LASTDATE", global::System.Data.OleDb.OleDbType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "LASTDATE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("USER", global::System.Data.OleDb.OleDbType.LongVarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "USER", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("FIRSTDATE", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "FIRSTDATE", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("VIEWCOUNT", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "VIEWCOUNT", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("ARTICLE", global::System.Data.OleDb.OleDbType.LongVarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ARTICLE", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("AUTHOR", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "AUTHOR", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("ABSTRACT", global::System.Data.OleDb.OleDbType.LongVarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ABSTRACT", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_ACCESSID", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ACCESSID", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_LASTDATE", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "LASTDATE", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_LASTDATE", global::System.Data.OleDb.OleDbType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "LASTDATE", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_FIRSTDATE", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "FIRSTDATE", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_FIRSTDATE", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "FIRSTDATE", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_VIEWCOUNT", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "VIEWCOUNT", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_VIEWCOUNT", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "VIEWCOUNT", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_AUTHOR", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "AUTHOR", global::System.Data.DataRowVersion.Original, true, null));
@@ -2544,7 +2694,8 @@ namespace ITRW211_Project.DatabaseDataSetTableAdapters {
             this._commandCollection = new global::System.Data.OleDb.OleDbCommand[1];
             this._commandCollection[0] = new global::System.Data.OleDb.OleDbCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT ACCESSID, LASTDATE, VIEWCOUNT, ARTICLE, AUTHOR, ABSTRACT FROM ARSTECHNICA";
+            this._commandCollection[0].CommandText = "SELECT ACCESSID, [USER], FIRSTDATE, VIEWCOUNT, ARTICLE, AUTHOR, ABSTRACT FROM ARS" +
+                "TECHNICA";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -2605,15 +2756,15 @@ namespace ITRW211_Project.DatabaseDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_ACCESSID, global::System.Nullable<global::System.DateTime> Original_LASTDATE, global::System.Nullable<int> Original_VIEWCOUNT, string Original_AUTHOR) {
+        public virtual int Delete(int Original_ACCESSID, string Original_FIRSTDATE, global::System.Nullable<int> Original_VIEWCOUNT, string Original_AUTHOR) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_ACCESSID));
-            if ((Original_LASTDATE.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[2].Value = ((System.DateTime)(Original_LASTDATE.Value));
-            }
-            else {
+            if ((Original_FIRSTDATE == null)) {
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[2].Value = ((string)(Original_FIRSTDATE));
             }
             if ((Original_VIEWCOUNT.HasValue == true)) {
                 this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
@@ -2651,36 +2802,42 @@ namespace ITRW211_Project.DatabaseDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(global::System.Nullable<global::System.DateTime> LASTDATE, global::System.Nullable<int> VIEWCOUNT, string ARTICLE, string AUTHOR, string ABSTRACT) {
-            if ((LASTDATE.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[0].Value = ((System.DateTime)(LASTDATE.Value));
-            }
-            else {
+        public virtual int Insert(string USER, string FIRSTDATE, global::System.Nullable<int> VIEWCOUNT, string ARTICLE, string AUTHOR, string ABSTRACT) {
+            if ((USER == null)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
-            if ((VIEWCOUNT.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((int)(VIEWCOUNT.Value));
-            }
             else {
+                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(USER));
+            }
+            if ((FIRSTDATE == null)) {
                 this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
-            if ((ARTICLE == null)) {
-                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
+            else {
+                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(FIRSTDATE));
+            }
+            if ((VIEWCOUNT.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[2].Value = ((int)(VIEWCOUNT.Value));
             }
             else {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(ARTICLE));
+                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
-            if ((AUTHOR == null)) {
+            if ((ARTICLE == null)) {
                 this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(AUTHOR));
+                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(ARTICLE));
             }
-            if ((ABSTRACT == null)) {
+            if ((AUTHOR == null)) {
                 this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[4].Value = ((string)(ABSTRACT));
+                this.Adapter.InsertCommand.Parameters[4].Value = ((string)(AUTHOR));
+            }
+            if ((ABSTRACT == null)) {
+                this.Adapter.InsertCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[5].Value = ((string)(ABSTRACT));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -2702,61 +2859,67 @@ namespace ITRW211_Project.DatabaseDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(global::System.Nullable<global::System.DateTime> LASTDATE, global::System.Nullable<int> VIEWCOUNT, string ARTICLE, string AUTHOR, string ABSTRACT, int Original_ACCESSID, global::System.Nullable<global::System.DateTime> Original_LASTDATE, global::System.Nullable<int> Original_VIEWCOUNT, string Original_AUTHOR) {
-            if ((LASTDATE.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[0].Value = ((System.DateTime)(LASTDATE.Value));
-            }
-            else {
+        public virtual int Update(string USER, string FIRSTDATE, global::System.Nullable<int> VIEWCOUNT, string ARTICLE, string AUTHOR, string ABSTRACT, int Original_ACCESSID, string Original_FIRSTDATE, global::System.Nullable<int> Original_VIEWCOUNT, string Original_AUTHOR) {
+            if ((USER == null)) {
                 this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
-            if ((VIEWCOUNT.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(VIEWCOUNT.Value));
-            }
             else {
+                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(USER));
+            }
+            if ((FIRSTDATE == null)) {
                 this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
-            if ((ARTICLE == null)) {
-                this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
+            else {
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(FIRSTDATE));
+            }
+            if ((VIEWCOUNT.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(VIEWCOUNT.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(ARTICLE));
+                this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
-            if ((AUTHOR == null)) {
+            if ((ARTICLE == null)) {
                 this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(AUTHOR));
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(ARTICLE));
             }
-            if ((ABSTRACT == null)) {
+            if ((AUTHOR == null)) {
                 this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(ABSTRACT));
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(AUTHOR));
             }
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_ACCESSID));
-            if ((Original_LASTDATE.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((System.DateTime)(Original_LASTDATE.Value));
+            if ((ABSTRACT == null)) {
+                this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(ABSTRACT));
+            }
+            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Original_ACCESSID));
+            if ((Original_FIRSTDATE == null)) {
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Original_FIRSTDATE));
             }
             if ((Original_VIEWCOUNT.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(Original_VIEWCOUNT.Value));
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(Original_VIEWCOUNT.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
             }
             if ((Original_AUTHOR == null)) {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(Original_AUTHOR));
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(Original_AUTHOR));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -2897,7 +3060,8 @@ namespace ITRW211_Project.DatabaseDataSetTableAdapters {
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "HACKADAY";
             tableMapping.ColumnMappings.Add("ACCESSID", "ACCESSID");
-            tableMapping.ColumnMappings.Add("LASTDATE", "LASTDATE");
+            tableMapping.ColumnMappings.Add("USER", "USER");
+            tableMapping.ColumnMappings.Add("FIRSTDATE", "FIRSTDATE");
             tableMapping.ColumnMappings.Add("VIEWCOUNT", "VIEWCOUNT");
             tableMapping.ColumnMappings.Add("ARTICLE", "ARTICLE");
             tableMapping.ColumnMappings.Add("AUTHOR", "AUTHOR");
@@ -2905,39 +3069,41 @@ namespace ITRW211_Project.DatabaseDataSetTableAdapters {
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM `HACKADAY` WHERE ((`ACCESSID` = ?) AND ((? = 1 AND `LASTDATE` IS NULL" +
-                ") OR (`LASTDATE` = ?)) AND ((? = 1 AND `VIEWCOUNT` IS NULL) OR (`VIEWCOUNT` = ?)" +
-                ") AND ((? = 1 AND `AUTHOR` IS NULL) OR (`AUTHOR` = ?)))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM `HACKADAY` WHERE ((`ACCESSID` = ?) AND ((? = 1 AND `FIRSTDATE` IS NUL" +
+                "L) OR (`FIRSTDATE` = ?)) AND ((? = 1 AND `VIEWCOUNT` IS NULL) OR (`VIEWCOUNT` = " +
+                "?)) AND ((? = 1 AND `AUTHOR` IS NULL) OR (`AUTHOR` = ?)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_ACCESSID", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ACCESSID", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_LASTDATE", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "LASTDATE", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_LASTDATE", global::System.Data.OleDb.OleDbType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "LASTDATE", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_FIRSTDATE", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "FIRSTDATE", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_FIRSTDATE", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "FIRSTDATE", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_VIEWCOUNT", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "VIEWCOUNT", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_VIEWCOUNT", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "VIEWCOUNT", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_AUTHOR", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "AUTHOR", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_AUTHOR", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "AUTHOR", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.InsertCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO `HACKADAY` (`LASTDATE`, `VIEWCOUNT`, `ARTICLE`, `AUTHOR`, `ABSTRACT`)" +
-                " VALUES (?, ?, ?, ?, ?)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO `HACKADAY` (`USER`, `FIRSTDATE`, `VIEWCOUNT`, `ARTICLE`, `AUTHOR`, `A" +
+                "BSTRACT`) VALUES (?, ?, ?, ?, ?, ?)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("LASTDATE", global::System.Data.OleDb.OleDbType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "LASTDATE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("USER", global::System.Data.OleDb.OleDbType.LongVarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "USER", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("FIRSTDATE", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "FIRSTDATE", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("VIEWCOUNT", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "VIEWCOUNT", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("ARTICLE", global::System.Data.OleDb.OleDbType.LongVarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ARTICLE", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("AUTHOR", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "AUTHOR", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("ABSTRACT", global::System.Data.OleDb.OleDbType.LongVarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ABSTRACT", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE `HACKADAY` SET `LASTDATE` = ?, `VIEWCOUNT` = ?, `ARTICLE` = ?, `AUTHOR` = ?, `ABSTRACT` = ? WHERE ((`ACCESSID` = ?) AND ((? = 1 AND `LASTDATE` IS NULL) OR (`LASTDATE` = ?)) AND ((? = 1 AND `VIEWCOUNT` IS NULL) OR (`VIEWCOUNT` = ?)) AND ((? = 1 AND `AUTHOR` IS NULL) OR (`AUTHOR` = ?)))";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE `HACKADAY` SET `USER` = ?, `FIRSTDATE` = ?, `VIEWCOUNT` = ?, `ARTICLE` = ?, `AUTHOR` = ?, `ABSTRACT` = ? WHERE ((`ACCESSID` = ?) AND ((? = 1 AND `FIRSTDATE` IS NULL) OR (`FIRSTDATE` = ?)) AND ((? = 1 AND `VIEWCOUNT` IS NULL) OR (`VIEWCOUNT` = ?)) AND ((? = 1 AND `AUTHOR` IS NULL) OR (`AUTHOR` = ?)))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("LASTDATE", global::System.Data.OleDb.OleDbType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "LASTDATE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("USER", global::System.Data.OleDb.OleDbType.LongVarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "USER", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("FIRSTDATE", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "FIRSTDATE", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("VIEWCOUNT", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "VIEWCOUNT", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("ARTICLE", global::System.Data.OleDb.OleDbType.LongVarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ARTICLE", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("AUTHOR", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "AUTHOR", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("ABSTRACT", global::System.Data.OleDb.OleDbType.LongVarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ABSTRACT", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_ACCESSID", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ACCESSID", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_LASTDATE", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "LASTDATE", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_LASTDATE", global::System.Data.OleDb.OleDbType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "LASTDATE", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_FIRSTDATE", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "FIRSTDATE", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_FIRSTDATE", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "FIRSTDATE", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_VIEWCOUNT", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "VIEWCOUNT", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_VIEWCOUNT", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "VIEWCOUNT", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_AUTHOR", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "AUTHOR", global::System.Data.DataRowVersion.Original, true, null));
@@ -2957,7 +3123,8 @@ namespace ITRW211_Project.DatabaseDataSetTableAdapters {
             this._commandCollection = new global::System.Data.OleDb.OleDbCommand[1];
             this._commandCollection[0] = new global::System.Data.OleDb.OleDbCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT ACCESSID, LASTDATE, VIEWCOUNT, ARTICLE, AUTHOR, ABSTRACT FROM HACKADAY";
+            this._commandCollection[0].CommandText = "SELECT ACCESSID, [USER], FIRSTDATE, VIEWCOUNT, ARTICLE, AUTHOR, ABSTRACT FROM HAC" +
+                "KADAY";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -3018,15 +3185,15 @@ namespace ITRW211_Project.DatabaseDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_ACCESSID, global::System.Nullable<global::System.DateTime> Original_LASTDATE, global::System.Nullable<int> Original_VIEWCOUNT, string Original_AUTHOR) {
+        public virtual int Delete(int Original_ACCESSID, string Original_FIRSTDATE, global::System.Nullable<int> Original_VIEWCOUNT, string Original_AUTHOR) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_ACCESSID));
-            if ((Original_LASTDATE.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[2].Value = ((System.DateTime)(Original_LASTDATE.Value));
-            }
-            else {
+            if ((Original_FIRSTDATE == null)) {
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[2].Value = ((string)(Original_FIRSTDATE));
             }
             if ((Original_VIEWCOUNT.HasValue == true)) {
                 this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
@@ -3064,36 +3231,42 @@ namespace ITRW211_Project.DatabaseDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(global::System.Nullable<global::System.DateTime> LASTDATE, global::System.Nullable<int> VIEWCOUNT, string ARTICLE, string AUTHOR, string ABSTRACT) {
-            if ((LASTDATE.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[0].Value = ((System.DateTime)(LASTDATE.Value));
-            }
-            else {
+        public virtual int Insert(string USER, string FIRSTDATE, global::System.Nullable<int> VIEWCOUNT, string ARTICLE, string AUTHOR, string ABSTRACT) {
+            if ((USER == null)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
-            if ((VIEWCOUNT.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((int)(VIEWCOUNT.Value));
-            }
             else {
+                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(USER));
+            }
+            if ((FIRSTDATE == null)) {
                 this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
-            if ((ARTICLE == null)) {
-                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
+            else {
+                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(FIRSTDATE));
+            }
+            if ((VIEWCOUNT.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[2].Value = ((int)(VIEWCOUNT.Value));
             }
             else {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(ARTICLE));
+                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
-            if ((AUTHOR == null)) {
+            if ((ARTICLE == null)) {
                 this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(AUTHOR));
+                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(ARTICLE));
             }
-            if ((ABSTRACT == null)) {
+            if ((AUTHOR == null)) {
                 this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[4].Value = ((string)(ABSTRACT));
+                this.Adapter.InsertCommand.Parameters[4].Value = ((string)(AUTHOR));
+            }
+            if ((ABSTRACT == null)) {
+                this.Adapter.InsertCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[5].Value = ((string)(ABSTRACT));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -3115,61 +3288,67 @@ namespace ITRW211_Project.DatabaseDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(global::System.Nullable<global::System.DateTime> LASTDATE, global::System.Nullable<int> VIEWCOUNT, string ARTICLE, string AUTHOR, string ABSTRACT, int Original_ACCESSID, global::System.Nullable<global::System.DateTime> Original_LASTDATE, global::System.Nullable<int> Original_VIEWCOUNT, string Original_AUTHOR) {
-            if ((LASTDATE.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[0].Value = ((System.DateTime)(LASTDATE.Value));
-            }
-            else {
+        public virtual int Update(string USER, string FIRSTDATE, global::System.Nullable<int> VIEWCOUNT, string ARTICLE, string AUTHOR, string ABSTRACT, int Original_ACCESSID, string Original_FIRSTDATE, global::System.Nullable<int> Original_VIEWCOUNT, string Original_AUTHOR) {
+            if ((USER == null)) {
                 this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
-            if ((VIEWCOUNT.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(VIEWCOUNT.Value));
-            }
             else {
+                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(USER));
+            }
+            if ((FIRSTDATE == null)) {
                 this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
-            if ((ARTICLE == null)) {
-                this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
+            else {
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(FIRSTDATE));
+            }
+            if ((VIEWCOUNT.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(VIEWCOUNT.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(ARTICLE));
+                this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
-            if ((AUTHOR == null)) {
+            if ((ARTICLE == null)) {
                 this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(AUTHOR));
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(ARTICLE));
             }
-            if ((ABSTRACT == null)) {
+            if ((AUTHOR == null)) {
                 this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(ABSTRACT));
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(AUTHOR));
             }
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_ACCESSID));
-            if ((Original_LASTDATE.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((System.DateTime)(Original_LASTDATE.Value));
+            if ((ABSTRACT == null)) {
+                this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(ABSTRACT));
+            }
+            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Original_ACCESSID));
+            if ((Original_FIRSTDATE == null)) {
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Original_FIRSTDATE));
             }
             if ((Original_VIEWCOUNT.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(Original_VIEWCOUNT.Value));
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(Original_VIEWCOUNT.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
             }
             if ((Original_AUTHOR == null)) {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(Original_AUTHOR));
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(Original_AUTHOR));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 

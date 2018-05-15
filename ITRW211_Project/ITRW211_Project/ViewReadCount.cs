@@ -18,7 +18,8 @@ namespace ITRW211_Project
     public partial class ViewReadCount : Form
     {
         string website;
-        public ViewReadCount(string website)
+        string username;
+        public ViewReadCount(string website, string username)
         {
             InitializeComponent();
             if (website == "Ars Technica")
@@ -34,6 +35,7 @@ namespace ITRW211_Project
                 Text = "View count for articles of Apple Insider : ";
             }
             this.website = website;
+            this.username = username;
         }
         private void FormArsData_Load(object sender, EventArgs e)
         {
@@ -43,15 +45,15 @@ namespace ITRW211_Project
                 string adapterString;
                 if (website == "Ars Technica")
                 {
-                    adapterString = @"SELECT * FROM ARSTECHNICA";
+                    adapterString = String.Format(@"SELECT * FROM ARSTECHNICA WHERE [USER] = '{0}'", username);
                 }
                 else if (website == "Hackaday")
                 {
-                    adapterString = @"SELECT * FROM HACKADAY";
+                    adapterString = String.Format(@"SELECT * FROM HACKADAY WHERE [USER] = '{0}'", username);
                 }
                 else
                 {
-                    adapterString = @"SELECT * FROM APPLEINSIDER";
+                    adapterString = String.Format(@"SELECT * FROM APPLEINSIDER WHERE [USER] = '{0}'", username);
                 }
                 OleDbDataAdapter adapter = new OleDbDataAdapter(adapterString, database);
                 DataSet dataSet = new DataSet();
@@ -78,17 +80,17 @@ namespace ITRW211_Project
                 if (website == "Ars Technica")
                 {
                     adapterString = @"SELECT * FROM ARSTECHNICA";
-                    commandString = "DELETE FROM ARSTECHNICA";
+                    commandString = String.Format(@"DELETE FROM ARSTECHNICA WHERE [USER] = '{0}'", username);
                 }
                 else if (website == "Hackaday")
                 {
                     adapterString = @"SELECT * FROM HACKADAY";
-                    commandString = "DELETE FROM HACKADAY";
+                    commandString = String.Format(@"DELETE FROM HACKADAY WHERE [USER] = '{0}'", username);
                 }
                 else
                 {
                     adapterString = @"SELECT * FROM APPLEINSIDER";
-                    commandString = "DELETE FROM APPLEINSIDER";
+                    commandString = String.Format(@"DELETE FROM APPLEINSIDER WHERE [USER] = '{0}'", username);
                 }
                 OleDbDataAdapter adapter = new OleDbDataAdapter(adapterString, database);
                 OleDbCommand command = new OleDbCommand(String.Format(commandString), database);
@@ -110,17 +112,17 @@ namespace ITRW211_Project
                 if (website == "Ars Technica")
                 {
                     adapterString = @"SELECT * FROM ARSTECHNICA";
-                    commandString = "UPDATE ARSTECHNICA SET VIEWCOUNT = '0'";
+                    commandString = String.Format("UPDATE ARSTECHNICA SET VIEWCOUNT = '0' WHERE [USER] = '{0}'", username);
                 }
                 else if (website == "Hackaday")
                 {
                     adapterString = @"SELECT * FROM HACKADAY";
-                    commandString = "UPDATE HACKADAY SET VIEWCOUNT = '0'";
+                    commandString = String.Format("UPDATE HACKADAY SET VIEWCOUNT = '0' WHERE [USER] = '{0}'", username);
                 }
                 else
                 {
                     adapterString = @"SELECT * FROM APPLEINSIDER";
-                    commandString = "UPDATE APPLEINSIDER SET VIEWCOUNT = '0'";
+                    commandString = String.Format("UPDATE APPLEINSIDER SET VIEWCOUNT = '0' WHERE [USER] = '{0}'", username);
                 }
                 OleDbDataAdapter adapter = new OleDbDataAdapter(adapterString, database);
                 OleDbCommand command = new OleDbCommand(String.Format(commandString), database);

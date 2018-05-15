@@ -36,11 +36,13 @@ namespace ITRW211_Project
         private Form newMain;
         // Progress bar current value
         int progressBar_value = 0;
+        string username;
 
-        public SiteLauncher(Form newMain)
+        public SiteLauncher(Form newMain, string username)
         {
             InitializeComponent();
             this.newMain = newMain;
+            this.username = username;
         }
 
         private void ArsTechnicaClick(object sender, EventArgs e)
@@ -138,11 +140,27 @@ namespace ITRW211_Project
             // Update progressbar - html processed
             Invoke(new MethodInvoker(delegate () { progressbarUpdate(20.00); }));
 
+            // Refine image links
+            StringManipulationArs arsRefine = new StringManipulationArs();
+            for (int i = 0; i < ArticlesDetails_Ars.Count; i++)
+            {
+                try
+                {
+                    ArticlesDetails_Ars[i] = arsRefine.refineSite(ArticlesDetails_Ars[i]);
+                    //ArticlesDetails_Appple[i] = arsImage.getImage_Author(ArticlesDetails_Apple[i])
+                }
+                catch(Exception)
+                {
+                    string[] arr = new string[11];
+                    ArticlesDetails_Ars[i] = arr;
+                }
+
+            }
             // Open Article browser
             Invoke(new MethodInvoker(delegate ()
             {
                 // Download completed
-                ArticleBrowser newArs = new ArticleBrowser(newMain, ArticlesDetails_Ars, "Ars Technica");
+                ArticleBrowser newArs = new ArticleBrowser(newMain, ArticlesDetails_Ars, "Ars Technica", username);
                 newArs.MdiParent = newMain;
                 newArs.Show();
                 Close();
@@ -209,7 +227,7 @@ namespace ITRW211_Project
             Invoke(new MethodInvoker(delegate ()
             {
                 // Download completed
-                ArticleBrowser newHack = new ArticleBrowser(newMain, ArticlesDetails_Hack, "Hackaday");
+                ArticleBrowser newHack = new ArticleBrowser(newMain, ArticlesDetails_Hack, "Hackaday", username);
                 newHack.MdiParent = newMain;
                 newHack.Show();
                 Close();
@@ -276,7 +294,7 @@ namespace ITRW211_Project
             Invoke(new MethodInvoker(delegate ()
             {
                 // Download completed
-                ArticleBrowser newApple = new ArticleBrowser(newMain, ArticlesDetails_Apple, "Apple Insider");
+                ArticleBrowser newApple = new ArticleBrowser(newMain, ArticlesDetails_Apple, "Apple Insider", username);
                 newApple.MdiParent = newMain;
                 newApple.Show();
                 Close();

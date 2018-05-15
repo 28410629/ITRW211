@@ -287,6 +287,10 @@ namespace ITRW211_Project {
             
             private global::System.Data.DataColumn columnEMAIL;
             
+            private global::System.Data.DataColumn columnQUESTION;
+            
+            private global::System.Data.DataColumn columnANSWER;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public LOGINDETAILSDataTable() {
@@ -354,6 +358,22 @@ namespace ITRW211_Project {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn QUESTIONColumn {
+                get {
+                    return this.columnQUESTION;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ANSWERColumn {
+                get {
+                    return this.columnANSWER;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -389,13 +409,15 @@ namespace ITRW211_Project {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public LOGINDETAILSRow AddLOGINDETAILSRow(string USER, string PASS, string EMAIL) {
+            public LOGINDETAILSRow AddLOGINDETAILSRow(string USER, string PASS, string EMAIL, string QUESTION, string ANSWER) {
                 LOGINDETAILSRow rowLOGINDETAILSRow = ((LOGINDETAILSRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         USER,
                         PASS,
-                        EMAIL};
+                        EMAIL,
+                        QUESTION,
+                        ANSWER};
                 rowLOGINDETAILSRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowLOGINDETAILSRow);
                 return rowLOGINDETAILSRow;
@@ -429,6 +451,8 @@ namespace ITRW211_Project {
                 this.columnUSER = base.Columns["USER"];
                 this.columnPASS = base.Columns["PASS"];
                 this.columnEMAIL = base.Columns["EMAIL"];
+                this.columnQUESTION = base.Columns["QUESTION"];
+                this.columnANSWER = base.Columns["ANSWER"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -442,6 +466,10 @@ namespace ITRW211_Project {
                 base.Columns.Add(this.columnPASS);
                 this.columnEMAIL = new global::System.Data.DataColumn("EMAIL", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnEMAIL);
+                this.columnQUESTION = new global::System.Data.DataColumn("QUESTION", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnQUESTION);
+                this.columnANSWER = new global::System.Data.DataColumn("ANSWER", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnANSWER);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnID}, true));
                 this.columnID.AutoIncrement = true;
@@ -452,6 +480,8 @@ namespace ITRW211_Project {
                 this.columnUSER.MaxLength = 536870910;
                 this.columnPASS.MaxLength = 536870910;
                 this.columnEMAIL.MaxLength = 536870910;
+                this.columnQUESTION.MaxLength = 536870910;
+                this.columnANSWER.MaxLength = 536870910;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -653,6 +683,38 @@ namespace ITRW211_Project {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string QUESTION {
+                get {
+                    try {
+                        return ((string)(this[this.tableLOGINDETAILS.QUESTIONColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'QUESTION\' in table \'LOGINDETAILS\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableLOGINDETAILS.QUESTIONColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string ANSWER {
+                get {
+                    try {
+                        return ((string)(this[this.tableLOGINDETAILS.ANSWERColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ANSWER\' in table \'LOGINDETAILS\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableLOGINDETAILS.ANSWERColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsUSERNull() {
                 return this.IsNull(this.tableLOGINDETAILS.USERColumn);
             }
@@ -685,6 +747,30 @@ namespace ITRW211_Project {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetEMAILNull() {
                 this[this.tableLOGINDETAILS.EMAILColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsQUESTIONNull() {
+                return this.IsNull(this.tableLOGINDETAILS.QUESTIONColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetQUESTIONNull() {
+                this[this.tableLOGINDETAILS.QUESTIONColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsANSWERNull() {
+                return this.IsNull(this.tableLOGINDETAILS.ANSWERColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetANSWERNull() {
+                this[this.tableLOGINDETAILS.ANSWERColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -851,6 +937,8 @@ namespace ITRW211_Project.AccountsDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("USER", "USER");
             tableMapping.ColumnMappings.Add("PASS", "PASS");
             tableMapping.ColumnMappings.Add("EMAIL", "EMAIL");
+            tableMapping.ColumnMappings.Add("QUESTION", "QUESTION");
+            tableMapping.ColumnMappings.Add("ANSWER", "ANSWER");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
@@ -859,18 +947,24 @@ namespace ITRW211_Project.AccountsDataSetTableAdapters {
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_ID", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ID", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.InsertCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO `LOGINDETAILS` (`USER`, `PASS`, `EMAIL`) VALUES (?, ?, ?)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO `LOGINDETAILS` (`USER`, `PASS`, `EMAIL`, `QUESTION`, `ANSWER`) VALUES" +
+                " (?, ?, ?, ?, ?)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("USER", global::System.Data.OleDb.OleDbType.LongVarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "USER", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("PASS", global::System.Data.OleDb.OleDbType.LongVarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "PASS", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("EMAIL", global::System.Data.OleDb.OleDbType.LongVarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "EMAIL", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("QUESTION", global::System.Data.OleDb.OleDbType.LongVarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "QUESTION", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("ANSWER", global::System.Data.OleDb.OleDbType.LongVarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ANSWER", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = "UPDATE `LOGINDETAILS` SET `USER` = ?, `PASS` = ?, `EMAIL` = ? WHERE ((`ID` = ?))";
+            this._adapter.UpdateCommand.CommandText = "UPDATE `LOGINDETAILS` SET `USER` = ?, `PASS` = ?, `EMAIL` = ?, `QUESTION` = ?, `A" +
+                "NSWER` = ? WHERE ((`ID` = ?))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("USER", global::System.Data.OleDb.OleDbType.LongVarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "USER", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("PASS", global::System.Data.OleDb.OleDbType.LongVarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "PASS", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("EMAIL", global::System.Data.OleDb.OleDbType.LongVarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "EMAIL", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("QUESTION", global::System.Data.OleDb.OleDbType.LongVarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "QUESTION", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("ANSWER", global::System.Data.OleDb.OleDbType.LongVarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ANSWER", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_ID", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ID", global::System.Data.DataRowVersion.Original, false, null));
         }
         
@@ -887,7 +981,7 @@ namespace ITRW211_Project.AccountsDataSetTableAdapters {
             this._commandCollection = new global::System.Data.OleDb.OleDbCommand[1];
             this._commandCollection[0] = new global::System.Data.OleDb.OleDbCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT ID, [USER], PASS, EMAIL FROM LOGINDETAILS";
+            this._commandCollection[0].CommandText = "SELECT ID, [USER], PASS, EMAIL, QUESTION, ANSWER FROM LOGINDETAILS";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -970,7 +1064,7 @@ namespace ITRW211_Project.AccountsDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string USER, string PASS, string EMAIL) {
+        public virtual int Insert(string USER, string PASS, string EMAIL, string QUESTION, string ANSWER) {
             if ((USER == null)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -988,6 +1082,18 @@ namespace ITRW211_Project.AccountsDataSetTableAdapters {
             }
             else {
                 this.Adapter.InsertCommand.Parameters[2].Value = ((string)(EMAIL));
+            }
+            if ((QUESTION == null)) {
+                this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(QUESTION));
+            }
+            if ((ANSWER == null)) {
+                this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[4].Value = ((string)(ANSWER));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -1009,7 +1115,7 @@ namespace ITRW211_Project.AccountsDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string USER, string PASS, string EMAIL, int Original_ID) {
+        public virtual int Update(string USER, string PASS, string EMAIL, string QUESTION, string ANSWER, int Original_ID) {
             if ((USER == null)) {
                 this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -1028,7 +1134,19 @@ namespace ITRW211_Project.AccountsDataSetTableAdapters {
             else {
                 this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(EMAIL));
             }
-            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(Original_ID));
+            if ((QUESTION == null)) {
+                this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(QUESTION));
+            }
+            if ((ANSWER == null)) {
+                this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(ANSWER));
+            }
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_ID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
