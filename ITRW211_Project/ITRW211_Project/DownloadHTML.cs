@@ -11,56 +11,76 @@ namespace ITRW211_Project
 {
     public class DownloadHTML
     {
-        public string downloadHTML(string link, string path, string filename)
+        private string downloadFile(string link, string path, string filename)
         {
-            if (!string.IsNullOrWhiteSpace(link))
+            using (var client = new WebClient())
             {
-                try
+                client.Encoding = Encoding.UTF8;
+                string text_backup = client.DownloadString(link);
+                using (FileStream str = new FileStream(path + filename, FileMode.Create, FileAccess.Write))
                 {
-                    if (!Directory.Exists(path))
+                    using (StreamWriter writer = new StreamWriter(str))
                     {
-                        Directory.CreateDirectory(path);
-                    }
-                    using (var client = new WebClient())
-                    {
-                        client.Encoding = Encoding.UTF8;
-                        string text_backup = client.DownloadString(link);
-                        using (FileStream str = new FileStream(path + filename, FileMode.Create, FileAccess.Write))
-                        {
-                            using (StreamWriter writer = new StreamWriter(str))
-                            {
-                                writer.WriteLine(text_backup);
-                            }
-                        }
-                        return text_backup;
+                        writer.WriteLine(text_backup);
                     }
                 }
-                catch (Exception err)
+                return text_backup;
+            }
+        }
+
+        private string readFile(string link, string path, string filename)
+        {
+            using (FileStream str = new FileStream(path + filename, FileMode.Open, FileAccess.Read))
+            {
+                using (StreamReader reader = new StreamReader(str))
                 {
-                    MessageBox.Show(err.Message + "\n\n" + err.StackTrace);
-                    FileInfo fileInfo = new FileInfo(path + filename);
-                    if (fileInfo.Exists)
+                    string text = "";
+                    while (!reader.EndOfStream)
                     {
-                        using (FileStream str = new FileStream(path + filename, FileMode.Open, FileAccess.Read))
-                        {
-                            using (StreamReader reader = new StreamReader(str))
-                            {
-                                string text = "";
-                                while (!reader.EndOfStream)
-                                {
-                                    text += reader.ReadLine();
-                                }
-                                return text;
-                            }
-                        }
+                        text += reader.ReadLine();
                     }
-                    else
-                    {
-                        return null;
-                    }
+                    return text;
                 }
             }
-            return null;
+        }
+
+        public string downloadHTML(string link, string path, string filename)
+        {
+            try
+            {
+                if (!string.IsNullOrWhiteSpace(link))
+                {
+                    try
+                    {
+                        if (!Directory.Exists(path))
+                        {
+                            Directory.CreateDirectory(path);
+                        }
+                        return downloadFile(link,path,filename);
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Error downloading the latest article list.\n\nAre you connected to the internet?\n\nChecking for previous downloaded list.");
+                        FileInfo fileInfo = new FileInfo(path + filename);
+                        if (fileInfo.Exists)
+                        {
+                            return readFile(link, path, filename);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Error no previous list found.");
+                            return null;
+                        }
+                    }
+                }
+                return null;
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show("Article not downloaded!" + "\n\n" + err.Message + "\n\n" + err.StackTrace);
+                return null;
+            }
+            
         }
         public string downloadArticleHTML(string link, string path, string filename)
         {
@@ -70,61 +90,25 @@ namespace ITRW211_Project
                 {
                     if (!Directory.Exists(path))
                     {
-                        string text_backup;
                         Directory.CreateDirectory(path);
-                        using (var client = new WebClient())
-                        {
-                            client.Encoding = Encoding.UTF8;
-                            text_backup = client.DownloadString(link);
-                            using (FileStream str = new FileStream(path + filename, FileMode.Create, FileAccess.Write))
-                            {
-                                using (StreamWriter writer = new StreamWriter(str))
-                                {
-                                    writer.WriteLine(text_backup);
-                                }
-                            }
-                        }
-                        return text_backup;
+                        return downloadFile(link, path, filename);
                     }
                     else
                     {
                         FileInfo fileArticleHTML = new FileInfo(path + filename);
-                        string textbackup = "";
                         if (fileArticleHTML.Exists)
                         {
-                            using (FileStream str = new FileStream(path + filename, FileMode.Open, FileAccess.Read))
-                            {
-                                using (StreamReader reader = new StreamReader(str))
-                                {
-                                    while (!reader.EndOfStream)
-                                    {
-                                        textbackup += reader.ReadLine();
-                                    }
-                                }
-                            }
-                            return textbackup;
+                            return readFile(link, path, filename);
                         }
                         else
                         {
-                            using (var client = new WebClient())
-                            {
-                                client.Encoding = Encoding.UTF8;
-                                string text_backup = client.DownloadString(link);
-                                using (FileStream str = new FileStream(path + filename, FileMode.Create, FileAccess.Write))
-                                {
-                                    using (StreamWriter writer = new StreamWriter(str))
-                                    {
-                                        writer.WriteLine(text_backup);
-                                    }
-                                }
-                            }
-                            return textbackup;
+                            return downloadFile(link, path, filename);
                         }
                     }
                 }
                 catch (Exception err)
                 {
-                    MessageBox.Show("Article not downloaded" + "\n\n" + err.Message + "\n\n" + err.StackTrace);
+                    MessageBox.Show("Article not downloaded!" + "\n\n" + err.Message + "\n\n" + err.StackTrace);
                     return null;
                 }
             }

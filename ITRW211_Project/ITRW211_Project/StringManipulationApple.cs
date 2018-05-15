@@ -26,91 +26,101 @@ namespace ITRW211_Project
                  * 9 - Article Refined Text 
                  * 10 - Article Counter
                  */
-            if (!string.IsNullOrWhiteSpace(arr[6]))
+
+            try
             {
-                string datacopy = arr[6];
-                datacopy = datacopy.Substring(datacopy.IndexOf("article, BEGIN"));
-                datacopy = datacopy.Remove(datacopy.IndexOf("article, END"));
-                datacopy = datacopy.Substring(datacopy.IndexOf("article-leader"));
-                string firstP = datacopy.Remove(datacopy.IndexOf("img src"));
-                datacopy = datacopy.Replace(firstP, "");
-                string header = datacopy.Remove(datacopy.IndexOf("<br>") + 3);
-                datacopy = datacopy.Replace(header, "");
-                string leftOver = datacopy.Remove(datacopy.IndexOf("<br>") + 8);
-                datacopy = datacopy.Replace(leftOver, "");
-
-                string article = "";
-                while (datacopy.Contains("<br>"))
+                if (!string.IsNullOrWhiteSpace(arr[6]))
                 {
-                    string paragraph = datacopy;
-                    paragraph = paragraph.Remove(paragraph.IndexOf("<br>") + 8);
-                    datacopy = datacopy.Replace(paragraph, "");
-                    paragraph = paragraph.Remove(paragraph.IndexOf("<br>"));
-                    while (paragraph.Contains("h2"))
-                        paragraph = "";
+                    string datacopy = arr[6];
+                    datacopy = datacopy.Substring(datacopy.IndexOf("article, BEGIN"));
+                    datacopy = datacopy.Remove(datacopy.IndexOf("article, END"));
+                    datacopy = datacopy.Substring(datacopy.IndexOf("article-leader"));
+                    string firstP = datacopy.Remove(datacopy.IndexOf("img src"));
+                    datacopy = datacopy.Replace(firstP, "");
+                    string header = datacopy.Remove(datacopy.IndexOf("<br>") + 3);
+                    datacopy = datacopy.Replace(header, "");
+                    string leftOver = datacopy.Remove(datacopy.IndexOf("<br>") + 8);
+                    datacopy = datacopy.Replace(leftOver, "");
 
-                    while (paragraph.Contains("img src"))
+                    string article = "";
+                    while (datacopy.Contains("<br>"))
                     {
-                        paragraph = paragraph.Substring(paragraph.IndexOf("<br") + 3);
+                        string paragraph = datacopy;
+                        paragraph = paragraph.Remove(paragraph.IndexOf("<br>") + 8);
+                        datacopy = datacopy.Replace(paragraph, "");
+                        paragraph = paragraph.Remove(paragraph.IndexOf("<br>"));
+                        while (paragraph.Contains("h2"))
+                            paragraph = "";
+
+                        while (paragraph.Contains("img src"))
+                        {
+                            paragraph = paragraph.Substring(paragraph.IndexOf("<br") + 3);
+                        }
+                        while (paragraph.Contains("href"))
+                        {
+                            string refLink = paragraph.Substring(paragraph.IndexOf("<a"));
+                            refLink = refLink.Remove(refLink.IndexOf(">") + 1);
+                            paragraph = paragraph.Replace(refLink, "");
+                            paragraph = paragraph.Replace("</a>", "");
+                        }
+
+                        while (paragraph.Contains("minor2 small gray"))
+                            paragraph = "";
+
+                        while (paragraph.Contains("</div>"))
+                            paragraph = "";
+
+                        while (paragraph.Contains("<em>") && paragraph.Contains("</em>"))
+                        {
+                            paragraph = paragraph.Replace("<em>", "");
+                            paragraph = paragraph.Replace("</em>", "");
+                        }
+
+                        while (paragraph.Contains("<strong>") && paragraph.Contains("</strong>"))
+                        {
+                            paragraph = paragraph.Replace("<strong>", "");
+                            paragraph = paragraph.Replace("</strong>", "");
+                        }
+
+                        while (paragraph.Contains("&amp;"))
+                            paragraph = paragraph.Replace("&amp;", "&");
+
+                        while (paragraph.Contains("<li>"))
+                            paragraph = paragraph.Replace("<li>", "");
+
+                        while (paragraph.Contains("</li>"))
+                            paragraph = paragraph.Replace("</li>", "");
+
+                        while (paragraph.Contains("<ul>"))
+                            paragraph = paragraph.Replace("<ul>", "");
+
+                        while (paragraph.Contains("</ul>"))
+                            paragraph = paragraph.Replace("</ul>", "");
+
+                        while (paragraph.Contains("&gt;"))
+                            paragraph = paragraph.Replace("&gt;", "");
+
+                        while (paragraph.Contains("<iframe"))
+                        {
+                            string refLink = paragraph.Substring(paragraph.IndexOf("<iframe"));
+                            refLink = refLink.Remove(refLink.IndexOf("/iframe>") + 8);
+                            paragraph = paragraph.Replace(refLink, "");
+                        }
+
+                        if (!string.IsNullOrWhiteSpace(paragraph))
+                            article += paragraph + "\n\n";
+                        //MessageBox.Show(datacopy);
                     }
-                    while (paragraph.Contains("href"))
-                    {
-                        string refLink = paragraph.Substring(paragraph.IndexOf("<a"));
-                        refLink = refLink.Remove(refLink.IndexOf(">") + 1);
-                        paragraph = paragraph.Replace(refLink, "");
-                        paragraph = paragraph.Replace("</a>", "");
-                    }
-
-                    while (paragraph.Contains("minor2 small gray"))
-                        paragraph = "";
-
-                    while (paragraph.Contains("</div>"))
-                        paragraph = "";
-
-                    while (paragraph.Contains("<em>") && paragraph.Contains("</em>"))
-                    {
-                        paragraph = paragraph.Replace("<em>", "");
-                        paragraph = paragraph.Replace("</em>", "");
-                    }
-
-                    while (paragraph.Contains("<strong>") && paragraph.Contains("</strong>"))
-                    {
-                        paragraph = paragraph.Replace("<strong>", "");
-                        paragraph = paragraph.Replace("</strong>", "");
-                    }
-
-                    while (paragraph.Contains("&amp;"))
-                        paragraph = paragraph.Replace("&amp;", "&");
-
-                    while (paragraph.Contains("<li>"))
-                        paragraph = paragraph.Replace("<li>", "");
-
-                    while (paragraph.Contains("</li>"))
-                        paragraph = paragraph.Replace("</li>", "");
-
-                    while (paragraph.Contains("<ul>"))
-                        paragraph = paragraph.Replace("<ul>", "");
-
-                    while (paragraph.Contains("</ul>"))
-                        paragraph = paragraph.Replace("</ul>", "");
-
-                    while (paragraph.Contains("&gt;"))
-                        paragraph = paragraph.Replace("&gt;", "");
-
-                    while(paragraph.Contains("<iframe"))
-                    {
-                        string refLink = paragraph.Substring(paragraph.IndexOf("<iframe"));
-                        refLink = refLink.Remove(refLink.IndexOf("/iframe>") + 8);
-                        paragraph = paragraph.Replace(refLink, "");
-                    }
-
-                    if (!string.IsNullOrWhiteSpace(paragraph))
-                        article += paragraph + "\n\n";
-                    //MessageBox.Show(datacopy);
+                    arr[8] = "1";
+                    arr[9] = article;
+                    //MessageBox.Show(article);
                 }
-                arr[8] = "1";
-                arr[9] = article;
-                //MessageBox.Show(article);
+                return arr;
+            }
+            catch (Exception)
+            {
+                string[] arrNull = new string[11];
+                ArticlesDetails_Apple.Add(arrNull);
             }
             return arr;
         }

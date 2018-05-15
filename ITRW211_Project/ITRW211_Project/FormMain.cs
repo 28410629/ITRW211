@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace ITRW211_Project
 {
@@ -24,7 +25,7 @@ namespace ITRW211_Project
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("This is a project for ITRW211\n\nDevelopers:\nCoenraad Human 28410629\nPieter Brand\nSavannah Fritze","About", MessageBoxButtons.OK,MessageBoxIcon.Information);
+            MessageBox.Show("This is a group project for ITRW211.\n\nDevelopers:\nCoenraad Human 28410629\nSavannah Fritze 29158710","About", MessageBoxButtons.OK,MessageBoxIcon.Information);
         }
 
         private void openLauncherToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -58,6 +59,11 @@ namespace ITRW211_Project
         private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
         {
             main.Show();
+        }
+
+        private void websiteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://github.com/coenraadhuman/ITRW211_Project");
         }
     }
 }

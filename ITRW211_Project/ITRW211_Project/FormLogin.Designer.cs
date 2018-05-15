@@ -42,14 +42,14 @@
             // 
             // textBoxUser
             // 
-            this.textBoxUser.Location = new System.Drawing.Point(149, 71);
+            this.textBoxUser.Location = new System.Drawing.Point(149, 67);
             this.textBoxUser.Name = "textBoxUser";
             this.textBoxUser.Size = new System.Drawing.Size(232, 20);
             this.textBoxUser.TabIndex = 0;
             // 
             // textBoxPass
             // 
-            this.textBoxPass.Location = new System.Drawing.Point(149, 97);
+            this.textBoxPass.Location = new System.Drawing.Point(149, 93);
             this.textBoxPass.Name = "textBoxPass";
             this.textBoxPass.PasswordChar = '*';
             this.textBoxPass.Size = new System.Drawing.Size(232, 20);
@@ -59,7 +59,7 @@
             // 
             this.buttonLogin.BackColor = System.Drawing.Color.White;
             this.buttonLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonLogin.Location = new System.Drawing.Point(236, 141);
+            this.buttonLogin.Location = new System.Drawing.Point(236, 131);
             this.buttonLogin.Name = "buttonLogin";
             this.buttonLogin.Size = new System.Drawing.Size(145, 23);
             this.buttonLogin.TabIndex = 2;
@@ -71,7 +71,7 @@
             // 
             this.buttonExit.BackColor = System.Drawing.Color.White;
             this.buttonExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonExit.Location = new System.Drawing.Point(85, 141);
+            this.buttonExit.Location = new System.Drawing.Point(85, 131);
             this.buttonExit.Name = "buttonExit";
             this.buttonExit.Size = new System.Drawing.Size(145, 23);
             this.buttonExit.TabIndex = 3;
@@ -85,7 +85,7 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Teal;
-            this.label1.Location = new System.Drawing.Point(72, 74);
+            this.label1.Location = new System.Drawing.Point(72, 68);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(71, 15);
             this.label1.TabIndex = 7;
@@ -97,7 +97,7 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Teal;
-            this.label2.Location = new System.Drawing.Point(72, 98);
+            this.label2.Location = new System.Drawing.Point(76, 94);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(67, 15);
             this.label2.TabIndex = 8;
@@ -163,6 +163,7 @@
             this.Name = "FormLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Article Reader - Login";
+            this.Load += new System.EventHandler(this.FormLogin_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

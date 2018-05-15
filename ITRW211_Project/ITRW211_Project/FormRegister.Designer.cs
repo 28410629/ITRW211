@@ -77,7 +77,7 @@
             // 
             this.textBoxUser.Location = new System.Drawing.Point(138, 64);
             this.textBoxUser.Name = "textBoxUser";
-            this.textBoxUser.Size = new System.Drawing.Size(261, 20);
+            this.textBoxUser.Size = new System.Drawing.Size(236, 20);
             this.textBoxUser.TabIndex = 2;
             // 
             // label4
@@ -109,14 +109,14 @@
             this.textBoxPass.Location = new System.Drawing.Point(138, 90);
             this.textBoxPass.Name = "textBoxPass";
             this.textBoxPass.PasswordChar = '*';
-            this.textBoxPass.Size = new System.Drawing.Size(261, 20);
+            this.textBoxPass.Size = new System.Drawing.Size(236, 20);
             this.textBoxPass.TabIndex = 3;
             // 
             // textBoxEmail
             // 
             this.textBoxEmail.Location = new System.Drawing.Point(138, 12);
             this.textBoxEmail.Name = "textBoxEmail";
-            this.textBoxEmail.Size = new System.Drawing.Size(261, 20);
+            this.textBoxEmail.Size = new System.Drawing.Size(236, 20);
             this.textBoxEmail.TabIndex = 0;
             // 
             // label1
@@ -136,7 +136,7 @@
             this.textBoxPassCheck.Location = new System.Drawing.Point(138, 116);
             this.textBoxPassCheck.Name = "textBoxPassCheck";
             this.textBoxPassCheck.PasswordChar = '*';
-            this.textBoxPassCheck.Size = new System.Drawing.Size(261, 20);
+            this.textBoxPassCheck.Size = new System.Drawing.Size(236, 20);
             this.textBoxPassCheck.TabIndex = 4;
             // 
             // label2
@@ -155,7 +155,7 @@
             // 
             this.textBoxEmailCheck.Location = new System.Drawing.Point(138, 38);
             this.textBoxEmailCheck.Name = "textBoxEmailCheck";
-            this.textBoxEmailCheck.Size = new System.Drawing.Size(261, 20);
+            this.textBoxEmailCheck.Size = new System.Drawing.Size(236, 20);
             this.textBoxEmailCheck.TabIndex = 1;
             // 
             // label6
@@ -199,7 +199,7 @@
             this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(94, 169);
+            this.label7.Location = new System.Drawing.Point(82, 167);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(50, 15);
             this.label7.TabIndex = 41;
@@ -207,9 +207,9 @@
             // 
             // textBoxAnswer
             // 
-            this.textBoxAnswer.Location = new System.Drawing.Point(150, 168);
+            this.textBoxAnswer.Location = new System.Drawing.Point(138, 166);
             this.textBoxAnswer.Name = "textBoxAnswer";
-            this.textBoxAnswer.Size = new System.Drawing.Size(249, 20);
+            this.textBoxAnswer.Size = new System.Drawing.Size(236, 20);
             this.textBoxAnswer.TabIndex = 6;
             // 
             // labelQuestion
@@ -218,7 +218,7 @@
             this.labelQuestion.BackColor = System.Drawing.Color.Transparent;
             this.labelQuestion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelQuestion.ForeColor = System.Drawing.Color.White;
-            this.labelQuestion.Location = new System.Drawing.Point(39, 143);
+            this.labelQuestion.Location = new System.Drawing.Point(27, 141);
             this.labelQuestion.Name = "labelQuestion";
             this.labelQuestion.Size = new System.Drawing.Size(105, 15);
             this.labelQuestion.TabIndex = 39;
@@ -226,9 +226,9 @@
             // 
             // textBoxQuestion
             // 
-            this.textBoxQuestion.Location = new System.Drawing.Point(150, 142);
+            this.textBoxQuestion.Location = new System.Drawing.Point(138, 140);
             this.textBoxQuestion.Name = "textBoxQuestion";
-            this.textBoxQuestion.Size = new System.Drawing.Size(249, 20);
+            this.textBoxQuestion.Size = new System.Drawing.Size(236, 20);
             this.textBoxQuestion.TabIndex = 5;
             // 
             // FormRegister

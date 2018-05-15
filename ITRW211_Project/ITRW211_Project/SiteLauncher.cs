@@ -16,20 +16,6 @@ namespace ITRW211_Project
         private static List<string[]> ArticlesDetails_Ars = new List<string[]>();
         private static List<string[]> ArticlesDetails_Apple = new List<string[]>();
 
-        /* array[11] contents:
-                 * 0 - Article ID
-                 * 1 - Article Link
-                 * 2 - Article Heading
-                 * 3 - Article Author
-                 * 4 - Article Abstract
-                 * 5 - Article Image Link
-                 * 6 - Article Text
-                 * 7 - Article Image Path
-                 * 8 - Article Text Processed
-                 * 9 - Article Refined Text
-                 * 10 - Article Counter
-                 */
-
         private Form newMain;
         int progressBar_value = 0;
         string username;
@@ -100,10 +86,7 @@ namespace ITRW211_Project
             DownloadHTML htmlArticle = new DownloadHTML();
             for (int i = 0; i < ArticlesDetails_Ars.Count; i++)
             {
-                string link = ArticlesDetails_Ars[i][1];
-                string path = Application.StartupPath + "\\ArsTechnica\\" + ArticlesDetails_Ars[i][0];
-                string filename = "\\" + ArticlesDetails_Ars[i][0] + "-HTML.txt";
-                ArticlesDetails_Ars[i][6] = htmlArticle.downloadArticleHTML(link, path, filename);
+                ArticlesDetails_Ars[i][6] = htmlArticle.downloadArticleHTML(ArticlesDetails_Ars[i][1], Application.StartupPath + "\\ArsTechnica\\" + ArticlesDetails_Ars[i][0], "\\" + ArticlesDetails_Ars[i][0] + "-HTML.txt");
                 Invoke(new MethodInvoker(delegate () { labelProgress.Text = "Article HTML - " + (i+1) + "/" + ArticlesDetails_Ars.Count; }));
             }
 
@@ -213,11 +196,17 @@ namespace ITRW211_Project
             DownloadHTML htmlArticle = new DownloadHTML();
             for (int i = 0; i < ArticlesDetails_Apple.Count; i++)
             {
-                string link = ArticlesDetails_Apple[i][1];
-                string path = Application.StartupPath + "\\AppleInsider\\" + ArticlesDetails_Apple[i][0];
-                string filename = "\\" + ArticlesDetails_Apple[i][0] + "-HTML.txt";
-                ArticlesDetails_Apple[i][6] = htmlArticle.downloadArticleHTML(link, path, filename);
+                ArticlesDetails_Apple[i][6] = htmlArticle.downloadArticleHTML(ArticlesDetails_Apple[i][1], Application.StartupPath + "\\AppleInsider\\" + ArticlesDetails_Apple[i][0], "\\" + ArticlesDetails_Apple[i][0] + "-HTML.txt");
                 Invoke(new MethodInvoker(delegate () { labelProgress.Text = "Article HTML - " + (i + 1) + "/" + ArticlesDetails_Apple.Count; }));
+            }
+
+            //Removes unneccessary items
+            for (int i = 0; i < ArticlesDetails_Apple.Count; i++)
+            {
+                if (string.IsNullOrWhiteSpace(ArticlesDetails_Apple[i][0]))
+                {
+                    ArticlesDetails_Apple.RemoveAt(i);
+                }
             }
 
             // Update progressbar - html processed

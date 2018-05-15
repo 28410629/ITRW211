@@ -34,6 +34,8 @@ namespace ITRW211_Project
                     {
                         FormMain formMain = new FormMain(this,userT);
                         this.Hide();
+                        textBoxPass.Text = "";
+                        textBoxUser.Text = "";
                         formMain.Show();
                     }
                 }
@@ -57,6 +59,8 @@ namespace ITRW211_Project
         {
             FormRegister formMain = new FormRegister(this);
             this.Hide();
+            textBoxPass.Text = "";
+            textBoxUser.Text = "";
             formMain.Show();
         }
 
@@ -64,7 +68,14 @@ namespace ITRW211_Project
         {
             FormForgot formMain = new FormForgot(this);
             this.Hide();
+            textBoxPass.Text = "";
+            textBoxUser.Text = "";
             formMain.Show();
+        }
+
+        private void FormLogin_Load(object sender, EventArgs e)
+        {
+            textBoxUser.Focus();
         }
     }
 }

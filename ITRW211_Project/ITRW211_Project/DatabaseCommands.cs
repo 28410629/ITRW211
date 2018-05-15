@@ -69,11 +69,6 @@ namespace ITRW211_Project
                     commandS = String.Format("INSERT INTO ARSTECHNICA (FIRSTDATE,VIEWCOUNT,ARTICLE,AUTHOR,ABSTRACT,[USER]) VALUES('{0}', '{1}', '{2}', '{3}', '{4}', '{5}')", DateTime.Today.Date.ToString().Remove(10), arr[10], arr[2], arr[3], arr[4], username);
                     
                 }
-                else if (website == "Hackaday")
-                {
-                    adapterS = @"SELECT * FROM HACKADAY";
-                    commandS = String.Format("INSERT INTO HACKADAY (FISRTDATE,VIEWCOUNT,ARTICLE,AUTHOR,ABSTRACT,[USER]) VALUES('{0}', '{1}', '{2}', '{3}', '{4}', '{5}')", DateTime.Today.Date.ToString().Remove(10), arr[10], arr[2], arr[3], arr[4],username);
-                }
                 else
                 {
                     adapterS = @"SELECT * FROM APPLEINSIDER";
@@ -96,11 +91,6 @@ namespace ITRW211_Project
                 {
                     adapterS = @"SELECT * FROM ARSTECHNICA";
                     commandS = String.Format("UPDATE ARSTECHNICA SET VIEWCOUNT = {0} WHERE ARTICLE = '{1}' AND [USER] = '{2}'", arr[10], arr[2], username);
-                }
-                else if (website == "Hackaday")
-                {
-                    adapterS = @"SELECT * FROM HACKADAY";
-                    commandS = String.Format("UPDATE HACKADAY SET VIEWCOUNT = {0} WHERE ARTICLE = '{1}' AND [USER] = '{2}'", arr[10], arr[2],username);
                 }
                 else
                 {
@@ -289,10 +279,6 @@ namespace ITRW211_Project
                     if (website == "Ars Technica")
                     {
                         adapterS = String.Format("SELECT VIEWCOUNT FROM ARSTECHNICA WHERE ARTICLE = '{0}' AND [USER] = '{1}'", arr[2], username);
-                    }
-                    else if (website == "Hackaday")
-                    {
-                        adapterS = String.Format("SELECT VIEWCOUNT FROM HACKADAY WHERE ARTICLE = '{0}' AND [USER] = '{1}'", arr[2], username);
                     }
                     else
                     {

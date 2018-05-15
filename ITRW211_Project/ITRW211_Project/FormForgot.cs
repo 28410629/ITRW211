@@ -45,12 +45,6 @@ namespace ITRW211_Project
             Application.Exit();
         }
 
-        private void buttonBoth_Click(object sender, EventArgs e)
-        {
-            buttonForgotU_Click(sender, e);
-            buttonForgotP_Click(sender, e);
-        }
-
         private void buttonForgotP_Click(object sender, EventArgs e)
         {
             DatabaseCommands databaseCommands = new DatabaseCommands();
