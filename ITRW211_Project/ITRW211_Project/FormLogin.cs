@@ -17,6 +17,13 @@ namespace ITRW211_Project
             InitializeComponent();
         }
 
+        private void labels()
+        {
+            textBoxPass.Text = "";
+            textBoxUser.Text = "";
+            labelInfo.Text = "";
+        }
+
         private void buttonLogin_Click(object sender, EventArgs e)
         {
             string passT = textBoxPass.Text;
@@ -35,9 +42,7 @@ namespace ITRW211_Project
                         textBoxUser.Focus();
                         FormMain formMain = new FormMain(this,userT);
                         this.Hide();
-                        textBoxPass.Text = "";
-                        textBoxUser.Text = "";
-                        labelInfo.Text = "";
+                        labels();
                         formMain.Show();
                     }
                 }
@@ -62,9 +67,7 @@ namespace ITRW211_Project
             textBoxUser.Focus();
             FormRegister formMain = new FormRegister(this);
             this.Hide();
-            textBoxPass.Text = "";
-            textBoxUser.Text = "";
-            labelInfo.Text = "";
+            labels();
             formMain.Show();
         }
 
@@ -73,9 +76,7 @@ namespace ITRW211_Project
             textBoxUser.Focus();
             FormForgot formMain = new FormForgot(this);
             this.Hide();
-            textBoxPass.Text = "";
-            textBoxUser.Text = "";
-            labelInfo.Text = "";
+            labels();
             formMain.Show();
         }
 
