@@ -278,5 +278,38 @@ namespace ITRW211_Project
                 return 0;
             }
         }
+
+        public string checkCounter(string[] arr, string website, string username)
+        {
+            arr = check(arr);
+            try
+            {
+                using (OleDbConnection database = new OleDbConnection(Properties.Settings.Default.DatabaseConnectionString))
+                {
+                    if (website == "Ars Technica")
+                    {
+                        adapterS = String.Format("SELECT VIEWCOUNT FROM ARSTECHNICA WHERE ARTICLE = '{0}' AND [USER] = '{1}'", arr[2], username);
+                    }
+                    else if (website == "Hackaday")
+                    {
+                        adapterS = String.Format("SELECT VIEWCOUNT FROM HACKADAY WHERE ARTICLE = '{0}' AND [USER] = '{1}'", arr[2], username);
+                    }
+                    else
+                    {
+                        adapterS = String.Format("SELECT VIEWCOUNT FROM APPLEINSIDER WHERE ARTICLE = '{0}' AND [USER] = '{1}'", arr[2], username);
+                    }
+                    database.Open();
+                    OleDbDataAdapter adapter = new OleDbDataAdapter(adapterS, database);
+                    DataSet dataSet = new DataSet();
+                    adapter.Fill(dataSet, "list");
+                    database.Close(); 
+                    return dataSet.Tables[0].Rows[0][0].ToString();
+                }
+            }
+            catch (Exception)
+            {
+                return "0";
+            }
+        }
     }
 }

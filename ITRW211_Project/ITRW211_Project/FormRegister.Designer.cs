@@ -255,6 +255,7 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.textBoxPass);
             this.Controls.Add(this.textBoxEmail);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(479, 386);
             this.MinimumSize = new System.Drawing.Size(479, 386);

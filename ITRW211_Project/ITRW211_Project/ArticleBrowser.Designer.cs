@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ArticleBrowser));
             this.listBoxDisplay = new System.Windows.Forms.ListBox();
             this.labelIntro = new System.Windows.Forms.Label();
             this.labelArticleInfo = new System.Windows.Forms.Label();
@@ -89,6 +90,7 @@
             this.Controls.Add(this.labelArticleInfo);
             this.Controls.Add(this.labelIntro);
             this.Controls.Add(this.listBoxDisplay);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(682, 510);
             this.Name = "ArticleBrowser";

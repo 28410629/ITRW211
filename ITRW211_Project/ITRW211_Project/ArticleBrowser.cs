@@ -81,12 +81,14 @@ namespace ITRW211_Project
 
                     if (!string.IsNullOrWhiteSpace(ArticlesDetails[i][9]))
                     {
-                        if(ArticlesDetails[i][10] == "0")
+                        DatabaseCommands dbCount = new DatabaseCommands();
+                        string counterDB = dbCount.checkCounter(ArticlesDetails[i], Website, username);
+                        if (counterDB == "0")
                         {
                             // Create new entry in database
                             try
                             {
-                                int counter = Convert.ToInt32(ArticlesDetails[i][10]);
+                                int counter = Convert.ToInt32(counterDB);
                                 counter++;
                                 ArticlesDetails[i][10] = Convert.ToString(counter);
                                 DatabaseCommands command = new DatabaseCommands();
@@ -102,7 +104,7 @@ namespace ITRW211_Project
                             // Update entry in database
                             try
                             {
-                                int counter = Convert.ToInt32(ArticlesDetails[i][10]);
+                                int counter = Convert.ToInt32(counterDB);
                                 counter++;
                                 ArticlesDetails[i][10] = Convert.ToString(counter);
                                 DatabaseCommands command = new DatabaseCommands();
@@ -143,15 +145,14 @@ namespace ITRW211_Project
                     {
                         return Properties.Resources.ars_sub_thumb;
                     }
-                    else if(Website == "Hackaday")
+                    else if (Website == "Hackaday")
                     {
-                        //return Properties.Resources;
+                        return Properties.Resources.hackadaydf;
                     }
                     else
                     {
-                        return Properties.Resources.ars_sub_thumb;
+                        return Properties.Resources.opengraph_default;
                     }
-                    return null;
                 }
             }
             catch(Exception)
@@ -162,11 +163,11 @@ namespace ITRW211_Project
                 }
                 else if (Website == "Hackaday")
                 {
-                    return Properties.Resources.ars_sub_thumb;
+                    return Properties.Resources.hackadaydf;
                 }
                 else
                 {
-                    return Properties.Resources.ars_sub_thumb;
+                    return Properties.Resources.opengraph_default;
                 }
             }
         }

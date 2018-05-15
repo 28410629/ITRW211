@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ViewReadCount));
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.buttonRefresh = new System.Windows.Forms.Button();
             this.buttonDelete = new System.Windows.Forms.Button();
@@ -85,6 +86,7 @@
             this.Controls.Add(this.buttonDelete);
             this.Controls.Add(this.buttonRefresh);
             this.Controls.Add(this.dataGridView);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1300, 632);
             this.MinimumSize = new System.Drawing.Size(1300, 632);
