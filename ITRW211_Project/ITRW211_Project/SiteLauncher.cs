@@ -60,7 +60,7 @@ namespace ITRW211_Project
             ArticlesDetails_Ars.Clear();
 
             // Update progressbar - thread started
-            Invoke(new MethodInvoker(delegate () { labelProgress.Text = "Main HTML - downloaded started."; }));
+            Invoke(new MethodInvoker(delegate () { labelProgress.Text = "Main HTML - download started."; }));
             Invoke(new MethodInvoker(delegate () { progressbarUpdate(10.00); }));
 
             // Download HTML
@@ -68,7 +68,7 @@ namespace ITRW211_Project
             string htmlArs = html.downloadHTML("https://arstechnica.com/", Application.StartupPath + "\\ArsTechnica", "\\ArsTechnica-HTML.txt");
 
             // Update progressbar - html downloaded
-            Invoke(new MethodInvoker(delegate () { labelProgress.Text = "Main HTML - downloaded completed."; }));
+            Invoke(new MethodInvoker(delegate () { labelProgress.Text = "Main HTML - download completed."; }));
             Invoke(new MethodInvoker(delegate () { progressbarUpdate(10.00); }));
 
             // Get individual article details from main HTML
@@ -79,7 +79,7 @@ namespace ITRW211_Project
             }
 
             // Update progressbar - html processed
-            Invoke(new MethodInvoker(delegate () { labelProgress.Text = "Article HTML - downloadeds started (if cached, HTML will be loaded)."; }));
+            Invoke(new MethodInvoker(delegate () { labelProgress.Text = "Article HTML - downloads started (if cached, HTML will be loaded)."; }));
             Invoke(new MethodInvoker(delegate () { progressbarUpdate(20.00); }));
 
             // Download individual articles
@@ -91,7 +91,7 @@ namespace ITRW211_Project
             }
 
             // Update progressbar - html processed
-            Invoke(new MethodInvoker(delegate () { labelProgress.Text = "Article HTML - downloadeds completed."; }));
+            Invoke(new MethodInvoker(delegate () { labelProgress.Text = "Article HTML - downloads completed."; }));
             Invoke(new MethodInvoker(delegate () { progressbarUpdate(20.00); }));
 
             // Process sites
@@ -130,7 +130,7 @@ namespace ITRW211_Project
             }
 
             // Update progressbar - html processed
-            Invoke(new MethodInvoker(delegate () { labelProgress.Text = "Article Images - downloadeds started (if cached, image will be loaded)."; }));
+            Invoke(new MethodInvoker(delegate () { labelProgress.Text = "Article Images - downloads started (if cached, image will be loaded)."; }));
             Invoke(new MethodInvoker(delegate () { progressbarUpdate(20.00); }));
 
             // Download images and get there file path
@@ -142,7 +142,7 @@ namespace ITRW211_Project
             }
 
             // Update progressbar - html processed
-            Invoke(new MethodInvoker(delegate () { labelProgress.Text = "Article Images - downloadeds completed."; }));
+            Invoke(new MethodInvoker(delegate () { labelProgress.Text = "Article Images - downloads completed."; }));
             Invoke(new MethodInvoker(delegate () { progressbarUpdate(20.00); }));
 
             // Open Article browser
@@ -161,7 +161,7 @@ namespace ITRW211_Project
             ArticlesDetails_Apple.Clear();
 
             // Update progressbar - thread started
-            Invoke(new MethodInvoker(delegate () { labelProgress.Text = "Main HTML - downloaded started."; }));
+            Invoke(new MethodInvoker(delegate () { labelProgress.Text = "Main HTML - download started."; }));
             Invoke(new MethodInvoker(delegate () { progressbarUpdate(10.00); }));
 
             // Download mainHTML
@@ -169,7 +169,7 @@ namespace ITRW211_Project
             string htmlApple = html.downloadHTML("https://appleinsider.com/", Application.StartupPath + "\\AppleInsider", "\\AppleInsider-HTML.txt");
 
             // Update progressbar - html downloaded
-            Invoke(new MethodInvoker(delegate () { labelProgress.Text = "Main HTML - downloaded completed."; }));
+            Invoke(new MethodInvoker(delegate () { labelProgress.Text = "Main HTML - download completed."; }));
             Invoke(new MethodInvoker(delegate () { progressbarUpdate(10.00); }));
 
             // Get individual article details from main HTML
@@ -189,7 +189,7 @@ namespace ITRW211_Project
             }
 
             // Update progressbar - html processed
-            Invoke(new MethodInvoker(delegate () { labelProgress.Text = "Article HTML - downloadeds started (if cached, HTML will be loaded)."; }));
+            Invoke(new MethodInvoker(delegate () { labelProgress.Text = "Article HTML - downloads started (if cached, HTML will be loaded)."; }));
             Invoke(new MethodInvoker(delegate () { progressbarUpdate(20.00); }));
 
             // Download individual articlesHTML
@@ -210,7 +210,7 @@ namespace ITRW211_Project
             }
 
             // Update progressbar - html processed
-            Invoke(new MethodInvoker(delegate () { labelProgress.Text = "Article HTML - downloadeds completed."; }));
+            Invoke(new MethodInvoker(delegate () { labelProgress.Text = "Article HTML - downloads completed."; }));
             Invoke(new MethodInvoker(delegate () { progressbarUpdate(20.00); }));
 
             // Refine image links
@@ -224,7 +224,7 @@ namespace ITRW211_Project
             }
 
             // Update progressbar - html processed
-            Invoke(new MethodInvoker(delegate () { labelProgress.Text = "Article Images - downloadeds started (if cached, image will be loaded)."; }));
+            Invoke(new MethodInvoker(delegate () { labelProgress.Text = "Article Images - downloads started (if cached, image will be loaded)."; }));
             Invoke(new MethodInvoker(delegate () { progressbarUpdate(20.00); }));
 
             // Download images and get there file path
@@ -236,7 +236,7 @@ namespace ITRW211_Project
             }
 
             // Update progressbar - html processed
-            Invoke(new MethodInvoker(delegate () { labelProgress.Text = "Article Images - downloadeds completed."; }));
+            Invoke(new MethodInvoker(delegate () { labelProgress.Text = "Article Images - downloads completed."; }));
             Invoke(new MethodInvoker(delegate () { progressbarUpdate(20.00); }));
 
             // Open Article browser
